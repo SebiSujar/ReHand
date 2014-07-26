@@ -23,8 +23,8 @@ exports.getTwitterCallback = function(req, res){
   var uri = 'http://54.245.112.164:8080/Tiempy/twitter/callback/?oauth_token=' + req.params.oauth_token + 
             '&oauth_verifier=' +req.params.oauth_verifier;
 
-  request(
-    { method: 'GET', uri: uri } , function (error, response, body) {
+  request.post(uri,
+    { method: 'GET' } , function (error, response, body) {
       if (checkIfUnauthorized(error,response,body)) return res.send(404);
       try {
         body = JSON.parse(body);
