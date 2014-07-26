@@ -1256,15 +1256,20 @@ top: 30%;
 
 .button.twitter {
 	background-color: #55acee;
-	-webkit-box-shadow: 0 3px 0 #37A8FD;
+	-webkit-box-shadow: 0 3px 0 #3091DA;
 }
 
 .button.twitter:hover {
-	background-color: #37A8FD !important;
+	background-color: #3091DA !important;
+}
+
+.big.button {
+  font-weight: 600;
+  font-family: proxima-nova, Lato, Arial, Helvetica, Geneva, sans-serif;
 }
 
 .big.button p {
-	font-size: 22px;
+	font-size: 19px;
 }
 
 .footer {
@@ -1283,11 +1288,11 @@ top: 30%;
 @font-face {
 	font-family: "proxima-nova";
 	font-weight: 600;
-	src: url("fonts/proxima-nova/ProximaNova-Bold.otf");
+	src: url("../fonts/proxima-nova/ProximaNova-Bold.otf");
 }
 
 @font-face {
 	font-family: "proxima-nova";
 	font-weight: normal;
-	src: url("fonts/proxima-nova/ProximaNova-Light.otf");
+	src: url("../fonts/proxima-nova/ProximaNova-Light.otf");
 }
