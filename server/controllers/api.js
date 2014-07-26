@@ -9,7 +9,11 @@ exports.getTwitterOauth = function(req, res){
   var uri = 'https://api.twitter.com/oauth/request_token';
   request.post(uri,
     {
-      form: {oauth_callback: 'localhost:9000/api/twitter/callback/'}
+      form: {
+        oauth_callback: 'localhost:9000/api/twitter/callback/',
+        oauth_token:,
+        oauth_verifier: 
+      }
     }, function (error, response, body) {
     console.log("error");
     console.log(error);
