@@ -1,15 +1,19 @@
+
 'use strict';
 
-var express = require('express');
-var controller = require('./thing.controller');
+var express = require('express'),
+		controller = require('./thing.controller');
 
-var router = express.Router();
+/**
+ * Thing model routes
+ */
+module.exports = function(app) {
 
-router.get('/', controller.index);
-router.get('/:id', controller.show);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.destroy);
-
-module.exports = router;
+	app.post('/thing/test', controller.test);
+	app.get('/thing/', controller.index);
+	app.get('/thing/:id', controller.show);
+	app.post('/thing/', controller.create);
+	app.put('/thing/:id', controller.update);
+	app.patch('/thing/:id', controller.update);
+	app.delete('/thing/:id', controller.destroy);
+};

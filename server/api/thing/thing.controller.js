@@ -13,6 +13,11 @@ var _ = require('lodash');
 var Thing = require('./thing.model');
 
 // Get list of things
+
+exports.test = function(req, res) {
+  console.log("Thing test");
+};
+
 exports.index = function(req, res) {
   Thing.find(function (err, things) {
     if(err) { return handleError(res, err); }
