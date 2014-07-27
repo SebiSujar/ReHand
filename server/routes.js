@@ -2,13 +2,17 @@
 
 var api = require('./controllers/api'),
     index = require('./controllers'),
-    errors = require('./components/errors');
+    errors = require('./components/errors'),
+    express = require('express'),
+    session = require('express-session');
+
+api.oauth();
 
 /**
  * Application routes
  */
 module.exports = function(app) {
-  
+
   /*
   *
   * TWITTER
@@ -16,10 +20,10 @@ module.exports = function(app) {
   */
 
   // Get the user Twitter oauth
-  app.get('/api/user/twitter/', api.getTwitterOauth);
+  app.get('/api/user/twitter', api.getTwitterOauth);
 
   // Receives the twitter oauth callback
-  app.get('/api/twitter/callback/:oauth_token/:oauth_verifier/', api.getTwitterCallback);
+  app.get('/api/twitter/callback', api.getTwitterCallback);
   
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

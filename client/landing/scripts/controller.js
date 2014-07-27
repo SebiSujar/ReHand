@@ -1,13 +1,12 @@
 angular.module('landingApp', [])
 .controller('LandingCtrl',
-  function($scope, $http) {
+  function($scope, $http, $window) {
   
   $scope.login = function() {
   	$http.get('//localhost:9000/api/user/twitter/').success(function (url) {
-	    url = JSON.parse(url);
-	    $scope.safeApply(function () {
-	      console.log(url);
-	    });
-	  });
+      console.log("url");
+      console.log(url);
+      $window.location.href = url;
+	});
   };
 });

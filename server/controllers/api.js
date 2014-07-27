@@ -1,42 +1,63 @@
 'use strict';
 
-var request = require('request');
+var request           = require('request'),
+    OAuth             = require('oauth').OAuth;
+
+var oa;
 
 // TWITTER -----------------------------
 
+exports.oauth = function () {
+  oa = new OAuth(
+    "https://api.twitter.com/oauth/request_token",
+    "https://api.twitter.com/oauth/access_token",
+    "ruXFonJxX4ZGRhkcoiLLo0hhs",
+    "NYLgyj1JG4EG7JTea5Y9WXlXYOg6MupEsthLOTGWB8AlPUkI6Y",
+    "1.0",
+    "http://localhost:9000/api/twitter/callback",
+    "HMAC-SHA1"
+  );
+};
+
+
 exports.getTwitterOauth = function(req, res){
-  // Requests a Twitter authorization URL from the java webserver
-  var uri = 'https://api.twitter.com/oauth/request_token';
-  request.post(uri,
-    {
-      form: {
-        oauth_callback: 'localhost:9000/api/twitter/callback/',
-        oauth_token:,
-        oauth_verifier: 
-      }
-    }, function (error, response, body) {
-    console.log("error");
-    console.log(error);
-    console.log("body");
-    console.log(body);
+  oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+    if (error) {
+      console.log(error);
+      res.send("yeah no. didn't work.")
+    }
+    else {
+      console.log("oauth_token");
+      console.log(oauth_token);
+      console.log("oauth_token_secret");
+      console.log(oauth_token_secret);
+      console.log("results");
+      console.log(results);
+      
+      res.send('https://api.twitter.com/oauth/authorize?oauth_token=' + oauth_token);
+
+      /*req.session.oauth = {};
+      req.session.oauth.token = oauth_token;
+      console.log('oauth.token: ' + req.session.oauth.token);
+      req.session.oauth.token_secret = oauth_token_secret;
+      console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
+      res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)*/
+  }
   });
 };
 
-exports.getTwitterCallback = function(req, res){
-  // Sends the twitter oauth response callback to the java webserver
-  var uri = 'http://54.245.112.164:8080/Tiempy/twitter/callback/?oauth_token=' + req.params.oauth_token + 
-            '&oauth_verifier=' +req.params.oauth_verifier;
+var saveAccessToken = function(oauth_token, oauth_verifier, callback) {
 
-  request.post(uri,
-    { method: 'GET' } , function (error, response, body) {
-      if (checkIfUnauthorized(error,response,body)) return res.send(404);
-      try {
-        body = JSON.parse(body);
-        res.json(body);
-      }catch(err){
-        console.log(body);
-        res.send(404);
-      }
-    }
-  );
+  // Guardamos al usuario
+
+
+
+  callback();
+};
+
+exports.getTwitterCallback = function(req, res){
+
+  saveAccessToken(req.query.oauth_token, req.query.oauth_verifier, function () {
+    res.redirect('https://localhost:9000/App');
+  });
 };

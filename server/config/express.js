@@ -26,7 +26,6 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
-  
 
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
