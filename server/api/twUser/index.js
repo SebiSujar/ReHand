@@ -5,6 +5,6 @@ var controller = require('./twUser.controller');
 
 var router = express.Router();
 
-router.post('/', controller.create);
+router.post('/twUser', controller.create);
 
 module.exports = router;

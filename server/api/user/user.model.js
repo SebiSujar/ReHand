@@ -24,7 +24,7 @@ var UserSchema = new Schema({
 		}
   },
   twitter: {
-  	id: String,
+  	id: Number,
   	access_token: String,
   	
   	name: String,
@@ -39,8 +39,8 @@ var UserSchema = new Schema({
   	messages_earned: Number,
   	tweets_earned: Number,
   	
-  	startingFollowing, Number,
-  	startingFollowers, Number,
+  	startingFollowing: Number,
+  	startingFollowers: Number,
   	
   	followingInTime: [{
   		following: Number,
@@ -49,7 +49,7 @@ var UserSchema = new Schema({
   			type: Date, 
   			default: Date.now
   		}
-  	}],
+  	}]
   }
 });
 

@@ -1,63 +1,96 @@
 'use strict';
 
 var request           = require('request'),
-    OAuth             = require('oauth').OAuth;
-
-var oa;
-
+    qs                = require('querystring'),
+    oauth,
+    params;
 // TWITTER -----------------------------
 
 exports.oauth = function () {
-  oa = new OAuth(
-    "https://api.twitter.com/oauth/request_token",
-    "https://api.twitter.com/oauth/access_token",
-    "ruXFonJxX4ZGRhkcoiLLo0hhs",
-    "NYLgyj1JG4EG7JTea5Y9WXlXYOg6MupEsthLOTGWB8AlPUkI6Y",
-    "1.0",
-    "http://localhost:9000/api/twitter/callback",
-    "HMAC-SHA1"
-  );
+  oauth = { 
+    callback: 'http://localhost:9000/api/twitter/callback'
+  , consumer_key: 'ruXFonJxX4ZGRhkcoiLLo0hhs'
+  , consumer_secret: 'NYLgyj1JG4EG7JTea5Y9WXlXYOg6MupEsthLOTGWB8AlPUkI6Y'    
+  };
 };
 
 
 exports.getTwitterOauth = function(req, res){
-  oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
-    if (error) {
-      console.log(error);
-      res.send("yeah no. didn't work.")
-    }
-    else {
-      console.log("oauth_token");
-      console.log(oauth_token);
-      console.log("oauth_token_secret");
-      console.log(oauth_token_secret);
-      console.log("results");
-      console.log(results);
-      
-      res.send('https://api.twitter.com/oauth/authorize?oauth_token=' + oauth_token);
+  var url = 'https://api.twitter.com/oauth/request_token';
 
-      /*req.session.oauth = {};
-      req.session.oauth.token = oauth_token;
-      console.log('oauth.token: ' + req.session.oauth.token);
-      req.session.oauth.token_secret = oauth_token_secret;
-      console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
-      res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)*/
-  }
+  request.post({url:url, oauth:oauth}, function (err, req, body) {
+    if (err) {
+      console.log(err);
+      return res.send("yeah no. didn't work.")
+    }
+    body = qs.parse(body);
+    if (!body.oauth_callback_confirmed){
+      console.log("bad authentication");
+      return res.send("yeah no. didn't work.");
+    }
+    oauth.token = body.oauth_token;
+    oauth.token_secret = body.oauth_token_secret;
+    res.send('https://api.twitter.com/oauth/authorize?oauth_token=' + body.oauth_token);
   });
 };
 
-var saveAccessToken = function(oauth_token, oauth_verifier, callback) {
+var getAccessToken = function(callback) {
+  var url = 'https://api.twitter.com/oauth/access_token';
+  request.post({url:url, oauth:oauth}, function (e, r, body) {
+    body = qs.parse(body);
+    oauth.token = body.oauth_token;
+    oauth.token_secret = body.oauth_token_secret;
+    params = {
+      screen_name: body.screen_name, 
+      user_id: body.user_id
+    };
 
-  // Guardamos al usuario
+    callback();
+  });
+};
 
+var getUserInfo = function(callback) {
+  var url = 'https://api.twitter.com/1.1/users/show.json?';
+  url += qs.stringify(params);
 
+  request.get({url:url, oauth:oauth, json:true}, function (e, r, body) {
+    var user = {
+      twitter: {
+        id: body.id,
+        token: oauth.token,
+        token_secret: oauth.token_secret,
+        
+        name: body.screen_name,
+        picture: body.profile_image_url,
+        
+        following: body.friends_count,
+        followers: body.followers_count,
+        
+        startingFollowing: body.friends_count,
+        startingFollowers: body.followers_count,
+      }
+    };
 
-  callback();
+    console.log(user);
+
+    callback(user);
+  });
+};
+
+var saveUser = function(user, callback){
+  request.post('/User', user, function (res){
+    console.log(res);
+  });
 };
 
 exports.getTwitterCallback = function(req, res){
+  oauth.verifier = req.query.oauth_verifier;
 
-  saveAccessToken(req.query.oauth_token, req.query.oauth_verifier, function () {
-    res.redirect('https://localhost:9000/App');
+  getAccessToken(function() {
+    getUserInfo(function(user){
+      saveUser(user, function(){
+        res.redirect('/App');
+      });
+    });
   });
 };
