@@ -57,9 +57,10 @@ var getUserInfo = function(callback) {
     var user = {
       twitter: {
         id: body.id,
+
         token: oauth.token,
         token_secret: oauth.token_secret,
-        
+
         name: body.screen_name,
         picture: body.profile_image_url,
         
@@ -70,16 +71,23 @@ var getUserInfo = function(callback) {
         startingFollowers: body.followers_count,
       }
     };
-
-    console.log(user);
-
     callback(user);
   });
 };
 
 var saveUser = function(user, callback){
-  request.post('/User', user, function (res){
-    console.log(res);
+  console.log("sending to save");
+  console.log(user);
+  request.post('http://localhost:9000/user', {form: user}, function (err, res){
+    console.log("********API***********");
+    console.log("err");
+    console.log(err);
+    console.log("err");
+    console.log("user");
+    console.log(JSON.parse(res.body));
+    console.log("user");
+    console.log("********API***********");
+    callback();
   });
 };
 

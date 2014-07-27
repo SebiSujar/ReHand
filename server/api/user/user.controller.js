@@ -7,7 +7,7 @@ var User = require('./user.model');
 
 
 exports.UpdateFollowingFollowers = function(req, res) {
-  User.find({twitter.id: req.params.id},function(err, user){
+  User.find({'twitter.id': req.params.id},function(err, user){
     if(err){return handleError(err)}
 
     var toReplace = {
@@ -16,16 +16,15 @@ exports.UpdateFollowingFollowers = function(req, res) {
     };
 
     var updated = _.merge(user, toReplace);
-      updated.save(function (err) {
-        if (err) { return handleError(res, err); }
-        return res.json(updated);
-      });
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(updated);
     });
   });
 };
 
 exports.plusFollowers_earned = function(req,res){
-  User.find({twitter.id: req.params.id},function(err,user){
+  User.find({'twitter.id': req.params.id},function(err,user){
     if (err) { 
       return handleError(err); 
     }
@@ -38,7 +37,7 @@ exports.plusFollowers_earned = function(req,res){
 };
 
 exports.plusFollowings_earned = function(req,res){
-  User.find({twitter.id: req.params.id},function(err,user){
+  User.find({'twitter.id': req.params.id},function(err,user){
     if (err) { 
       return handleError(err); 
     }
@@ -52,7 +51,7 @@ exports.plusFollowings_earned = function(req,res){
 
 // Get a single user
 exports.show = function(req, res) {
-  User.find({twitter.id: req.params.id}, function (err, user) {
+  User.find({'twitter.id': req.params.id}, function (err, user) {
     if(err) { return handleError(res, err); }
     if(!user) { return res.send(404); }
     return res.json(user);
@@ -70,7 +69,7 @@ exports.create = function(req, res) {
 // Updates an existing user in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  User.find({twitter.id: req.params.id}, function (err, user) {
+  User.find({'twitter.id': req.params.id}, function (err, user) {
     if (err) { return handleError(res, err); }
     if(!user) { return res.send(404); }
     var updated = _.merge(user, req.body);
@@ -82,7 +81,7 @@ exports.update = function(req, res) {
 };
 
 exports.findUserById = function(req,res){
-  User.find({twitter.id:req.params.id}, function(err, user){
+  User.find({'twitter.id':req.params.id}, function(err, user){
     if (err) { return handleError(res, err); }
     if(!user) { return res.send(404); }
     return res.json(200, user);
@@ -92,7 +91,7 @@ exports.findUserById = function(req,res){
 // Deletes a user from the DB.
 
 exports.destroy = function(req, res) {
-  User.find({twitter.id: req.params.id}, function (err, user) {
+  User.find({'twitter.id': req.params.id}, function (err, user) {
     if(err) { return handleError(res, err); }
     if(!user) { return res.send(404); }
     var newUser = {
@@ -102,7 +101,7 @@ exports.destroy = function(req, res) {
         access_token: user.twitter.access_token
       }
     };
-    User.update({twitter.id: req.params.id}, newUser, {upsert: true}, function(err){
+    User.update({'twitter.id': req.params.id}, newUser, {upsert: true}, function(err){
       if(err) { return handleError(res, err); }
       return res.send(200);
     });

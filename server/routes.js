@@ -2,22 +2,20 @@
 
 var api = require('./controllers/api'),
     index = require('./controllers'),
-    errors = require('./components/errors'),
-    express = require('express'),
-    session = require('express-session');
-
-api.oauth();
+    errors = require('./components/errors');
 
 /**
  * Application routes
  */
-module.exports = function(app) {
 
+module.exports = function(app) {
   /*
   *
   * TWITTER
   *
   */
+
+  api.oauth();
 
   // Get the user Twitter oauth
   app.get('/api/user/twitter', api.getTwitterOauth);

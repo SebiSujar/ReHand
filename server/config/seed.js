@@ -5,6 +5,9 @@
 
 'use strict';
 
+var Thing = require('../api/thing/');
+return;
+
 var Thing = require('../api/thing/thing.model');
 
 

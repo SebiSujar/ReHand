@@ -1,10 +1,12 @@
+
 'use strict';
 
-var express = require('express');
-var controller = require('./twUser.controller');
+var express = require('express'),
+	controller = require('./twUser.controller');
 
-var router = express.Router();
-
-router.post('/twUser', controller.create);
-
-module.exports = router;
+/**
+ * TwUser model routes
+ */
+module.exports = function(app) {
+	app.post('/twUser', controller.create);
+};

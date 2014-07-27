@@ -17,15 +17,13 @@ var UserSchema = new Schema({
 		},
 		payments: {
 			status: String,
-			dueDate: {
-				type: Date, 
-				default: Date.now
-			}
+			dueDate: { type: Date, default: Date.now }
 		}
   },
   twitter: {
   	id: Number,
-  	access_token: String,
+    token: String,
+  	token_secret: String,
   	
   	name: String,
   	picture: String,
@@ -33,11 +31,11 @@ var UserSchema = new Schema({
   	following: Number,
   	followers: Number,
   	
-  	followers_earned: Number,
-  	following_earned: Number,
-  	unfollowing_earned: Number,
-  	messages_earned: Number,
-  	tweets_earned: Number,
+  	followers_earned: { type: Number, default: 0 },
+  	following_earned: { type: Number, default: 0 },
+  	unfollowing_earned: { type: Number, default: 0 },
+  	messages_earned: { type: Number, default: 0 },
+  	tweets_earned: { type: Number, default: 0 },
   	
   	startingFollowing: Number,
   	startingFollowers: Number,
