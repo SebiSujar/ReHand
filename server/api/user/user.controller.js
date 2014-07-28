@@ -23,7 +23,7 @@ exports.UpdateFollowingFollowers = function(req, res) {
   });
 };
 
-exports.plusFollowers_earned = function(req,res){
+exports.getplusFollowers_earned = function(req,res){
   User.find({'twitter.id': req.params.id},function(err,user){
     if (err) { 
       return handleError(err); 
@@ -36,7 +36,7 @@ exports.plusFollowers_earned = function(req,res){
   });
 };
 
-exports.plusFollowings_earned = function(req,res){
+exports.getplusFollowings_earned = function(req,res){
   User.find({'twitter.id': req.params.id},function(err,user){
     if (err) { 
       return handleError(err); 
