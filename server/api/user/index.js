@@ -30,4 +30,4 @@ module.exports = function findUserById(app){
 };
 module.exports = function destroy(app){
 	app.post('/user',controller.destroy);
-};
+};	
