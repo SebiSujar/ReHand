@@ -90,12 +90,15 @@ exports.register = function(req, res) {
         // Find if there is an existing cookie for that user
         redis.keys(dbUser._id, function(err, cookiesArray){
           if (err) { return handleError(res, err); }
+          var cookie = req.body.sessionToken;
           // If there is one, then send it to the user
-          dbUser.sessionToken = req.body.sessionToken;
-          // If not, set a cookie
-          redis.set(dbUser.sessionToken, dbUser._id);
-          console.log("Not found, assigning new cookie: " + dbUser.sessionToken);
+          if (cookiesArray.length > 0) {
+            cookie = cookiesArray[0];
+          }
+          redis.set(cookie, dbUser._id);
+          console.log("Not found, assigning new cookie: " + cookie);
           // Send the cookie to the user
+          dbUser.sessionToken = cookie;
           return res.json(dbUser);
         });
       });
