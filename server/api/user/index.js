@@ -5,29 +5,14 @@ var express = require('express'),
 	controller = require('./user.controller');
 
 /**
- * TwUser model routes
+ * User model routes
  */
 module.exports = function(app) {
-	app.post('/user', controller.create);
+
+	app.post('/user/:type/:id', controller.register);
+	app.put('/user/twitter/ff', controller.UpdateFollowingFollowers);
+	app.post('/user/lala', controller.addFollowers_earned);
+	app.post('/user/lala', controller.addFollowings_earned);
+	app.post('/user/lala', controller.show);
+	app.post('/user/lala', controller.destroy);
 };
-module.exports = function UpdateFollowingFollowers(app){
-	app.post('/user',controller.UpdateFollowingFollowers);
-};
-module.exports = function getplusFollowers_earned(app){
-	app.post('/user',controller.getplusFollowers_earned);
-};
-module.exports = function getplusFollowings_earned(app){
-	app.post('/user',controller.getplusFollowings_earned);
-};
-module.exports = function show(app){
-	app.post('/user',controller.show);
-};
-module.exports = function update(app){
-	app.post('/user',controller.update);
-};
-module.exports = function findUserById(app){
-	app.post('/user',controller.findUserById);
-};
-module.exports = function destroy(app){
-	app.post('/user',controller.destroy);
-};	

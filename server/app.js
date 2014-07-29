@@ -7,9 +7,16 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var express = require('express');
-var mongoose = require('mongoose');
-var config = require('./config/environment');
+var express 	= require('express');
+var mongoose 	= require('mongoose');
+var redis 		= require("redis"),
+	client 		= redis.createClient();
+var config 		= require('./config/environment');
+
+// Connect to redis
+client.on("error", function (err) {
+	console.log("Error " + err);
+});
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);

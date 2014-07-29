@@ -15,8 +15,6 @@ module.exports = function(app) {
   *
   */
 
-  api.oauth();
-
   // Get the user Twitter oauth
   app.get('/api/user/twitter', api.getTwitterOauth);
 

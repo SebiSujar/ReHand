@@ -4,16 +4,17 @@
 
 'use strict';
 
-var express = require('express');
-var favicon = require('static-favicon');
-var morgan = require('morgan');
-var compression = require('compression');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var cookieParser = require('cookie-parser');
-var errorHandler = require('errorhandler');
-var path = require('path');
-var config = require('./environment');
+var express         = require('express');
+var favicon         = require('static-favicon');
+var morgan          = require('morgan');
+var compression     = require('compression');
+var bodyParser      = require('body-parser');
+var methodOverride  = require('method-override');
+var cookieParser    = require('cookie-parser');
+var errorHandler    = require('errorhandler');
+var path            = require('path');
+var config          = require('./environment');
+var uuid            = require('node-uuid');
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -25,7 +26,19 @@ module.exports = function(app) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(methodOverride());
-  app.use(cookieParser());
+  app.use(cookieParser('superEmprendimiento2014'));
+
+  app.use(function(req, res, next){
+    //console.log("request asked, checking if there is an existing cookie");
+    if (!req.cookies.uuid) {
+      var theUuid = uuid.v4();
+      console.log("there is not, asigning cookie " + theUuid);
+      // Guardo en las sesions con el nombre uuid con el value de un numero aleatorio y expira en una semana
+      res.cookie('uuid', theUuid, {maxAge: 604800000});
+    }
+    //console.log("there is a cookie, " + req.cookies.uuid);
+    next();
+  });
 
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
