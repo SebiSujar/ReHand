@@ -2,30 +2,32 @@
 
 var request           = require('request'),
     qs                = require('querystring'),
-    oauth,
+    oauth             = {},
     params;
+
+
 // TWITTER -----------------------------
 
-exports.oauth = function () {
+exports.getTwitterOauth = function(req, res){
+  var url = 'https://api.twitter.com/oauth/request_token';
+  
   oauth = { 
     callback: 'http://localhost:9000/api/twitter/callback'
   , consumer_key: 'ruXFonJxX4ZGRhkcoiLLo0hhs'
   , consumer_secret: 'NYLgyj1JG4EG7JTea5Y9WXlXYOg6MupEsthLOTGWB8AlPUkI6Y'    
   };
-};
-
-
-exports.getTwitterOauth = function(req, res){
-  var url = 'https://api.twitter.com/oauth/request_token';
 
   request.post({url:url, oauth:oauth}, function (err, req, body) {
     if (err) {
       console.log(err);
-      return res.send("yeah no. didn't work.")
+      console.log(body);
+      return res.send("24. yeah no. didn't work.")
     }
     body = qs.parse(body);
     if (!body.oauth_callback_confirmed){
-      console.log("bad authentication");
+      console.log("28. bad authentication");
+      console.log(body);
+      console.log(oauth);
       return res.send("yeah no. didn't work.");
     }
     oauth.token = body.oauth_token;
@@ -75,16 +77,18 @@ var getUserInfo = function(callback) {
   });
 };
 
-var saveUser = function(user, callback){
-  console.log("sending to save");
-  console.log(user);
-  request.post('http://localhost:9000/user', {form: user}, function (err, res){
+var saveUser = function(user, cookie, callback){
+  console.log("sending to save the user");
+  var url = 'http://localhost:9000/user/twitter/' + user.twitter.id;
+  console.log(url);
+  user.sessionToken = cookie;
+  request.post(url, {form: user}, function (err, res){
     console.log("********API***********");
     console.log("err");
     console.log(err);
     console.log("err");
     console.log("user");
-    console.log(JSON.parse(res.body));
+    console.log(res.body);
     console.log("user");
     console.log("********API***********");
     callback();
@@ -96,7 +100,7 @@ exports.getTwitterCallback = function(req, res){
 
   getAccessToken(function() {
     getUserInfo(function(user){
-      saveUser(user, function(){
+      saveUser(user, req.cookies.uuid, function(){
         res.redirect('/App');
       });
     });
