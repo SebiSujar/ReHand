@@ -1,15 +1,54 @@
 'use strict';
 
-var request           = require('request'),
+var request           = require('request').defaults({jar: false}),
     qs                = require('querystring'),
     oauth             = {},
     params;
 
 
+var getCookie = function(headers){
+  if(headers.jsessionid){
+    var jsessionid = headers.jsessionid;
+    console.log('jsessionid: ' + jsessionid);
+  }
+  if(headers.cookie){
+    var cookies = headers.cookie;
+    //console.log(cookies);
+    var arrHead = cookies.indexOf('JSESSIONID=');
+    var theCookieStart = cookies.substr(arrHead);
+    var theCookieArray = theCookieStart.split(';');
+    var theCookie = theCookieArray[0];
+    //console.log('The Cookie: ' + theCookie);
+    return theCookie;
+  }
+};
+
+// USER --------------------------------
+
+exports.login = function(req, res, cookie){
+
+  var uri = 'http://localhost:9000/user';
+  
+  console.log(req.headers);
+
+  var j = request.jar();
+  var cookie = request.cookie(getCookie(req.headers));
+  j.setCookie(cookie, uri);
+
+
+
+  request.get({url: uri, jar: j}, function (err, user){
+    res.status(200).json(JSON.parse(user.body));
+  });
+};
+
+
+
+
 // TWITTER -----------------------------
 
 exports.getTwitterOauth = function(req, res){
-  var url = 'https://api.twitter.com/oauth/request_token';
+  var uri = 'https://api.twitter.com/oauth/request_token';
   
   oauth = { 
     callback: 'http://localhost:9000/api/twitter/callback'
@@ -17,7 +56,7 @@ exports.getTwitterOauth = function(req, res){
   , consumer_secret: 'NYLgyj1JG4EG7JTea5Y9WXlXYOg6MupEsthLOTGWB8AlPUkI6Y'    
   };
 
-  request.post({url:url, oauth:oauth}, function (err, req, body) {
+  request.post({url: uri, oauth:oauth}, function (err, req, body) {
     if (err) {
       console.log(err);
       console.log(body);
@@ -37,8 +76,8 @@ exports.getTwitterOauth = function(req, res){
 };
 
 var getAccessToken = function(callback) {
-  var url = 'https://api.twitter.com/oauth/access_token';
-  request.post({url:url, oauth:oauth}, function (e, r, body) {
+  var uri = 'https://api.twitter.com/oauth/access_token';
+  request.post({url:uri, oauth:oauth}, function (e, r, body) {
     body = qs.parse(body);
     oauth.token = body.oauth_token;
     oauth.token_secret = body.oauth_token_secret;
@@ -52,10 +91,11 @@ var getAccessToken = function(callback) {
 };
 
 var getUserInfo = function(callback) {
-  var url = 'https://api.twitter.com/1.1/users/show.json?';
-  url += qs.stringify(params);
+  var uri = 'https://api.twitter.com/1.1/users/show.json?';
+  uri += qs.stringify(params);
 
-  request.get({url:url, oauth:oauth, json:true}, function (e, r, body) {
+  request.get({url:uri, oauth:oauth, json:true}, function (e, r, body) {
+    console.log(body);
     var user = {
       twitter: {
         id: body.id,
@@ -63,7 +103,8 @@ var getUserInfo = function(callback) {
         token: oauth.token,
         token_secret: oauth.token_secret,
 
-        name: body.screen_name,
+        name: body.name,
+        screen_name: body.screen_name,
         picture: body.profile_image_url,
         
         following: body.friends_count,
@@ -79,19 +120,10 @@ var getUserInfo = function(callback) {
 
 var saveUser = function(user, cookie, callback){
   console.log("sending to save the user");
-  var url = 'http://localhost:9000/user/twitter/' + user.twitter.id;
-  console.log(url);
+  var uri = 'http://localhost:9000/user/twitter/' + user.twitter.id;
   user.sessionToken = cookie;
-  request.post(url, {form: user}, function (err, res){
-    console.log("********API***********");
-    console.log("err");
-    console.log(err);
-    console.log("err");
-    console.log("user");
-    console.log(res.body);
-    console.log("user");
-    console.log("********API***********");
-    callback();
+  request.post(uri, {form: user}, function (err, res){
+    callback(err, res.body);
   });
 };
 
@@ -100,7 +132,8 @@ exports.getTwitterCallback = function(req, res){
 
   getAccessToken(function() {
     getUserInfo(function(user){
-      saveUser(user, req.cookies.uuid, function(){
+      saveUser(user, req.cookies.uuid, function(err, cookie){
+        res.cookie('JSESSIONID', cookie, {maxAge: 604800000});
         res.redirect('/App');
       });
     });

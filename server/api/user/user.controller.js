@@ -4,18 +4,6 @@ var _               = require('lodash'),
     Users           = require('./user.model'),
     redis          = require("redis").createClient();
 
-var objectCopy = function(origin, add) {
-  // Don't do anything if add isn't an object
-  if (!add || typeof add !== 'object') return origin;
-
-  var keys = Object.keys(add);
-  var i = keys.length;
-  while (i--) {
-    origin[keys[i]] = add[keys[i]];
-  }
-  return origin;
-};
-
 var getCookie = function(headers){
   if(headers.jsessionid){
     var jsessionid = headers.jsessionid;
@@ -46,64 +34,6 @@ var findUserBySocialId = function(type, id, callback){
       });
       break;
   };
-};
-
-// Register or login a user.
-exports.register = function(req, res) {
-  console.log("Register");
-  if(req.body._id) { delete req.body._id; }
-  if(!req.body.sessionToken) { return handleError(res, 'No cookie founded.') }
-  // Trying to match id given to existing user
-  var whereToFind = req.params.type + '.id';
-  console.log("finding in: " + whereToFind + " the user with id: " + req.params.id);
-  
-  findUserBySocialId(req.params.type, req.params.id, function(err, user){
-    if (err) { return handleError(res, err); }
-    console.log(user);
-    if(!user) { 
-      console.log("User not found");
-      // If there was no user, then create one
-      Users.create(req.body, function (err, dbUser) {
-        console.log("User created in db")
-        if(err) { return handleError(res, err); }
-        user = JSON.parse(JSON.stringify(dbUser));
-        user.sessionToken = req.body.sessionToken;
-
-        console.log("user");
-        console.log(user);
-        // After creating user, assign the cookie for future requests        
-        redis.set(user.sessionToken, user._id);
-
-        console.log("User matched with the cookie: " + user.sessionToken);
-        // Send the user with the cookie back to the client
-        
-        return res.status(200).json(user);
-      });
-    } else {
-      console.log("User found");
-      // If there is one user with the same id, then login and update him
-      var updated = _.merge(user, req.body);
-      updated.save(function (err, dbUser) {
-        if (err) { return handleError(res, err); }
-        console.log("User updated");
-        console.log("Finding if there is an existing cookie for the user");
-        // Find if there is an existing cookie for that user
-        redis.keys(dbUser._id, function(err, cookiesArray){
-          if (err) { return handleError(res, err); }
-          var cookie = req.body.sessionToken;
-          // If there is one, then send it to the user
-          if (cookiesArray.length > 0) {
-            cookie = cookiesArray[0];
-          }
-          redis.set(cookie, dbUser._id);
-          console.log("Not found, assigning new cookie: " + cookie);
-          // Send the cookie to the user
-          dbUser.sessionToken = cookie;
-          return res.json(dbUser);
-        });
-      });
-    }
-  });
 };
 
 var matchCookieInRedis = function(cookie, callback) {
@@ -137,6 +67,74 @@ var findUserById = function(id, callback) {
   });
 };
 
+// Register or login a user.
+exports.register = function(req, res) {
+  console.log("Register");
+  if(req.body._id) { delete req.body._id; }
+  if(!req.body.sessionToken) { return handleError(res, 'No cookie founded.') }
+  // Trying to match id given to existing user
+  findUserBySocialId(req.params.type, req.params.id, function(err, user){
+    if (err) { return handleError(res, err); }
+    console.log(user);
+    if(!user) { 
+      console.log("User not found");
+      // If there was no user, then create one
+      Users.create(req.body, function (err, dbUser) {
+        if(err) { return handleError(res, err); }
+
+        // After creating user, assign the cookie for future requests        
+        redis.set(req.body.sessionToken, dbUser._id);
+        console.log("User matched with the cookie: " + req.body.sessionToken);
+
+        // Send the user with the cookie back to the client
+        return res.status(200).send(req.body.sessionToken);
+      });
+    } else {
+      console.log("User found");
+      // If there is one user with the same id, then login and update him
+      var updated = _.merge(user, req.body);
+      updated.save(function (err, dbUser) {
+        if (err) { return handleError(res, err); }
+        console.log("User updated");
+        console.log("Finding if there is an existing cookie for the user");
+        // Find if there is an existing cookie for that user
+        redis.keys(dbUser._id, function(err, cookiesArray){
+          if (err) { return handleError(res, err); }
+          var cookie = req.body.sessionToken;
+          // If there is one, then send it to the user
+          if (cookiesArray.length > 0) {
+            cookie = cookiesArray[0];
+          }
+          redis.set(cookie, user._id);
+          console.log("Not found, assigning new cookie: " + cookie);
+          // Send the cookie to the user
+          return res.status(200).send(cookie);
+        });
+      });
+    }
+  });
+};
+
+exports.getUser = function(req, res) {
+
+  console.log("************************************************************************GET USER************************************************************************************************")
+
+  if(!req.cookies.JSESSIONID) { return handleError(res, 'No cookie founded.') }
+  matchCookieInRedis(req.cookies.JSESSIONID, function(err, userId){
+    if (err) { return handleError(res, err); }
+    // Find a user with the userId gotted with the cookie
+    findUserById(userId, function(err, user){
+      if (err) { return handleError(res, err); }
+      user = JSON.parse(JSON.stringify(user));
+      user.sessionToken = req.cookies.JSESSIONID;
+      console.log(user);
+      return res.status(200).json(user);
+    });
+  });
+
+
+};
+
 exports.UpdateFollowingFollowers = function(req, res) {
   // Get with the cookie a userId
   matchCookieInRedis(req.query.cookie, function(err, userId){
@@ -152,7 +150,7 @@ exports.UpdateFollowingFollowers = function(req, res) {
       var updated = _.merge(user, toReplace);
       updated.save(function (err) {
         if (err) { return handleError(res, err); }
-        return res.json(200, updated);
+        return res.status(200).json(updated);
       });
     });
   });
@@ -172,7 +170,7 @@ exports.addFollowers_earned = function(req,res){
       }
       Users.add({followers_earned: toAdd}, function(err, newUser){
         if (err) { return handleError(res, err); }
-        res.json(200, newUser);
+      var updated = _.merge(user,   toReplace);
       });
     });
   });

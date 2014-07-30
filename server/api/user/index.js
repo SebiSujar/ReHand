@@ -9,6 +9,7 @@ var express = require('express'),
  */
 module.exports = function(app) {
 
+	app.get('/user', controller.getUser);
 	app.post('/user/:type/:id', controller.register);
 	app.put('/user/twitter/ff', controller.UpdateFollowingFollowers);
 	app.post('/user/lala', controller.addFollowers_earned);
