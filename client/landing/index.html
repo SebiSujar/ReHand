@@ -20,7 +20,11 @@
           </script>
           <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-route.min.js">
           </script>
+          <script src="http://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+          <script src="http://anthonyterrien.com/js/jquery.knob.js"></script>
           <script src="landing/scripts/controller.js"></script>
+          <script type="text/javascript" src="landing/scripts/Animation.js"></script>></script>
 
           <link rel="stylesheet" type="text/css" href="icons/css/toolnet.css">
           <link rel='stylesheet' id='divi-style-css'  href='landing/styles/landing.css' type='text/css' media='all' />
@@ -140,7 +144,9 @@
                 <div class="et_pb_section et_pb_inner_shadow et_section_regular info-column" style='background-color:#f5f5f5;'>
                   <div class="et_pb_row">
                     <div class="et_pb_column et_pb_column_1_2">
-                      <img src="images/presentation-guy.png" alt="External Landing Page" class="et_pb_image et_pb_animation_left" />
+                        <div ng-app="app" ng-controller="chartCtrl">
+                        75%
+                        </div>
                     </div>
                     <!-- .et_pb_column -->
                     <div class="et_pb_column et_pb_column_1_2 text">
