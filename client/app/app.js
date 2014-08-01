@@ -4,8 +4,10 @@ angular.module('toolnetApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngRoute',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'LocalStorageModule'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider

@@ -9,6 +9,17 @@ var api = require('./controllers/api'),
  */
 
 module.exports = function(app) {
+
+  /*
+  *
+  * USER
+  *
+  */
+
+  // Get the user
+  app.get('/api/user', api.login);
+
+
   /*
   *
   * TWITTER
@@ -25,7 +36,13 @@ module.exports = function(app) {
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
 
-  // All other routes should redirect to the index.html
+  // Go to the main page when entering to /App
+  app.route('/App')
+    .get(function(req, res) {
+      res.sendfile(app.get('appPath') + '/app/index.html');
+    });
+
+  // All other routes should redirect to the landing page
   app.route('/*')
     .get(function(req, res) {
       res.sendfile(app.get('appPath') + '/landing/index.html');

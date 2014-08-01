@@ -4,8 +4,8 @@ angular.module('toolnetApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
+        url: '/App',
+        templateUrl: 'app/views/main.html',
         controller: 'MainCtrl'
       });
   });
