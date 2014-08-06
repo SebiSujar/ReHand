@@ -12,6 +12,15 @@ module.exports = function(app) {
 
   /*
   *
+  * TEST
+  *
+  */
+
+  // Get the user
+  app.get('/test', api.test);
+
+  /*
+  *
   * USER
   *
   */

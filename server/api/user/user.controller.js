@@ -131,9 +131,27 @@ exports.getUser = function(req, res) {
       return res.status(200).json(user);
     });
   });
-
-
 };
+
+exports.showUser = function(req, res) {
+  if(!req.cookies.JSESSIONID) { return handleError(res, 'No cookie founded.') }
+  matchCookieInRedis(req.cookies.JSESSIONID, function(err, userId){
+    if (err) { return handleError(res, err); }
+    // Find a user with the userId gotted with the cookie
+    findUserById(userId, function(err, user){
+      if (err) { return handleError(res, err); }
+      
+
+
+
+      user = JSON.parse(JSON.stringify(user));
+      user.sessionToken = req.cookies.JSESSIONID;
+      console.log(user);
+      return res.status(200).json(user);
+    });
+  });
+};
+
 
 exports.UpdateFollowingFollowers = function(req, res) {
   // Get with the cookie a userId

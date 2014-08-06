@@ -2,6 +2,7 @@
 
 var request           = require('request').defaults({jar: false}),
     qs                = require('querystring'),
+    htmlToText        = require('html-to-text'),
     oauth             = {},
     params;
 
@@ -137,5 +138,24 @@ exports.getTwitterCallback = function(req, res){
         res.redirect('/App');
       });
     });
+  });
+};
+
+exports.test = function(req, res){
+
+  
+  request.get('https://twitter.com/sebisujar', function (e, r, page){
+    var filtered = page.match(/(?:<span class="ProfileNav-value" data-is-compact="false">*)(\d+)(?=<\/span>)/g, '');
+    filtered.forEach(function(span, i){
+      filtered[i] = span.substring(span.indexOf('>') + 1)
+    });
+
+    var twUser = {
+      following: filtered[2],
+      followers: filtered[3],
+      
+    }
+
+    //res.status(200).send(page);
   });
 };
