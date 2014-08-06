@@ -23,12 +23,12 @@
           <script src="http://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
           <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
           <script src="http://anthonyterrien.com/js/jquery.knob.js"></script>
+          <script src="landing/scripts/easypiechart.js"></script>
           <script src="landing/scripts/controller.js"></script>
-          <script type="text/javascript" src="landing/scripts/Animation.js"></script>></script>
+          <script src="landing/scripts/Animation.js"></script>
 
           <link rel="stylesheet" type="text/css" href="icons/css/toolnet.css">
           <link rel='stylesheet' id='divi-style-css'  href='landing/styles/landing.css' type='text/css' media='all' />
-
         </head>
         <body class="home page page-id-870 page-template-default et_fixed_nav et_pb_pagebuilder_layout et_right_sidebar unknown et_includes_sidebar" ng-controller="LandingCtrl">
           <header id="main-header">
@@ -144,9 +144,9 @@
                 <div class="et_pb_section et_pb_inner_shadow et_section_regular info-column" style='background-color:#f5f5f5;'>
                   <div class="et_pb_row">
                     <div class="et_pb_column et_pb_column_1_2">
-                        <div ng-app="app" ng-controller="chartCtrl">
-                        75%
-                        </div>
+                     <div class="javascript chart" data-percent="100">
+                      <span class="percent">%</span>
+                    </div>
                     </div>
                     <!-- .et_pb_column -->
                     <div class="et_pb_column et_pb_column_1_2 text">

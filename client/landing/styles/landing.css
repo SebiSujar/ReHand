@@ -1284,6 +1284,29 @@ top: 30%;
 .info-column .text {
   margin-top: 13%;
 }
+/*---------Percent--------*/
+.chart {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  margin-right:22px;
+  font-weight:bold;
+}
+.chart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.percent {
+  display: inline-block;
+  line-height: 160px;
+  z-index: 2;
+}
+/*-----------------------*/
 
 @font-face {
 	font-family: "proxima-nova";

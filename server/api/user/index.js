@@ -8,7 +8,6 @@ var express = require('express'),
  * User model routes
  */
 module.exports = function(app) {
-
 	app.get('/user', controller.getUser);
 	app.post('/user/:type/:id', controller.register);
 	app.put('/user/twitter/ff', controller.UpdateFollowingFollowers);
