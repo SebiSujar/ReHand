@@ -1,5 +1,5 @@
 angular.module('toolnetApp')
-.controller('MainCtrl', function ($scope, $rootScope, $cookies, $routeParams, $http, $window, localStorageService) {
+.controller('MainCtrl', function ($scope, $rootScope, $resource, $cookies, $routeParams, $http, $window, localStorageService) {
 
 	var redirectToLogin = function(){
     console.log("redirectToLogin");
@@ -47,7 +47,19 @@ angular.module('toolnetApp')
         $rootScope.user.fromLanding = true;
       }
     }
-  }
+  };
+
+  $scope.doShow = function(){
+
+    console.log(document.body.textContent);
+
+    $http.get('//localhost:9000/test').success(function(page) {
+      console.log(page);
+      console.log(document.body.innerText);
+    });
+    /*
+    */
+  };
 
   /*
   *

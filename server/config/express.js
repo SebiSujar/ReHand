@@ -18,6 +18,11 @@ var uuid            = require('node-uuid');
 
 module.exports = function(app) {
   var env = app.get('env');
+  app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+   });
 
   app.set('views', config.root + '/server/views');
   app.engine('html', require('ejs').renderFile);
