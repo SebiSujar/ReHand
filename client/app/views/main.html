@@ -1,24 +1,570 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="MenuBar">
-        <li><i class="icon-menu"></i></li>
+  <link rel="stylesheet" href="https://a.stripecdn.com/manage/assets/application.manage-d8c8dc9d948d9f4e36f1313df060f892.css">
+  <link rel="stylesheet" href="https://cloud.typography.com/711858/653922/css/fonts.css">
+  <body id="merch">
+  <div class="main-view">
+  <div id="application">
+    <div id="header">
+      <div class="header-view">
+        <h1><a class="main-header-link" href="/test/dashboard">Stripe</a></h1>
+        <div class="navigation">
+          <div id="account-dropdown-view">
+            <div class="account-dropdown-view">
+              <a class="account">
+              <img width="16" height="16" src="https://secure.gravatar.com/avatar/f0377b0cf0b8afe4b427910c5c2f0590?s=16&amp;d=https%3A%2F%2Fa.stripecdn.com%2Fmanage%2Fassets%2Fheader%2Fuser%2F16x16-159264ffc596669653eee86cbad035b0.png">
+              <span class="account-name">Your account</span>
+              </a>
+              <div class="submenu">
+                <ul>
+                  <li class="settings">
+                    <a name="settings">Account Settings</a>
+                  </li>
+                </ul>
+                <ul>
+                  <li class="save" style="display: none;">
+                    <a>Save Account…</a>
+                  </li>
+                  <li class="account-app" style="display: list-item;">
+                    <a href="/account/details" class="first">Activate Account…</a>
+                  </li>
+                  <li>
+                    <a class="open-feedback">Send Feedback…</a>
+                  </li>
+                  <li class="invites">
+                    <a class="send-invites-nav">Send Invites…</a>
+                  </li>
+                </ul>
+                <ul>
+                  <li><a class="add-account">Create New Account…</a></li>
+                </ul>
+                <ul>
+                  <li>
+                    <a class="logout">Sign Out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <ul class="global">
+            <li><a href="/dashboard" class="selected">Dashboard</a></li>
+            <li><a id="global-documentation-link" href="https://stripe.com/docs">Documentation</a></li>
+            <li><a href="https://support.stripe.com">Help &amp; Support</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="global-notice-view">
+      <div class="global-notice-view">
+        <div class="messages"></div>
+      </div>
+    </div>
+    <div id="main-body" class="box">
+      <div id="toolbar-view">
+        <div class="toolbar-view">
+          <div class="inner">
+            <div id="livemode-switch">
+              <div class="switch-view">
+                <div class="switch-view-content">
+                  <label class="off">Live</label>
+                  <label class="on active">Test</label>
+                  <div class="switch-background-off" style="right: 11px;"></div>
+                  <div class="switch-background-on" style="left: 30px;"></div>
+                  <div class="switch-knob" style="left: 19px;"></div>
+                </div>
+              </div>
+            </div>
+            <div id="breadcrumbs" style="width: 60px;"></div>
+          </div>
+        </div>
+      </div>
+      <div id="quicksearch-view">
+        <div class="quicksearch-view">
+          <form>
+            <div class="mask">
+              <input type="text" name="search" autocomplete="off" spellcheck="false" tabindex="1" placeholder="Search..." style="left: 60px;">
+            </div>
+            <div class="clear" style="display: none;"></div>
+          </form>
+          <div class="search-results-popover" style="display: none;">
+            <div class="inner">
+              <div class="arrow"></div>
+              <div class="search-results-container"></div>
+              <div class="loading-indicator" style="display: none;">
+                <span><img src="https://a.stripecdn.com/manage/assets/search/spinner-95648306860f6f8ac3bd21106c6da6db.gif" width="16" height="16"> Searching…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div id="welcome-box"></div>
+        <div id="sidebar-view">
+          <div class="sidebar-view">
+            <div class="sidebar-view-gradient"></div>
+            <div class="sidebar-view-content">
+              <div class="gradient"></div>
+              <h4>General</h4>
+              <ul class="navigation">
+                <li class="dashboard selected"><a href="/test/dashboard"><span>Dashboard</span></a></li>
+                <li class="payments">
+                  <a href="/test/payments/overview">
+                    <span>Payments</span> 
+                    <div class="unread" style="display: none;"></div>
+                  </a>
+                </li>
+                <li class="customers"><a href="/test/customers"><span>Customers</span></a></li>
+                <li class="transfers">
+                  <a href="/test/transfers/overview">
+                    <span>Transfers</span> 
+                    <div class="unread" style="display: none;"></div>
+                  </a>
+                </li>
+                <li class="recipients" style="display: list-item;"><a href="/test/recipients"><span>Recipients</span></a></li>
+              </ul>
+              <h4>Subscriptions</h4>
+              <ul class="navigation">
+                <li class="plans"><a href="/test/plans"><span>Plans</span></a></li>
+                <li class="coupons"><a href="/test/coupons"><span>Coupons</span></a></li>
+              </ul>
+              <h4>Requests</h4>
+              <ul class="navigation">
+                <li class="events"><a href="/test/events"><span>Events &amp; Webhooks</span></a></li>
+                <li class="logs">
+                  <a href="/test/logs/overview">
+                    <span>Logs</span>
+                    <div class="unread" style="display: none;"></div>
+                  </a>
+                </li>
+              </ul>
+              <div class="platform-nav" style="display: none;">
+                <h4>Applications</h4>
+                <ul class="navigation">
+                  <li class="applications-overview"><a href="/test/applications/overview"><span>Overview</span></a></li>
+                  <li class="applications-users"><a href="/test/applications/users"><span>Connected Users</span></a></li>
+                  <li class="applications-fees"><a href="/test/applications/fees"><span>Collected Fees</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="main-content">
+          <div id="section">
+            <div class="dashboard-view">
+              <div class="test-badge" style="display: block;"></div>
+              <div class="dashboard-content">
+                <div class="summary clearfix">
+                  <div class="summary-view">
+                    <div class="summary-contents">
+                      <div class="summary-block last-transfer">
+                        <div class="value">
+                          <span class="container">
+                          <strong data-text="$0.00 USD">$0.00</strong>
+                          </span>
+                        </div>
+                        <div class="label">Last transfer</div>
+                      </div>
+                      <div class="summary-block next-transfer">
+                        <div class="value">
+                          <span class="container">
+                          <strong data-text="$0.00 USD">$0.00</strong>
+                          </span>
+                        </div>
+                        <div class="label">Next transfer</div>
+                      </div>
+                      <div class="summary-block total-customers">
+                        <div class="value">
+                          <span class="container">
+                          <strong data-text="0">0</strong>
+                          </span>
+                        </div>
+                        <div class="label">Total customers</div>
+                      </div>
+                      <div class="summary-block total-volume">
+                        <div class="value">
+                          <span class="container">
+                          <strong data-text="$0.00 USD">$0.00</strong>
+                          </span>
+                        </div>
+                        <div class="label">
+                          Total volume
+                          (USD)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="charts">
+                  <div class="go-live-wrapper">
+                    <div class="section-header">
+                      <h3><span>Go Live Checklist</span></h3>
+                      <hr>
+                    </div>
+                    <div class="chart-view">
+                      <div class="go-live">
+                        <p>Before you go live, you might want to double check that you've done these things.</p>
+                        <ol>
+                          <li>
+                            <h3>Use your <strong>Live Secret Key</strong></h3>
+                            <p>In order to make live charges, instead of test charges, you have to use your <a href="/account/apikeys">Live Secret Key</a> when making API calls to Stripe. Make sure to configure this key properly on your production servers.</p>
+                          </li>
+                          <li>
+                            <h3>Use your <strong>Live Publishable Key</strong> with Stripe.js</h3>
+                            <p>If you're using Checkout or Stripe.js, you'll need to also make sure to use your <a href="/account/apikeys">Live Publishable Key</a> on your payment pages. Both your publishable and secret keys need to be live in order to work together.</p>
+                          </li>
+                          <li>
+                            <h3>Enable SSL on your site</h3>
+                            <p>SSL is required when you use Checkout or Stripe.js to make live charges. If you aren't using Checkout or Stripe.js, you'll also need to ensure your server is fully <strong>PCI compliant</strong>.</p>
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="section-header">
+                    <h3><span>Overview</span></h3>
+                    <div class="currency-selector">
+                    </div>
+                    <div class="date-range">
+                      <div class="date-range-form-view">
+                        <div class="from-date-container">
+                          <div class="placeholder field_input" name="from-date">
+                            <div class="date-widget-view from-date">
+                              <input id="s1wfkm82j32qpvi" class="field hasDatepicker" type="text" name="from-date">
+                            </div>
+                          </div>
+                          <span id="from-date_error" class="field_error "></span>
+                        </div>
+                        <span class="separator">to</span>
+                        <div class="to-date-container">
+                          <div class="placeholder field_input" name="to-date">
+                            <div class="date-widget-view to-date">
+                              <input id="0y3vrmh61zfflxr" class="field hasDatepicker" type="text" name="to-date">
+                            </div>
+                          </div>
+                          <span id="to-date_error" class="field_error "></span>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="gross-volume-chart">
+                    <div class="chart-view">
+                      <div class="head">
+                        <span class="title">Gross volume</span>
+                        <span class="total">$0 USD total</span>
+                      </div>
+                      <div class="spinner_container" style="height: 120px; display: none;">
+                        <div class="spinner">
+                          <div class="spinner-view" style="display: none;"></div>
+                        </div>
+                      </div>
+                      <div class="no-data"><span><em>No data for selected dates</em></span></div>
+                      <div class="chart" style="height: 120px; position: relative; display: block;">
+                        <svg height="120" version="1.1" width="660" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+                          <path fill="url(#31690-_cadaef:5-_fff:90)" stroke="#000000" d="M32.5,90.5L65.5,90.5L98.5,90.5L131.5,90.5L164.5,90.5L197.5,90.5L230.5,90.5L263.5,90.5L296.5,90.5L329.5,90.5L362.5,90.5L395.5,90.5L428.5,90.5L461.5,90.5L494.5,90.5L527.5,90.5L560.5,90.5L593.5,90.5L626.5,90.5L626.5,94L32.5,94" stroke-width="0" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1; fill-opacity: 1;"></path>
+                          <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+                          <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <linearGradient id="31690-_cadaef:5-_fff:90" x1="0" y1="1" x2="0" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                              <stop offset="5%" stop-color="#cadaef" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop>
+                              <stop offset="90%" stop-color="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop>
+                            </linearGradient>
+                          </defs>
+                          <text x="0" y="9" text-anchor="start" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">$0.00</tspan>
+                          </text>
+                          <text x="660" y="9" text-anchor="end" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">$0.00</tspan>
+                          </text>
+                          <path fill="none" stroke="#000000" d="M0,47.5L660,47.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
+                          <path fill="none" stroke="#000000" d="M0,94.5L660,94.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
+                          <path fill="none" stroke="#4cabe2" d="M32.5,90.5L65.5,90.5L98.5,90.5L131.5,90.5L164.5,90.5L197.5,90.5L230.5,90.5L263.5,90.5L296.5,90.5L329.5,90.5L362.5,90.5L395.5,90.5L428.5,90.5L461.5,90.5L494.5,90.5L527.5,90.5L560.5,90.5L593.5,90.5L626.5,90.5" stroke-width="3" stroke-opacity="0.95" stroke-linejoin="round" stroke-linecap="round" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.95; stroke-linejoin: round; stroke-linecap: round;"></path>
+                          <circle cx="32.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="32.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0:00</tspan>
+                          </text>
+                          <rect x="16" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="65.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="49" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="98.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="98.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2:00</tspan>
+                          </text>
+                          <rect x="82" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="131.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="115" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="164.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="164.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">4:00</tspan>
+                          </text>
+                          <rect x="148" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="197.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="181" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="230.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="230.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">6:00</tspan>
+                          </text>
+                          <rect x="214" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="263.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="247" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="296.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="296.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">8:00</tspan>
+                          </text>
+                          <rect x="280" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="329.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="313" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="362.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="362.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">10:00</tspan>
+                          </text>
+                          <rect x="346" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="395.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="379" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="428.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="428.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">12:00</tspan>
+                          </text>
+                          <rect x="412" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="461.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="445" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="494.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="494.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">14:00</tspan>
+                          </text>
+                          <rect x="478" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="527.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="511" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="560.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="560.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">16:00</tspan>
+                          </text>
+                          <rect x="544" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="593.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <rect x="577" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          <circle cx="626.5" cy="90.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                          <text x="626.5" y="109" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                            <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">18:00</tspan>
+                          </text>
+                          <rect x="610" y="5" width="33" height="95" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="small-charts clearfix">
+                    <div class="chart-block successful-charge-count-chart">
+                      <div class="chart-view">
+                        <div class="head">
+                          <span class="title">Successful charges</span>
+                          <span class="total">0 total</span>
+                        </div>
+                        <div class="spinner_container" style="height: 100px; display: none;">
+                          <div class="spinner">
+                            <div class="spinner-view" style="display: none;"></div>
+                          </div>
+                        </div>
+                        <div class="no-data"><span><em>No data for selected dates</em></span></div>
+                        <div class="chart" style="height: 100px; position: relative; display: block;">
+                          <svg height="100" version="1.1" width="293" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+                            <path fill="url(#42190-_cadaef:5-_fff:90)" stroke="#000000" d="M11.5,70.5L26.5,70.5L41.5,70.5L56.5,70.5L71.5,70.5L86.5,70.5L101.5,70.5L116.5,70.5L131.5,70.5L146.5,70.5L161.5,70.5L176.5,70.5L191.5,70.5L206.5,70.5L221.5,70.5L236.5,70.5L251.5,70.5L266.5,70.5L281.5,70.5L281.5,74L11.5,74" stroke-width="0" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1; fill-opacity: 1;"></path>
+                            <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+                            <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                              <linearGradient id="42190-_cadaef:5-_fff:90" x1="0" y1="1" x2="0" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <stop offset="5%" stop-color="#cadaef" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop>
+                                <stop offset="90%" stop-color="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop>
+                              </linearGradient>
+                            </defs>
+                            <text x="0" y="9" text-anchor="start" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+                            </text>
+                            <text x="293" y="9" text-anchor="end" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+                            </text>
+                            <path fill="none" stroke="#000000" d="M0,37.5L293,37.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
+                            <path fill="none" stroke="#000000" d="M0,74.5L293,74.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
+                            <path fill="none" stroke="#4cabe2" d="M11.5,70.5L26.5,70.5L41.5,70.5L56.5,70.5L71.5,70.5L86.5,70.5L101.5,70.5L116.5,70.5L131.5,70.5L146.5,70.5L161.5,70.5L176.5,70.5L191.5,70.5L206.5,70.5L221.5,70.5L236.5,70.5L251.5,70.5L266.5,70.5L281.5,70.5" stroke-width="3" stroke-opacity="0.95" stroke-linejoin="round" stroke-linecap="round" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.95; stroke-linejoin: round; stroke-linecap: round;"></path>
+                            <circle cx="11.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="11.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0:00</tspan>
+                            </text>
+                            <rect x="4" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="26.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="19" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="41.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="34" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="56.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="56.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">3:00</tspan>
+                            </text>
+                            <rect x="49" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="71.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="64" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="86.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="79" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="101.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="101.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">6:00</tspan>
+                            </text>
+                            <rect x="94" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="116.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="109" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="131.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="124" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="146.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="146.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">9:00</tspan>
+                            </text>
+                            <rect x="139" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="161.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="154" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="176.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="169" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="191.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="191.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">12:00</tspan>
+                            </text>
+                            <rect x="184" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="206.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="199" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="221.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="214" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="236.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="236.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">15:00</tspan>
+                            </text>
+                            <rect x="229" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="251.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="244" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="266.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="259" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="281.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="281.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">18:00</tspan>
+                            </text>
+                            <rect x="274" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="chart-block customer-count-chart">
+                      <div class="chart-view">
+                        <div class="head">
+                          <span class="title">Customers created</span>
+                          <span class="total">0 total</span>
+                        </div>
+                        <div class="spinner_container" style="height: 100px; display: none;">
+                          <div class="spinner">
+                            <div class="spinner-view" style="display: none;"></div>
+                          </div>
+                        </div>
+                        <div class="no-data"><span><em>No data for selected dates</em></span></div>
+                        <div class="chart" style="height: 100px; position: relative; display: block;">
+                          <svg height="100" version="1.1" width="293" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;">
+                            <path fill="url(#37090-_cadaef:5-_fff:90)" stroke="#000000" d="M11.5,70.5L26.5,70.5L41.5,70.5L56.5,70.5L71.5,70.5L86.5,70.5L101.5,70.5L116.5,70.5L131.5,70.5L146.5,70.5L161.5,70.5L176.5,70.5L191.5,70.5L206.5,70.5L221.5,70.5L236.5,70.5L251.5,70.5L266.5,70.5L281.5,70.5L281.5,74L11.5,74" stroke-width="0" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1; fill-opacity: 1;"></path>
+                            <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+                            <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                              <linearGradient id="37090-_cadaef:5-_fff:90" x1="0" y1="1" x2="0" y2="0" gradientTransform="matrix(1,0,0,1,0,0)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <stop offset="5%" stop-color="#cadaef" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop>
+                                <stop offset="90%" stop-color="#ffffff" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></stop>
+                              </linearGradient>
+                            </defs>
+                            <text x="0" y="9" text-anchor="start" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+                            </text>
+                            <text x="293" y="9" text-anchor="end" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+                            </text>
+                            <path fill="none" stroke="#000000" d="M0,37.5L293,37.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
+                            <path fill="none" stroke="#000000" d="M0,74.5L293,74.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
+                            <path fill="none" stroke="#4cabe2" d="M11.5,70.5L26.5,70.5L41.5,70.5L56.5,70.5L71.5,70.5L86.5,70.5L101.5,70.5L116.5,70.5L131.5,70.5L146.5,70.5L161.5,70.5L176.5,70.5L191.5,70.5L206.5,70.5L221.5,70.5L236.5,70.5L251.5,70.5L266.5,70.5L281.5,70.5" stroke-width="3" stroke-opacity="0.95" stroke-linejoin="round" stroke-linecap="round" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.95; stroke-linejoin: round; stroke-linecap: round;"></path>
+                            <circle cx="11.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="11.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0:00</tspan>
+                            </text>
+                            <rect x="4" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="26.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="19" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="41.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="34" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="56.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="56.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">3:00</tspan>
+                            </text>
+                            <rect x="49" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="71.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="64" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="86.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="79" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="101.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="101.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">6:00</tspan>
+                            </text>
+                            <rect x="94" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="116.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="109" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="131.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="124" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="146.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="146.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">9:00</tspan>
+                            </text>
+                            <rect x="139" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="161.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="154" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="176.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="169" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="191.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="191.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">12:00</tspan>
+                            </text>
+                            <rect x="184" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="206.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="199" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="221.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="214" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="236.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="236.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">15:00</tspan>
+                            </text>
+                            <rect x="229" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="251.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="244" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="266.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <rect x="259" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                            <circle cx="281.5" cy="70.5" r="4" fill="#008cdd" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            <text x="281.5" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-style: normal; font-variant: normal; font-weight: normal; font-size: 10px; line-height: normal; font-family: Arial;">
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">18:00</tspan>
+                            </text>
+                            <rect x="274" y="5" width="15" height="75" r="0" rx="0" ry="0" fill="#ffff00" stroke="#000" stroke-width="0" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></rect>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dashboard-welcome">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <p>© Stripe</p>
+      <ul>
+        <li><a href="https://stripe.com/about">About</a></li>
+        <!--<li><a href="https:&#x2F;&#x2F;stripe.com&#x2F;gallery">Gallery</a></li>-->
+        <li><a href="https://stripe.com/blog">Blog</a></li>
+        <li><a href="https://stripe.com/jobs">Jobs</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-				<p class="name">{{user.twitter.name}}</p>
-				<img src="{{user.twitter.picture}}" class="picture" />
+      <ul class="lesser">
+        <li><a href="https://stripe.com/terms">Terms of Service</a></li>
+        <li><a href="https://stripe.com/privacy">Privacy Policy</a></li>
+        <li><a class="open-account-activity">
+          Last Account Activity: a few seconds ago
+          </a>
+        </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<div id="Estadisticas">
-<ul>
-<li>Seguidores:</li>
-<li>Siguiendo:</li>
-<li>Tweets enviados:</li>
-<li>Mensajes Enviados:</li>
-</ul>
+    </div>
+  </div>
 </div>
-
-<button type="button" ng-click="doShow()">SHOW USER</button>
+    <div id="background"></div>
+    <script src="https://a.stripecdn.com/manage/assets/footer_analytics-6e8fc3677422b1ab0ef7aca057103605.js"></script>
