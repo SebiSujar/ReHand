@@ -2,7 +2,6 @@
 
 var request           = require('request').defaults({jar: false}),
     qs                = require('querystring'),
-    htmlToText        = require('html-to-text'),
     oauth             = {},
     params;
 

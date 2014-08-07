@@ -1,0 +1,120 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M0 843.776q165.888 19.456 312.32-90.112-68.608 2.048-119.808-39.936t-78.848-107.52q18.432 3.072 44.032 1.024 34.816-1.024 50.176-5.12-101.376-34.816-142.336-110.592-23.552-52.224-23.552-105.472 58.368 29.696 94.208 27.648-81.92-69.632-92.16-149.504-6.144-64.512 25.6-138.24 116.736 128 244.736 184.32 95.232 39.936 189.44 39.936-12.288-96.256 26.624-162.816 46.080-71.68 131.072-95.232 56.32-14.336 108.544 3.072t88.064 56.32q61.44-6.144 136.192-50.176-30.72 88.064-94.208 120.832 63.488-10.24 123.904-36.864-10.24 20.48-37.888 54.272t-69.632 58.368q1.024 10.24 1.024 17.408 4.096 112.64-43.008 238.592-82.944 205.824-248.832 309.248-163.84 92.16-391.168 70.656-144.384-16.384-234.496-90.112z"
+				],
+				"attrs": [
+					{}
+				],
+				"tags": [
+					"twitter"
+				],
+				"defaultCode": 59392,
+				"grid": 0
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 2,
+				"id": 0,
+				"prevSize": 32,
+				"code": 59392,
+				"name": "twitter",
+				"ligatures": ""
+			},
+			"setIdx": 1,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
+					"M64 192h896v192h-896zM64 448h896v192h-896zM64 704h896v192h-896z"
+				],
+				"tags": [
+					"menu",
+					"list",
+					"items",
+					"lines",
+					"options"
+				],
+				"grid": 16
+			},
+			"properties": {
+				"id": 184,
+				"order": 1,
+				"prevSize": 64,
+				"code": 58880,
+				"name": "menu",
+				"ligatures": ""
+			},
+			"setIdx": 2,
+			"iconIdx": 184
+		},
+		{
+			"icon": {
+				"paths": [
+					"M921.6 204.8h-51.2v768h51.2c56.32 0 102.4-46.080 102.4-102.4v-563.2c0-56.32-46.080-102.4-102.4-102.4zM0 307.2v563.2c0 56.32 46.080 102.4 102.4 102.4h51.2v-768h-51.2c-56.32 0-102.4 46.080-102.4 102.4zM686.080 97.638c-34.867-16.23-90.522-46.438-174.080-46.438s-139.213 30.208-174.080 46.438v107.162h-112.64v768h573.44v-768h-112.64v-107.162zM624.64 204.8h-225.28v-68.352c27.29-11.776 66.458-23.808 112.64-23.808s85.299 11.981 112.64 23.757v68.403z"
+				],
+				"tags": [
+					"suitcase",
+					"luggage",
+					"portfolio"
+				],
+				"grid": 20
+			},
+			"properties": {
+				"id": 82,
+				"order": 3,
+				"prevSize": 20,
+				"code": 58881,
+				"name": "suitcase",
+				"ligatures": ""
+			},
+			"setIdx": 5,
+			"iconIdx": 82
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icomoon"
+	},
+	"preferences": {
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icomoon"
+			},
+			"showGlyphs": true,
+			"metrics": {
+				"emSize": 512,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"resetPoint": 58880,
+			"showQuickUse": true,
+			"quickUsageToken": false,
+			"showMetrics": true,
+			"showMetadata": false
+		},
+		"imagePref": {
+			"color": 0,
+			"height": 32,
+			"columns": 16,
+			"margin": 16,
+			"png": false,
+			"sprites": true
+		},
+		"historySize": 100,
+		"showCodes": true,
+		"gridSize": 16,
+		"showLiga": false,
+		"showGrid": true,
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"search": ""
+	}
+}

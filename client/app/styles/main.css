@@ -23,3 +23,9 @@ header .user .name {
 header .user .picture {
 	border-radius: 100%;
 }
+.MenuBar{
+	position: absolute;
+	list-style-type: none;
+	width: 250px;
+	height: 60px;
+}
