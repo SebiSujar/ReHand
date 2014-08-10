@@ -106,6 +106,7 @@ var getUserInfo = function(callback) {
         name: body.name,
         screen_name: body.screen_name,
         picture: body.profile_image_url,
+        cover: body.profile_banner_url,
         
         following: body.friends_count,
         followers: body.followers_count,
@@ -114,6 +115,7 @@ var getUserInfo = function(callback) {
         startingFollowers: body.followers_count,
       }
     };
+    return;
     callback(user);
   });
 };

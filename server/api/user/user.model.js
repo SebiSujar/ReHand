@@ -26,7 +26,8 @@ var UserSchema = new Schema({
   	token_secret: String,
   	
   	name: String,
-  	picture: String,
+    picture: String,
+  	cover: String,
   	
   	following: Number,
   	followers: Number,
