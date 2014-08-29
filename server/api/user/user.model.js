@@ -16,8 +16,8 @@ var UserSchema = new Schema({
 			default: Date.now
 		},
 		payments: {
-			status: String,
-			dueDate: { type: Date, default: Date.now }
+			status: { type: String, default: 'Free'},
+			dueDate: { type: Date, default: new Date().getTime() }
 		}
   },
   twitter: {
@@ -46,7 +46,7 @@ var UserSchema = new Schema({
   		followers: Number,
   		date: {
   			type: Date, 
-  			default: Date.now
+  			default: new Date().getTime()
   		}
   	}]
   }

@@ -117,17 +117,18 @@ exports.register = function(req, res) {
 
 exports.getUser = function(req, res) {
 
-  console.log("************************************************************************GET USER************************************************************************************************")
-
   if(!req.cookies.JSESSIONID) { return handleError(res, 'No cookie founded.') }
   matchCookieInRedis(req.cookies.JSESSIONID, function(err, userId){
     if (err) { return handleError(res, err); }
+    if (!userId) { return handleError(res, "No user Id"); }
     // Find a user with the userId gotted with the cookie
     findUserById(userId, function(err, user){
       if (err) { return handleError(res, err); }
+      if (!user) {return handleError(res, 'No user with your cookie.'); }
       user = JSON.parse(JSON.stringify(user));
       user.sessionToken = req.cookies.JSESSIONID;
       console.log(user);
+      console.log("132");
       return res.status(200).json(user);
     });
   });
@@ -140,13 +141,13 @@ exports.showUser = function(req, res) {
     // Find a user with the userId gotted with the cookie
     findUserById(userId, function(err, user){
       if (err) { return handleError(res, err); }
-      
-
+      if (!user) {return handleError(res, 'No user with your cookie.'); }
 
 
       user = JSON.parse(JSON.stringify(user));
       user.sessionToken = req.cookies.JSESSIONID;
       console.log(user);
+      console.log("151");
       return res.status(200).json(user);
     });
   });
@@ -221,7 +222,7 @@ exports.show = function(req, res) {
   console.log("finding in " + whereToFind + " the value " + req.params.id);
   Users.findOne({'twitter.id': req.params.id}, function (err, user) {
     if(err) { return handleError(res, err); }
-    if(!user) { return res.send('There is no user user matching your cookie.'); }
+    if(!user) { return handleError('There is no user user matching your cookie.'); }
     return res.json(user);
   });
 };
@@ -255,5 +256,6 @@ exports.destroy = function(req, res) {
 
 function handleError(res, err) {
   console.log(err);
+  console.log("************************************HANDLE ERROR************************************************")
   return res.status(500).send(err);
 };

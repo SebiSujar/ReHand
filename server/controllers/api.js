@@ -29,16 +29,18 @@ exports.login = function(req, res, cookie){
 
   var uri = 'http://localhost:9000/user';
   
-  console.log(req.headers);
-
   var j = request.jar();
   var cookie = request.cookie(getCookie(req.headers));
   j.setCookie(cookie, uri);
 
-
-
+  console.log("trying to get user with cookie " + cookie);
   request.get({url: uri, jar: j}, function (err, user){
-    res.status(200).json(JSON.parse(user.body));
+    if (err) return handleError(res, err);
+    console.log(user);
+    console.log("api 39");
+    if (user) {
+      //res.status(200).json(JSON.parse(user.body));
+    }
   });
 };
 
@@ -57,11 +59,7 @@ exports.getTwitterOauth = function(req, res){
   };
 
   request.post({url: uri, oauth:oauth}, function (err, req, body) {
-    if (err) {
-      console.log(err);
-      console.log(body);
-      return res.send("24. yeah no. didn't work.")
-    }
+    if (err) return handleError(res, err);
     body = qs.parse(body);
     if (!body.oauth_callback_confirmed){
       console.log("28. bad authentication");
@@ -90,12 +88,28 @@ var getAccessToken = function(callback) {
   });
 };
 
+var disminifyTwUrl = function(toDisminify, index, disminified, callback){
+  if (toDisminify.length <= index) {
+    return callback(disminified);
+  }
+  request.post(toDisminify[index], function (err, body, tres){
+    if (err){
+      console.log(err);
+      disminified.push(null); 
+    } else {
+      disminified.push(body.headers.location); 
+    }
+    return disminifyTwUrl(toDisminify, index + 1, disminified, callback);
+  });
+};
+
 var getUserInfo = function(callback) {
   var uri = 'https://api.twitter.com/1.1/users/show.json?';
   uri += qs.stringify(params);
 
   request.get({url:uri, oauth:oauth, json:true}, function (e, r, body) {
     console.log(body);
+
     var user = {
       twitter: {
         id: body.id,
@@ -115,7 +129,6 @@ var getUserInfo = function(callback) {
         startingFollowers: body.followers_count,
       }
     };
-    return;
     callback(user);
   });
 };
@@ -135,6 +148,8 @@ exports.getTwitterCallback = function(req, res){
   getAccessToken(function() {
     getUserInfo(function(user){
       saveUser(user, req.cookies.uuid, function(err, cookie){
+        if (err) return handleError(res, err);
+        console.log("Setting cookie " + cookie);
         res.cookie('JSESSIONID', cookie, {maxAge: 604800000});
         res.redirect('/App');
       });
@@ -160,3 +175,7 @@ exports.test = function(req, res){
     //res.status(200).send(page);
   });
 };
+
+function handleError(res, err) {
+  return res.send(500, err);
+}

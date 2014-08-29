@@ -20,7 +20,6 @@ client.on("error", function (err) {
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
-
 // Populate DB with sample data
 if(config.seedDB) { require('./config/seed'); }
 
