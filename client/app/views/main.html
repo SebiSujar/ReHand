@@ -146,7 +146,7 @@
                         <div class="summary-block last-transfer">
                           <div class="value">
                             <span class="container">
-                            <strong data-text="$0.00 USD">103</strong>
+                            <strong data-text="$0.00 USD">{{patients.length}}</strong>
                             </span>
                           </div>
                           <div class="label">Pacientes Registrados</div>
@@ -179,7 +179,16 @@
                     </div>
                   </div>
                   <div class="dashboard-welcome">
-
+                    <div class="pacient-card" ng-repeat="patient in patients" ng-click="toPacient(pacient)">
+                      <div class="left-column">
+                        <p class="name">{{patient.name}}</p>
+                        <p class="email">{{patient.email}}</p>
+                      </div>
+                      <div class="rigth-column">
+                        <p class="tests">{{patient.performanceTest.length}} tests hechos</p>
+                        <p class="games">{{patient.games.length}} partidas jugadas</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -12,5 +12,6 @@ module.exports = function(app) {
 	app.post('/user', controller.register);
 	app.get('/user/:type/:id', controller.showUser);
   app.get('/users/patients', controller.getPatients);
+  app.post('/user/test', controller.saveTest);
   app.post('/user/game', controller.saveGame);
 };

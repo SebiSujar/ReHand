@@ -2,6 +2,7 @@
 
 var _               = require('lodash'),
     Users           = require('./user.model'),
+    mongoose        = require('mongoose'),
     redis          = require("redis").createClient();
 
 var getCookie = function(headers){
@@ -89,6 +90,7 @@ exports.register = function(req, res) {
       console.log("User not found, creating one with given data");
       console.log(user);
       // If there was no user, then create one
+      
       Users.create(user, function (err, dbUser) {
         if(err) { return handleError(res, err); }
         console.log("err");
@@ -143,11 +145,10 @@ exports.getUser = function(req, res) {
 };
 
 exports.getPatients = function(req, res) {
-  console.log("Getting patients");
   Users.find({'job': 'patient'}, function(err, users){
     if (err) { return handleError(res, err); }
     console.log(users);
-    res.status(200).send(users);
+    return res.status(200).json(users);
   });
 };
 
@@ -182,6 +183,28 @@ exports.saveGame = function(req, res) {
       return handleError(res, 'no_user');
     } else {
       findedUser.games.push(req.body);
+      findedUser.save(function(err, dbUser){
+        if (err) return handleError(res, err);
+        console.log("Result");
+        console.log(findedUser);
+        return res.status(200).send(findedUser);
+      });
+    }
+  });
+};
+
+exports.saveTest = function(req, res) {
+  console.log("Save Test");
+  console.log(req.body);
+  console.log("Save Test");
+  findUserByEmail(req.body.email, function(err, findedUser){
+    if (err) { return handleError(res, err); }
+    console.log("Your user is:");
+    console.log(findedUser);
+    if(!findedUser) { 
+      return handleError(res, 'no_user');
+    } else {
+      findedUser.performanceTest.push(req.body);
       findedUser.save(function(err, dbUser){
         if (err) return handleError(res, err);
         console.log("Result");

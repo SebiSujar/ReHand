@@ -1104,3 +1104,42 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   padding-left: 5px;
   display: inline;
 }
+
+.pacient-card {
+  width: 40%;
+  float: left;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-top: 30px;
+  border-radius: 4px;
+  border: 1px solid #dadada;
+  border-top: 1px solid #bbb;
+  background: #fff;
+  padding: 20px 20px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.pacient-card .left-column {
+
+}
+
+.pacient-card .name {
+
+}
+
+.pacient-card .email {
+
+}
+
+.pacient-card .rigth-column {
+  
+}
+
+.pacient-card .tests {
+
+}
+
+.pacient-card .games {
+
+}
