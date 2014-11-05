@@ -27,10 +27,11 @@ var getCookie = function(headers){
 exports.login = function(req, res, cookie){
   var uri = 'http://localhost:3000/user';
   console.log("--- LOGIN ---")
-  console.log(req.data);
   console.log(req.body);
   var j = request.jar();
   var cookie = getCookie(req.headers);
+  console.log("cookie");
+  console.log(cookie);
   cookie = request.cookie(cookie);
   j.setCookie(cookie, uri);
   console.log("trying to get user with cookie " + cookie);

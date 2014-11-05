@@ -54,3 +54,8 @@
 [3690] 04 Nov 23:43:53.150 * DB saved on disk
 [3690] 04 Nov 23:43:53.151 * RDB: 2 MB of memory used by copy-on-write
 [14639] 04 Nov 23:43:53.200 * Background saving terminated with success
+[14639] 05 Nov 00:43:54.008 * 1 changes in 3600 seconds. Saving...
+[14639] 05 Nov 00:43:54.023 * Background saving started by pid 5187
+[5187] 05 Nov 00:43:54.162 * DB saved on disk
+[5187] 05 Nov 00:43:54.163 * RDB: 0 MB of memory used by copy-on-write
+[14639] 05 Nov 00:43:54.223 * Background saving terminated with success
