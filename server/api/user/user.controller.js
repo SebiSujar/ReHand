@@ -57,11 +57,19 @@ var matchCookieInRedis = function(cookie, callback) {
   });
 };
 
+var findUserByEmail = function(email, callback) {
+  // Find a user in the db with the email given
+  Users.findOne({ 'email': email }, function(err, user){
+    if (err) { return callback(err); }
+    // If there was no error, send back the user
+    callback(null, user);
+  });
+};
+
 var findUserById = function(id, callback) {
   // Find a user in the db with the id given
   Users.findById(id, function(err, user){
     if (err) { return callback(err); }
-    if (!user) { return callback('There is no user user matching your cookie.'); }
     // If there was no error, send back the user
     callback(null, user);
   });
@@ -70,53 +78,50 @@ var findUserById = function(id, callback) {
 // Register or login a user.
 exports.register = function(req, res) {
   console.log("Register");
-  if(req.body._id) { delete req.body._id; }
-  if(!req.body.sessionToken) { return handleError(res, 'No cookie founded.') }
+  var user = req.body;
+  console.log("USER");
+  console.log(user);
   // Trying to match id given to existing user
-  findUserBySocialId(req.params.type, req.params.id, function(err, user){
+  findUserByEmail(user.email, function(err, findedUser){
     if (err) { return handleError(res, err); }
-    console.log(user);
-    if(!user) { 
-      console.log("User not found");
+    console.log(findedUser);
+    if(!findedUser) { 
+      console.log("User not found, creating one with given data");
+      console.log(user);
       // If there was no user, then create one
-      Users.create(req.body, function (err, dbUser) {
+      Users.create(user, function (err, dbUser) {
         if(err) { return handleError(res, err); }
-
+        console.log("err");
+        console.log(err);
+        console.log("dbUser");
+        console.log(dbUser);
         // After creating user, assign the cookie for future requests        
-        redis.set(req.body.sessionToken, dbUser._id);
-        console.log("User matched with the cookie: " + req.body.sessionToken);
-
+        redis.set(user.sessionToken, dbUser._id);
+        console.log("User matched with the cookie: " + user.sessionToken);
+        dbUser.sessionToken = user.sessionToken;
         // Send the user with the cookie back to the client
-        return res.status(200).send(req.body.sessionToken);
+        return res.status(200).send(dbUser);
       });
     } else {
       console.log("User found");
-      // If there is one user with the same id, then login and update him
-      var updated = _.merge(user, req.body);
-      updated.save(function (err, dbUser) {
-        if (err) { return handleError(res, err); }
-        console.log("User updated");
-        console.log("Finding if there is an existing cookie for the user");
-        // Find if there is an existing cookie for that user
-        redis.keys(dbUser._id, function(err, cookiesArray){
-          if (err) { return handleError(res, err); }
-          var cookie = req.body.sessionToken;
-          // If there is one, then send it to the user
-          if (cookiesArray.length > 0) {
-            cookie = cookiesArray[0];
-          }
-          redis.set(cookie, user._id);
-          console.log("Not found, assigning new cookie: " + cookie);
-          // Send the cookie to the user
-          return res.status(200).send(cookie);
-        });
-      });
+      findedUser.sessionToken = user.sessionToken;
+      redis.set(user.sessionToken, findedUser._id);
+      return res.status(200).send(findedUser);
     }
   });
 };
 
 exports.getUser = function(req, res) {
-
+  console.log("USER CONTROLLER");
+  console.log(req.body);
+  Users.findOne({'email': req.body.email, 'password': req.body.password}, function(err, user){
+    if (err) { return callback(err); }
+    if (!user) { return res.status(404).send('no_user'); }
+    user.sessionToken = req.cookies.JSESSIONID;
+    redis.set(user.sessionToken, user._id);
+    res.status(200).send(user);
+  });
+  /*
   if(!req.cookies.JSESSIONID) { return handleError(res, 'No cookie founded.') }
   matchCookieInRedis(req.cookies.JSESSIONID, function(err, userId){
     if (err) { return handleError(res, err); }
@@ -126,12 +131,11 @@ exports.getUser = function(req, res) {
       if (err) { return handleError(res, err); }
       if (!user) {return handleError(res, 'No user with your cookie.'); }
       user = JSON.parse(JSON.stringify(user));
-      user.sessionToken = req.cookies.JSESSIONID;
+      console.log("user");
       console.log(user);
-      console.log("132");
       return res.status(200).json(user);
     });
-  });
+  });*/
 };
 
 exports.showUser = function(req, res) {

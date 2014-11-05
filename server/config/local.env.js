@@ -6,7 +6,7 @@
 // This file should not be tracked by git.
 
 module.exports = {
-  SESSION_SECRET: "toolnet-secret",
+  SESSION_SECRET: "rehand-secret",
   FACEBOOK_ID: "app-id",
   FACEBOOK_SECRET: "secret",
   TWITTER_ID: "app-id",

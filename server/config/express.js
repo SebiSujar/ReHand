@@ -34,12 +34,11 @@ module.exports = function(app) {
   app.use(cookieParser('superEmprendimiento2014'));
 
   app.use(function(req, res, next){
-    //console.log("request asked, checking if there is an existing cookie");
-    if (!req.cookies.uuid) {
+    if (!req.cookies.JSESSIONID) {
       var theUuid = uuid.v4();
       console.log("there is not, asigning cookie " + theUuid);
       // Guardo en las sesions con el nombre uuid con el value de un numero aleatorio y expira en una semana
-      res.cookie('uuid', theUuid, {maxAge: 604800000});
+      res.cookie('JSESSIONID', theUuid, {maxAge: 604800000});
     }
     //console.log("there is a cookie, " + req.cookies.uuid);
     next();

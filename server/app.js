@@ -10,7 +10,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express 	= require('express');
 var mongoose 	= require('mongoose');
 var redis 		= require("redis"),
-	client 		= redis.createClient();
+		client 		= redis.createClient();
 var config 		= require('./config/environment');
 
 // Connect to redis

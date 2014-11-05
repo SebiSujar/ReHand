@@ -4,13 +4,12 @@
     <div id="application">
       <div id="header">
         <div class="header-view">
-          <h1><a class="main-header-link" href="/test/dashboard">toolnet</a></h1>
+          <h1><a class="main-header-link" href="/test/dashboard">ReHand</a></h1>
           <div class="navigation">
             <div id="account-dropdown-view">
               <div class="account-dropdown-view">
                 <a class="account">
-                <img width="16" height="16" src="{{user.twitter.picture}}">
-                <span class="account-name">{{user.twitter.name}}</span>
+                <span class="account-name">{{user.name}}</span>
                 </a>
                 <div class="submenu">
                   <ul>
@@ -60,17 +59,6 @@
         <div id="toolbar-view">
           <div class="toolbar-view">
             <div class="inner">
-              <div id="livemode-switch">
-                <div class="switch-view">
-                  <div class="switch-view-content">
-                    <label class="off">Live</label>
-                    <label class="on active">Test</label>
-                    <div class="switch-background-off" style="right: 11px;"></div>
-                    <div class="switch-background-on" style="left: 30px;"></div>
-                    <div class="switch-knob" style="left: 19px;"></div>
-                  </div>
-                </div>
-              </div>
               <div id="breadcrumbs" style="width: 60px;"></div>
             </div>
           </div>
@@ -101,61 +89,38 @@
               <div class="sidebar-view-gradient"></div>
               <div class="sidebar-view-content">
                 <div class="gradient"></div>
-                <h4>To See</h4>
+                <h4>Doctor</h4>
                 <ul class="navigation">
-                  <li class="dashboard selected">
-                    <a href="/dashboard">
-                      <span>Resume</span>
+                  <li class="dashboard" ng-click="tabs.selected = 'pacientes'" ng-class="{selected: tabs.selected == 'pacientes'}">
+                    <a>
+                      <span>Pacientes</span>
                     </a>
                   </li>
-                  <li class="payments">
-                    <a href="/recipe">
-                      <span>Magic Recipe</span> 
+                  <li class="payments" ng-click="tabs.selected = 'estadisticas'" ng-class="{selected: tabs.selected == 'estadisticas'}">
+                    <a>
+                      <span>Estadisticas</span> 
+                      <div class="unread" style="display: none;"></div>
+                    </a>
+                  </li>
+                  <li class="payments" ng-click="tabs.selected = 'registro'" ng-class="{selected: tabs.selected == 'registro'}">
+                    <a>
+                      <span>Registrar Paciente</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
                   </li>
                 </ul>
-                <h4>Me</h4>
+                <h4>Perfil</h4>
                 <ul class="navigation">
                   <li class="payments">
                     <a href="/accounts">
-                      <span>My Accounts</span> 
+                      <span>Configuración</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
                   </li>
                   <li class="transfers">
                     <a href="/configuration">
-                      <span>Configuration</span> 
+                      <span>Cerrar Sesión</span> 
                       <div class="unread" style="display: none;"></div>
-                    </a>
-                  </li>
-                  <li class="transfers">
-                    <a href="/plans">
-                      <span>Plans & Payments</span> 
-                      <div class="unread" style="display: none;"></div>
-                    </a>
-                  </li>
-                </ul>
-                <h4>App</h4>
-                <ul class="navigation">
-                  <li class="plans">
-                    <a href="/follow">
-                      <span>Who To Follow</span>
-                    </a>
-                  </li>
-                  <li class="plans">
-                    <a href="/unfollow">
-                      <span>Who To Unfollow</span>
-                    </a>
-                  </li>
-                  <li class="plans">
-                    <a href="/whitelist">
-                      <span>White List</span>
-                    </a>
-                  </li>
-                  <li class="plans">
-                    <a href="/blacklist">
-                      <span>Black List</span>
                     </a>
                   </li>
                 </ul>
@@ -170,7 +135,57 @@
               </div>
             </div>
           </div>
-          <div id="main-content">
+          <div id="main-content" ng-if="tabs.selected == 'pacientes'">
+            <div id="section">
+              <div class="dashboard-view">
+                <div class="test-badge" style="display: block;"></div>
+                <div class="dashboard-content">
+                  <div class="summary clearfix">
+                    <div class="summary-view">
+                      <div class="summary-contents">
+                        <div class="summary-block last-transfer">
+                          <div class="value">
+                            <span class="container">
+                            <strong data-text="$0.00 USD">103</strong>
+                            </span>
+                          </div>
+                          <div class="label">Pacientes Registrados</div>
+                        </div>
+                        <div class="summary-block next-transfer">
+                          <div class="value">
+                            <span class="container">
+                            <strong data-text="$0.00 USD">472</strong>
+                            </span>
+                          </div>
+                          <div class="label">Veces Jugadas</div>
+                        </div>
+                        <div class="summary-block total-customers">
+                          <div class="value">
+                            <span class="container">
+                            <strong>0</strong>
+                            </span>
+                          </div>
+                          <div class="label">Otro Dato</div>
+                        </div>
+                        <div class="summary-block total-volume">
+                          <div class="value">
+                            <span class="container">
+                            <strong>0</strong>
+                            </span>
+                          </div>
+                          <div class="label">Otro Dato</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dashboard-welcome">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="main-content" ng-if="tabs.selected == 'estadisticas'">
             <div id="section">
               <div class="dashboard-view">
                 <div class="test-badge" style="display: block;"></div>
@@ -566,10 +581,55 @@
               </div>
             </div>
           </div>
+          <div id="main-content" ng-if="tabs.selected == 'registro'">
+            <div id="section">
+              <form class="register-view" name="pacient_form" novalidate ng-submit="registerPacient()">
+                <input type="text" name="name" spellcheck="false" tabindex="1" ng-model="newPacient.name" placeholder="Ingresar nombre" ng-minlength="5" ng-minlength="30" required>
+                <div class="error" ng-show="pacient_form.name.$dirty && pacient_form.name.$invalid" >
+                  <small class="error" ng-show="pacient_form.name.$required">
+                    Este campo es requerido
+                  </small>
+                  <small class="error" ng-show="pacient_form.name.$minlength">
+                    Tu nombre debe tener al menos 5 letras
+                  </small>
+                  <small class="error" ng-show="pacient_form.name.$maxlength">
+                    Tu nombre no puede contener más de 30 letras
+                  </small>
+                </div>
+                <input type="text" name="email" spellcheck="false" tabindex="2" ng-model="newPacient.email" placeholder="Ingresar e-mail" ng-minlength="5" ng-minlength="30" required>
+                <div class="error" ng-show="pacient_form.email.$dirty && pacient_form.email.$invalid" >
+                  <small class="error" ng-show="pacient_form.email.$required">
+                    Este campo es requerido
+                  </small>
+                  <small class="error" ng-show="pacient_form.email.$minlength">
+                    Tu e-mail debe tener al menos 5 letras
+                  </small>
+                  <small class="error" ng-show="pacient_form.email.$maxlength">
+                    Tu e-mail no puede contener más de 30 letras
+                  </small>
+                </div>
+                <input type="text" name="password" spellcheck="false" tabindex="3" ng-model="newPacient.password" placeholder="Ingresar contraseña" ng-minlength="5" ng-minlength="30" required>
+                <div class="error" ng-show="pacient_form.password.$dirty && pacient_form.password.$invalid" >
+                  <small class="error" ng-show="pacient_form.password.$required">
+                    Este campo es requerido
+                  </small>
+                  <small class="error" ng-show="pacient_form.password.$minlength">
+                    Tu nombre debe tener al menos 5 letras
+                  </small>
+                  <small class="error" ng-show="pacient_form.password.$maxlength">
+                    Tu nombre no puede contener más de 30 letras
+                  </small>
+                </div>
+                <p class="submit">
+                  <button class="button blue" type="submit"><span>Register!</span></button>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div id="footer">
-        <p>© Toolnet</p>
+        <p>© ReHand</p>
         <ul>
           <li><a href="https://stripe.com/about">About</a></li>
           <!--<li><a href="https:&#x2F;&#x2F;stripe.com&#x2F;gallery">Gallery</a></li>-->

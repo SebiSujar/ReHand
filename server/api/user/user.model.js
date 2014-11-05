@@ -3,53 +3,30 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-/* STATUS TYPES:  overdue (pasado de los 30 dias gratis) 
-									free (en los 30 dias gratis
-									normal (plan pago no tan bueno) 
-									premium (mejor plan pago)
-*/
-
+/* JOB TYPES:  pacient, doctor */
 var UserSchema = new Schema({
-  account: {
-  	createdAt: {
-			type: Date, 
-			default: Date.now
-		},
-		payments: {
-			status: { type: String, default: 'Free'},
-			dueDate: { type: Date, default: new Date().getTime() }
-		}
-  },
-  twitter: {
-  	id: Number,
-    token: String,
-  	token_secret: String,
-  	
-  	name: String,
-    picture: String,
-  	cover: String,
-  	
-  	following: Number,
-  	followers: Number,
-  	
-  	followers_earned: { type: Number, default: 0 },
-  	following_earned: { type: Number, default: 0 },
-  	unfollowing_earned: { type: Number, default: 0 },
-  	messages_earned: { type: Number, default: 0 },
-  	tweets_earned: { type: Number, default: 0 },
-  	
-  	startingFollowing: Number,
-  	startingFollowers: Number,
-  	
-  	followingInTime: [{
-  		following: Number,
-  		followers: Number,
-  		date: {
-  			type: Date, 
-  			default: new Date().getTime()
-  		}
-  	}]
-  }
+  creation: { type: Number, default: Date.now },
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },   
+  password: { type: String, required: true },   
+  job: { type: String, default: 'pacient' },
+  performanceTest: [{
+    id: { type: Schema.ObjectId, default: mongoose.Types.ObjectId(), unique: true },
+    rotationsLeft: { type: Number, default: 0 },
+    rotationsRight: { type: Number, default: 0 }, 
+    closedHands: { type: Number, default: 0 },
+    elbowFlexions: { type: Number, default: 0 }
+  }],
+  games: [{
+    id: { type: Schema.ObjectId, default: mongoose.Types.ObjectId(), unique: true },
+    timestamp: { type: Number, default: new Date().getTime() },
+    duration: { type: Number, default: 0 }, 
+    rotationsLeft: { type: Number, default: 0 },
+    rotationsRight: { type: Number, default: 0 }, 
+    closedHands: { type: Number, default: 0 },
+    elbowFlexions: { type: Number, default: 0 },
+    percentageInTrack: { type: Number, default: 0 }
+  }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

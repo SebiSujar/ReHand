@@ -12,38 +12,26 @@ module.exports = function(app) {
 
   /*
   *
-  * TEST
-  *
-  */
-
-  // Get the user
-  app.get('/test', api.test);
-
-  /*
-  *
   * USER
   *
   */
 
   // Get the user
-  app.get('/api/user', api.login);
+  app.post('/api/user', api.login);
+
+  // Register new user
+  app.get('/register/:name/:email/:password/:secret', api.register);
 
 
-  /*
-  *
-  * TWITTER
-  *
-  */
-
-  // Get the user Twitter oauth
-  app.get('/api/user/twitter', api.getTwitterOauth);
-
-  // Receives the twitter oauth callback
-  app.get('/api/twitter/callback', api.getTwitterCallback);
-  
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
+
+   // Go to the main page when entering to /App
+  app.route('/login')
+    .get(function(req, res) {
+      res.sendfile(app.get('appPath') + '/login/index.html');
+  });
 
   // Go to the main page when entering to /App
   app.route('/App')
@@ -59,12 +47,7 @@ module.exports = function(app) {
 
   // All other routes to use Angular routing in app/scripts/app.js
   app.get('/partials/*', index.partials);
-  //app.get('/App', index.error);
   app.get('/App', index.app);
   app.get('/App/*', index.app);
-  app.get('/premium', index.premium);
-  app.get('/plans', index.plans);
-  app.get('/terms', index.terms);
-  app.get('/privacy', index.privacy);
   app.get('/*', index.index);
 };

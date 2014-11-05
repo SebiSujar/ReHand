@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/toolnet-dev'
+    uri: 'mongodb://localhost/rehand-dev'
   },
 
   seedDB: true

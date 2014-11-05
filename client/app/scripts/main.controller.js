@@ -27,7 +27,8 @@ angular.module('toolnetApp')
     }else{
       // si solo tengo la cookie pido el usuario completo
       $rootScope.user = localStorageService.get('user');
-      if(!$rootScope.user || !$rootScope.user.fromLanding){
+      console.log($rootScope.user);
+      if(!$rootScope.user){
         $http.get('//localhost:9000/api/user/').success(function(user) {
           if(!user){
             console.log("no user when attempting the get request");
@@ -42,23 +43,19 @@ angular.module('toolnetApp')
           redirectToLogin();
        });
       }else{
-        $rootScope.user.fromLanding = false;
         localStorageService.set('user', $rootScope.user);
-        $rootScope.user.fromLanding = true;
       }
     }
   };
 
-  $scope.doShow = function(){
-
-    console.log(document.body.textContent);
-
-    $http.get('//localhost:9000/test').success(function(page) {
-      console.log(page);
-      console.log(document.body.innerText);
+  $scope.registerPacient = function() {
+    var uri = 'http://localhost:9000/user';
+    console.log("saving user");
+    console.log($scope.newPacient);
+    $scope.newPacient.sessionToken = $rootScope.user.sessionToken;
+    $http.post(uri, $scope.newPacient, function (err, res){
+      console.log(res.body);
     });
-    /*
-    */
   };
 
   /*
@@ -66,6 +63,11 @@ angular.module('toolnetApp')
 	* Initialize Variables
 	*
   */
+
+  $rootScope.newPacient = {};
+  $rootScope.tabs = {
+    selected: 'pacientes'
+  };
 
 
   /*

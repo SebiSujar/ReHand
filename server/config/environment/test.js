@@ -5,6 +5,6 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/toolnet-test'
+    uri: 'mongodb://localhost/rehand-test'
   }
 };
