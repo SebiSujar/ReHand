@@ -11,6 +11,7 @@ var UserSchema = new Schema({
   password: { type: String, required: true },   
   job: { type: String, default: 'patient' },
   performanceTest: [{
+    timestamp: { type: Number, default: new Date().getTime() },
     rotationsLeft: { type: Number, default: 0 },
     rotationsRight: { type: Number, default: 0 }, 
     closedHands: { type: Number, default: 0 },
