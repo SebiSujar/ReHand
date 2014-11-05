@@ -35,7 +35,7 @@ module.exports = function(app) {
 
   app.use(function(req, res, next){
     console.log(req.cookies.JSESSIONID);
-    if (!req.cookies.JSESSIONID || req.cookies.JSESSIONID == undefined) {
+    if (!req.cookies.JSESSIONID || req.cookies.JSESSIONID == null) {
       console.log("dont have cookie");
       var theUuid = uuid.v4();
       console.log("there is not, asigning cookie " + theUuid);
