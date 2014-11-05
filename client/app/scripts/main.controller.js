@@ -61,10 +61,10 @@ angular.module('toolnetApp')
   };
 
   function getPatients () {
-    var uri = 'http://localhost:9000/api/users/patients';
+    var uri = 'http://localhost:9000/users/patients';
     $http.get(uri, function (err, users){
       if (err) { redirectToLogin(); }
-      
+
       console.log(res.body);
     });
   }
