@@ -151,11 +151,8 @@ exports.showUser = function(req, res) {
 
 exports.saveGame = function(req, res) {
   console.log("Save Game");
-  console.log(req);
-  console.log("Save Game");
   console.log(req.body);
   console.log("Save Game");
-  return;
   findUserByEmail(req.body.email, function(err, findedUser){
     if (err) { return handleError(res, err); }
     console.log("Your user is:");
