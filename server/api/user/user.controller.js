@@ -130,8 +130,10 @@ exports.getUser = function(req, res) {
 };
 
 exports.getPatients = function(req, res) {
+  console.log("Get Patients");
   Users.find({'job': 'patient'}, function(err, users){
     if (err) { return handleError(res, err); }
+    console.log("patients");
     console.log(users);
     return res.status(200).json(users);
   });
