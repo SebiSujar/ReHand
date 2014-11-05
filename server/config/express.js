@@ -34,9 +34,6 @@ module.exports = function(app) {
   app.use(cookieParser('superEmprendimiento2014'));
 
   app.use(function(req, res, next){
-    console.log("cookie");
-    console.log(req.cookies);
-    console.log(req.cookies.JSESSIONID);
     if (!req.cookies.JSESSIONID || req.cookies.JSESSIONID == "undefined" || req.cookies.JSESSIONID.length == 9) {
       console.log("dont have cookie");
       var theUuid = uuid.v4();
