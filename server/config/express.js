@@ -35,7 +35,7 @@ module.exports = function(app) {
 
   app.use(function(req, res, next){
     console.log(req.cookies.JSESSIONID);
-    if (!req.cookies.JSESSIONID) {
+    if (!req.cookies.JSESSIONID || req.cookies.JSESSIONID == undefined) {
       var theUuid = uuid.v4();
       console.log("there is not, asigning cookie " + theUuid);
       // Guardo en las sesions con el nombre uuid con el value de un numero aleatorio y expira en una semana
