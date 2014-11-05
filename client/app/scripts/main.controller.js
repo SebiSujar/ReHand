@@ -67,7 +67,11 @@ angular.module('toolnetApp')
       patient.daysUsed = (new Date().getTime() - $scope.user.creation) / 1000 / 60 / 60 / 24;
     }
     $scope.activePatient = patient;
-  }
+  };
+
+  $scope.closeShowPatient = function(){
+    delete $scope.activePatient;
+  };
 
   function getPatients () {
     var uri = 'http://localhost:3000/users/patients';

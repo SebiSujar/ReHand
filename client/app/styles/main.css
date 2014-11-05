@@ -1117,6 +1117,7 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   background: #fff;
   padding: 20px 20px;
   margin-bottom: 10px;
+  cursor: pointer;
   box-sizing: border-box;
 }
 
@@ -1142,4 +1143,24 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
 
 .patient-card .games {
 
+}
+
+.summary-block.go-back {
+  cursor: pointer;
+}
+
+.register-view {
+  padding: 40px 170px;
+}
+
+.register-view input[type="text"] {
+  border-radius: 4px;
+  padding: 5px 8px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.submit .button {
+  padding: 10px 15px;
+  width: 100%;
 }

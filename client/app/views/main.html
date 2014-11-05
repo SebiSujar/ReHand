@@ -4,7 +4,7 @@
     <div id="application">
       <div id="header">
         <div class="header-view">
-          <h1><a class="main-header-link" href="/test/dashboard">ReHand</a></h1>
+          <h1><p class="main-header-link">ReHand</p></h1>
           <div class="navigation">
             <div id="account-dropdown-view">
               <div class="account-dropdown-view">
@@ -92,17 +92,21 @@
                 <ul class="navigation">
                   <li class="dashboard" ng-click="tabs.selected = 'pacientes'" ng-class="{selected: tabs.selected == 'pacientes'}">
                     <a>
+                      <i class="rehand ricon-users"></i>
                       <span>Pacientes</span>
                     </a>
                   </li>
+                  <!--
                   <li class="payments" ng-click="tabs.selected = 'estadisticas'" ng-class="{selected: tabs.selected == 'estadisticas'}">
                     <a>
                       <span>Estadisticas</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
                   </li>
+                  -->
                   <li class="payments" ng-click="tabs.selected = 'registro'" ng-class="{selected: tabs.selected == 'registro'}">
                     <a>
+                      <i class="rehand ricon-new-user"></i>
                       <span>Registrar Patiente</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
@@ -112,12 +116,14 @@
                 <ul class="navigation">
                   <li class="payments">
                     <a href="/accounts">
+                      <i class="rehand ricon-cog"></i>
                       <span>Configuración</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
                   </li>
                   <li class="transfers">
                     <a href="/configuration">
+                      <i class="rehand ricon-exit"></i>
                       <span>Cerrar Sesión</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
@@ -193,13 +199,13 @@
                   <div class="summary clearfix">
                     <div class="summary-view">
                       <div class="summary-contents">
-                        <div class="summary-block last-transfer">
+                        <div class="summary-block go-back" ng-click="closeShowPatient()">
                           <div class="value">
                             <span class="container">
-                            <strong>{{activePatient.performanceTest.length}}</strong>
+                            <strong><i class="rehand ricon-back"></i></strong>
                             </span>
                           </div>
-                          <div class="label">Tests hechos</div>
+                          <div class="label">Volver</div>
                         </div>
                         <div class="summary-block next-transfer">
                           <div class="value">
@@ -268,7 +274,7 @@
                             </div>
                             <span id="from-date_error" class="field_error "></span>
                           </div>
-                          <span class="separator">to</span>
+                          <span class="separator">hasta</span>
                           <div class="to-date-container">
                             <div class="placeholder field_input" name="to-date">
                               <div class="date-widget-view to-date">
@@ -284,8 +290,8 @@
                     <div class="gross-volume-chart">
                       <div class="chart-view">
                         <div class="head">
-                          <span class="title">Gross volume</span>
-                          <span class="total">$0 USD total</span>
+                          <span class="title">Progreso en el juego</span>
+                          <span class="total">0 total</span>
                         </div>
                         <div class="spinner_container" style="height: 120px; display: none;">
                           <div class="spinner">
@@ -304,10 +310,10 @@
                               </linearGradient>
                             </defs>
                             <text x="0" y="9" text-anchor="start" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
-                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">$0.00</tspan>
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
                             </text>
                             <text x="660" y="9" text-anchor="end" font="11px Arial" stroke="none" fill="#bbbbbb" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Arial;">
-                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">$0.00</tspan>
+                              <tspan dy="3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
                             </text>
                             <path fill="none" stroke="#000000" d="M0,47.5L660,47.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
                             <path fill="none" stroke="#000000" d="M0,94.5L660,94.5" stroke-width="1" stroke-opacity="0.06" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0.06;"></path>
@@ -388,7 +394,7 @@
                       <div class="chart-block successful-charge-count-chart">
                         <div class="chart-view">
                           <div class="head">
-                            <span class="title">Successful charges</span>
+                            <span class="title">Progreso pre test</span>
                             <span class="total">0 total</span>
                           </div>
                           <div class="spinner_container" style="height: 100px; display: none;">
@@ -482,7 +488,7 @@
                       <div class="chart-block customer-count-chart">
                         <div class="chart-view">
                           <div class="head">
-                            <span class="title">Customers created</span>
+                            <span class="title">Algo más</span>
                             <span class="total">0 total</span>
                           </div>
                           <div class="spinner_container" style="height: 100px; display: none;">
@@ -621,7 +627,7 @@
                   </small>
                 </div>
                 <p class="submit">
-                  <button class="button blue" type="submit"><span>Register!</span></button>
+                  <button class="button blue" type="submit"><span>Crear Usuario</span></button>
                 </p>
               </div>
             </div>
