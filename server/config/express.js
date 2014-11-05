@@ -35,7 +35,17 @@ module.exports = function(app) {
 
   app.use(function(req, res, next){
     console.log("cookie");
-    console.log(req.cookies.JSESSIONID);
+    try {
+      console.log(req.cookies.JSESSIONID.length);
+    } catch (e) {
+      console.log("dont have cookie");
+      var theUuid = uuid.v4();
+      console.log("there is not, asigning cookie " + theUuid);
+      // Guardo en las sesions con el nombre uuid con el value de un numero aleatorio y expira en una semana
+      console.log("created: " + theUuid);
+      res.cookie('JSESSIONID', theUuid, {maxAge: 604800000});
+    }
+    /*
     if (!req.cookies.JSESSIONID || req.cookies.JSESSIONID == null) {
       console.log("dont have cookie");
       var theUuid = uuid.v4();
@@ -44,6 +54,7 @@ module.exports = function(app) {
       console.log("created: " + theUuid);
       res.cookie('JSESSIONID', theUuid, {maxAge: 604800000});
     }
+    */
     //console.log("there is a cookie, " + req.cookies.uuid);
     next();
   });
