@@ -34,6 +34,7 @@ module.exports = function(app) {
   app.use(cookieParser('superEmprendimiento2014'));
 
   app.use(function(req, res, next){
+    console.log("cookie");
     console.log(req.cookies.JSESSIONID);
     if (!req.cookies.JSESSIONID || req.cookies.JSESSIONID == null) {
       console.log("dont have cookie");
