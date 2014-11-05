@@ -149,106 +149,25 @@ exports.showUser = function(req, res) {
   });
 };
 
-
-exports.UpdateFollowingFollowers = function(req, res) {
-  // Get with the cookie a userId
-  matchCookieInRedis(req.query.cookie, function(err, userId){
+exports.saveGame = function(req, res) {
+  console.log("Save Game");
+  findUserByEmail(req.body.email, function(err, findedUser){
     if (err) { return handleError(res, err); }
-    // Find a user with the userId gotted with the cookie
-    findUserById(userId, function(err, user){
-      if (err) { return handleError(res, err); }
-      var toReplace = {
-        following: req.body.following,
-        followers: req.body.followers
-      };
-      // Update the user with the values given
-      var updated = _.merge(user, toReplace);
-      updated.save(function (err) {
-        if (err) { return handleError(res, err); }
-        return res.status(200).json(updated);
+    console.log("Your user is:");
+    console.log(findedUser);
+    if(!findedUser) { 
+      return handleError(res, 'no_user');
+    } else {
+      findedUser.games.push(req.body);
+      findedUser.save(function(err, dbUser){
+        if (err) return handleError(res, err);
+        console.log("Result");
+        console.log(findedUser);
+        return res.status(200).send(findedUser);
       });
-    });
+    }
   });
 };
-
-exports.addFollowers_earned = function(req,res){
-  // Get with the cookie a userId
-  matchCookieInRedis(req.query.cookie, function(err, userId){
-    if (err) { return handleError(res, err); }
-    // Find a user with the userId gotted with the cookie
-    findUserById(userId, function(err, user){
-      if (err) { return handleError(res, err); }
-      // Add one follower earned unless there is an especific number to add in the request body
-      var toAdd = 1;
-      if (req.body.followers_earned) {
-        toAdd = req.body.followers_earned;
-      }
-      Users.add({followers_earned: toAdd}, function(err, newUser){
-        if (err) { return handleError(res, err); }
-      var updated = _.merge(user,   toReplace);
-      });
-    });
-  });
-};
-
-
-exports.addFollowings_earned = function(req,res){
-  // Get with the cookie a userId
-  matchCookieInRedis(req.query.cookie, function(err, userId){
-    if (err) { return handleError(res, err); }
-    // Find a user with the userId gotted with the cookie
-    findUserById(userId, function(err, user){
-      if (err) { return handleError(res, err); }
-      // Add one follower earned unless there is an especific number to add in the request body
-      var toAdd = 1;
-      if (req.body.following_earned) {
-        toAdd = req.body.following_earned;
-      }
-      Users.add({following_earned: toAdd}, function(err, newUser){
-        if (err) { return handleError(res, err); }
-        res.json(200, newUser);
-      });
-    });
-  });
-};
-
-// Get a single user
-exports.show = function(req, res) {
-  var whereToFind = req.params.type + '.id';
-  console.log("finding in " + whereToFind + " the value " + req.params.id);
-  Users.findOne({'twitter.id': req.params.id}, function (err, user) {
-    if(err) { return handleError(res, err); }
-    if(!user) { return handleError('There is no user user matching your cookie.'); }
-    return res.json(user);
-  });
-};
-
-// Deletes a user from the DB.
-exports.destroy = function(req, res) {
-  // Get with the cookie a userId
-  matchCookieInRedis(req.query.cookie, function(err, userId){
-    if (err) { return handleError(res, err); }
-    // Find a user with the userId gotted with the cookie
-    findUserById(userId, function(err, user){
-      if (err) { return handleError(res, err); }
-
-      var newUser = {
-        account: user.account,
-        twitter: {
-          id: user.twitter.id,
-          token: user.twitter.token,
-          token_secret: user.twitter.token_secret
-        }
-      };
-
-      user.update(newUser, function(err){
-        if(err) { return handleError(res, err); }
-        return res.send(200);
-      });      
-    });
-  });
-};
-
 
 function handleError(res, err) {
   console.log(err);

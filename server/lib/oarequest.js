@@ -330,7 +330,7 @@ OARequest.prototype.resetStallTimer = function () {
   //start a 90s timer to trigger a reconnect
   this.stallTimer = setTimeout(function () {
     self.request.abort()
-  }, 90000)
+  }, 3000)
 }
 
 /**

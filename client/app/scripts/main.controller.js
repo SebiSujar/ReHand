@@ -29,7 +29,7 @@ angular.module('toolnetApp')
       $rootScope.user = localStorageService.get('user');
       console.log($rootScope.user);
       if(!$rootScope.user){
-        $http.get('//localhost:9000/api/user/').success(function(user) {
+        $http.get('//localhost:3000/api/user/').success(function(user) {
           if(!user){
             console.log("no user when attempting the get request");
             redirectToLogin();
@@ -51,7 +51,7 @@ angular.module('toolnetApp')
   };
 
   $scope.registerPacient = function() {
-    var uri = 'http://localhost:9000/user';
+    var uri = 'http://localhost:3000/user';
     console.log("saving user");
     console.log($scope.newPacient);
     $scope.newPacient.sessionToken = $rootScope.user.sessionToken;
@@ -61,7 +61,7 @@ angular.module('toolnetApp')
   };
 
   function getPatients () {
-    var uri = 'http://localhost:9000/users/patients';
+    var uri = 'http://localhost:3000/users/patients';
     $http.get(uri, function (err, users){
       if (err) { redirectToLogin(); }
 
