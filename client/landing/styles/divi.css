@@ -1021,7 +1021,7 @@ img.alignright { display:inline; float:right; margin-left:15px; }
 .et_pb_slider .et_pb_slide:first-child { display: list-item; }
 .et_pb_container { width: 1080px; margin: 0 auto; position: relative; z-index: 2; }
 
-.et_pb_slide_description { padding: 210px 100px; -webkit-animation-duration: .7s; -webkit-animation-delay: .9s; -webkit-animation-timing-function: ease-in-out; -webkit-animation-fill-mode: both; -moz-animation-duration: .7s; -moz-animation-delay: .9s; -moz-animation-timing-function: ease-in-out; -moz-animation-fill-mode: both; -o-animation-duration: .7s; -o-animation-delay: .9s; -o-animation-timing-function: ease-in-out; -o-animation-fill-mode: both; -ms-animation-duration: .7s; -ms-animation-delay: .9s; -ms-animation-timing-function: ease-in-out; -ms-animation-fill-mode: both; animation-duration: .7s; animation-delay: .9s; animation-timing-function: ease-in-out; animation-fill-mode: both; -webkit-animation-name: fadeBottom; -moz-animation-name: fadeBottom; -ms-animation-name: fadeBottom; -o-animation-name: fadeBottom; animation-name: fadeBottom; }
+.et_pb_slide_description { padding: 115px 100px; -webkit-animation-duration: .7s; -webkit-animation-delay: .9s; -webkit-animation-timing-function: ease-in-out; -webkit-animation-fill-mode: both; -moz-animation-duration: .7s; -moz-animation-delay: .9s; -moz-animation-timing-function: ease-in-out; -moz-animation-fill-mode: both; -o-animation-duration: .7s; -o-animation-delay: .9s; -o-animation-timing-function: ease-in-out; -o-animation-fill-mode: both; -ms-animation-duration: .7s; -ms-animation-delay: .9s; -ms-animation-timing-function: ease-in-out; -ms-animation-fill-mode: both; animation-duration: .7s; animation-delay: .9s; animation-timing-function: ease-in-out; animation-fill-mode: both; -webkit-animation-name: fadeBottom; -moz-animation-name: fadeBottom; -ms-animation-name: fadeBottom; -o-animation-name: fadeBottom; animation-name: fadeBottom; }
 .et_pb_slider_fullwidth_off .et_pb_slide_description { padding: 185px 100px; }
 .et_pb_bg_layout_dark .et_pb_slide_description { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);  }
 
@@ -1041,14 +1041,14 @@ img.alignright { display:inline; float:right; margin-left:15px; }
 
 .et_pb_testimonial_old_layout, .et_pb_testimonial_old_layout .et_pb_testimonial_description a { color: #666 !important; }
 
-.et_pb_slide_image { bottom: 0; width: 510px; position: absolute; }
+.et_pb_slide_image { bottom: 0; width: 630px; left: -135.5px; position: absolute; }
 
 .et_pb_media_alignment_center .et_pb_slide_image { bottom: auto; top: 50%; }
 
 .et_pb_slide_image, .et_pb_slide_video { -webkit-animation-duration: .7s; -webkit-animation-delay: .6s; -webkit-animation-timing-function: ease-in-out; -webkit-animation-fill-mode: both; -moz-animation-duration: .7s; -moz-animation-delay: .6s; -moz-animation-timing-function: ease-in-out; -moz-animation-fill-mode: both; -o-animation-duration: .7s; -o-animation-delay: .6s;-o-animation-timing-function: ease-in-out; -o-animation-fill-mode: both; -ms-animation-duration: .7s; -ms-animation-delay: .6s; -ms-animation-timing-function: ease-in-out; -ms-animation-fill-mode: both; animation-duration: .7s; animation-delay: .6s; animation-timing-function: ease-in-out; animation-fill-mode: both; -webkit-animation-name: fadeLeft; -moz-animation-name: fadeLeft; -ms-animation-name: fadeLeft; -o-animation-name: fadeLeft; animation-name: fadeLeft; }
 
 .et_pb_slide_image img { vertical-align: bottom; }
-.et_pb_slide_with_image .et_pb_slide_description { width: 510px; padding-left: 0; padding-right: 0; text-align: left; padding-bottom: 200px; float: right; }
+.et_pb_slide_with_image .et_pb_slide_description { width: 510px; padding-left: 0; padding-right: 0; text-align: left; padding-bottom: 140px; float: right; }
 	.et_pb_slide_description h2 { font-weight: 300; font-size: 46px; }
 	.et_pb_slide_content { font-size: 18px; padding-bottom: 24px; font-weight: 400; color: #333; }
 	.et_pb_slide_content p:last-of-type { padding-bottom: 0px;}

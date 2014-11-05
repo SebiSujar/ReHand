@@ -27,7 +27,6 @@ angular.module('toolnetApp')
     }else{
       // si solo tengo la cookie pido el usuario completo
       $scope.user = localStorageService.get('user');
-      console.log($scope.user);
       if(!$scope.user){
         $http.get('//localhost:3000/api/user/').success(function(user) {
           if(!user){
@@ -42,7 +41,7 @@ angular.module('toolnetApp')
         }).error(function() {
           console.log("error on request");
           redirectToLogin();
-       });
+        });
       }else{
         localStorageService.set('user', $scope.user);
         return callback();
@@ -55,8 +54,13 @@ angular.module('toolnetApp')
     console.log("saving user");
     console.log($scope.newPatient);
     $scope.newPatient.sessionToken = $scope.user.sessionToken;
-    $http.post(uri, $scope.newPatient, function (err, res){
-      console.log(res.body);
+    $http.post(uri, $scope.newPatient).success(function(patient) {
+      if (patient._id) {
+        $scope.patients.push(patient);
+      }
+    }).error(function() {
+      console.log("error on request");
+      redirectToLogin();
     });
   };
 
@@ -73,11 +77,18 @@ angular.module('toolnetApp')
     delete $scope.activePatient;
   };
 
+  function countArrayProperty(array, property) {
+    var counter = 0;
+    array.forEach(function(one){
+      counter += one[property].length;
+    });
+    return counter;
+  }
+
   function getPatients () {
     var uri = 'http://localhost:3000/users/patients';
-    console.log("Get Patients In Page");
     $http.get(uri).success(function(patients) {
-      console.log(patients);
+      $scope.allGames = countArrayProperty(patients, 'games');
       $scope.patients = patients;
     }).error(function() {
         return redirectToLogin();

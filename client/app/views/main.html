@@ -107,7 +107,7 @@
                   <li class="payments" ng-click="tabs.selected = 'registro'" ng-class="{selected: tabs.selected == 'registro'}">
                     <a>
                       <i class="rehand ricon-new-user"></i>
-                      <span>Registrar Patiente</span> 
+                      <span>Registrar Paciente</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
                   </li>
@@ -151,7 +151,7 @@
                         <div class="summary-block next-transfer">
                           <div class="value">
                             <span class="container">
-                            <strong>472</strong>
+                            <strong>{{allGames}}</strong>
                             </span>
                           </div>
                           <div class="label">Veces Jugadas</div>
@@ -614,7 +614,7 @@
                     Tu e-mail no puede contener más de 30 letras
                   </small>
                 </div>
-                <input type="text" name="password" spellcheck="false" tabindex="3" ng-model="newPatient.password" placeholder="Ingresar contraseña" ng-minlength="5" ng-minlength="30" required>
+                <input type="password" name="password" spellcheck="false" tabindex="3" ng-model="newPatient.password" placeholder="Ingresar contraseña" ng-minlength="5" ng-minlength="30" required>
                 <div class="error" ng-show="patient_form.password.$dirty && patient_form.password.$invalid" >
                   <small class="error" ng-show="patient_form.password.$required">
                     Este campo es requerido

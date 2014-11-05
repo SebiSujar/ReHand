@@ -1153,7 +1153,8 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   padding: 40px 170px;
 }
 
-.register-view input[type="text"] {
+.register-view input[type="text"],
+.register-view input[type="password"] {
   border-radius: 4px;
   padding: 5px 8px;
   width: 100%;
