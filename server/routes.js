@@ -17,6 +17,7 @@ module.exports = function(app) {
   */
 
   // Get the user
+  app.get('/api/user', api.login);
   app.post('/api/user', api.login);
 
   // Register new user

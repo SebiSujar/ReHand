@@ -24,9 +24,7 @@ var getCookie = function(headers){
 };
 
 // USER --------------------------------
-
 exports.login = function(req, res, cookie){
-
   var uri = 'http://localhost:3000/user';
   console.log("--- LOGIN ---")
   console.log(req.data);
@@ -65,10 +63,10 @@ exports.register = function(req, res) {
     job: 'doctor'
   };
   console.log(user);
-  saveUser(user, req.cookies.uuid, function(err, cookie){
+  saveUser(user, req.cookies.uuid, function(err, user){
     if (err) return handleError(res, err);
-    console.log("Setting cookie " + cookie);
-    res.cookie('JSESSIONID', cookie, {maxAge: 604800000});
+    console.log("Setting cookie " + req.cookies.uuid);
+    res.cookie('JSESSIONID', req.cookies.uuid, {maxAge: 604800000});
     res.redirect('/App');
   });
 };

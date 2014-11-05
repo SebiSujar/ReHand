@@ -61,6 +61,7 @@ angular.module('toolnetApp')
   };
 
   function getPatients () {
+    console.log("Get Patients");
     var uri = 'http://localhost:3000/users/patients';
     $http.get(uri, function (err, users){
       if (err) { redirectToLogin(); }

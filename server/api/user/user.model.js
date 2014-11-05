@@ -11,14 +11,12 @@ var UserSchema = new Schema({
   password: { type: String, required: true },   
   job: { type: String, default: 'patient' },
   performanceTest: [{
-    id: { type: Schema.ObjectId, default: mongoose.Types.ObjectId(), unique: true },
     rotationsLeft: { type: Number, default: 0 },
     rotationsRight: { type: Number, default: 0 }, 
     closedHands: { type: Number, default: 0 },
     elbowFlexions: { type: Number, default: 0 }
   }],
   games: [{
-    id: { type: Schema.ObjectId, default: mongoose.Types.ObjectId(), unique: true },
     timestamp: { type: Number, default: new Date().getTime() },
     duration: { type: Number, default: 0 }, 
     rotationsLeft: { type: Number, default: 0 },
