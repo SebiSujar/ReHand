@@ -22,21 +22,6 @@ var getCookie = function(headers){
   }
 };
 
-var findUserBySocialId = function(type, id, callback){
-  switch(type) {
-    case 'twitter':
-      Users.findOne({'twitter.id': id}, function (err, user) {
-        return callback(err, user);
-      });
-      break;
-    case 'facebook':
-      Users.findOne({'twitter.id': id}, function (err, user) {
-        return callback(err, user);
-      });
-      break;
-  };
-};
-
 var matchCookieInRedis = function(cookie, callback) {
   var json;
   // Parse the cookie if necesary

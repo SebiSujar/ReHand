@@ -67,10 +67,12 @@ exports.register = function(req, res) {
     job: 'doctor'
   };
   console.log(user);
-  saveUser(user, req.cookies.uuid, function(err, user){
+  console.log("COOKIES");
+  console.log(req.cookies);
+  saveUser(user, req.cookies.JSESSIONID, function(err, user){
     if (err) return handleError(res, err);
-    console.log("Setting cookie " + req.cookies.uuid);
-    res.cookie('JSESSIONID', req.cookies.uuid, {maxAge: 604800000});
+    console.log("Setting cookie " + req.cookies.JSESSIONID);
+    res.cookie('JSESSIONID', req.cookies.JSESSIONID, {maxAge: 604800000});
     res.redirect('/App');
   });
 };
