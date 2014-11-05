@@ -27,7 +27,7 @@ var getCookie = function(headers){
 
 exports.login = function(req, res, cookie){
 
-  var uri = 'http://localhost:9000/user';
+  var uri = 'http://localhost:3000/user';
   console.log("--- LOGIN ---")
   console.log(req.data);
   console.log(req.body);
@@ -43,9 +43,10 @@ exports.login = function(req, res, cookie){
 };
 
 var saveUser = function(user, cookie, callback){
-  var uri = 'http://localhost:9000/user';
+  var uri = 'http://localhost:3000/user';
   user.sessionToken = cookie;
   request.post(uri, {form: user}, function (err, res){
+    if (err) return callback(err);
     callback(err, res.body);
   });
 };
