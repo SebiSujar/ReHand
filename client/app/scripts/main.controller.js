@@ -1,5 +1,8 @@
 angular.module('toolnetApp')
 .controller('MainCtrl', function ($scope, $rootScope, $resource, $cookies, $routeParams, $http, $window, localStorageService) {
+  
+  //var backUrl = '//localhost:3000';
+  var backUrl = '//54.69.62.14:3000';
 
 	var redirectToLogin = function(){
     console.log("redirectToLogin");
@@ -28,7 +31,7 @@ angular.module('toolnetApp')
       // si solo tengo la cookie pido el usuario completo
       $scope.user = localStorageService.get('user');
       if(!$scope.user){
-        $http.get('//localhost:3000/api/user/').success(function(user) {
+        $http.get(backUrl + '/api/user/').success(function(user) {
           if(!user){
             console.log("no user when attempting the get request");
             redirectToLogin();
@@ -50,7 +53,7 @@ angular.module('toolnetApp')
   };
 
   $scope.registerPatient = function() {
-    var uri = 'http://localhost:3000/user';
+    var uri = backUrl + '/user';
     console.log("saving user");
     console.log($scope.newPatient);
     $scope.newPatient.sessionToken = $scope.user.sessionToken;
@@ -65,7 +68,7 @@ angular.module('toolnetApp')
   };
 
   $scope.toPatient = function(patient) {
-    var uri = 'http://localhost:3000/users/patients';
+    var uri = backUrl + '/users/patients';
     console.log("selecting " + patient.name);
     if (!patient.daysUsed) {
       patient.daysUsed = (new Date().getTime() - $scope.user.creation) / 1000 / 60 / 60 / 24;
@@ -86,7 +89,7 @@ angular.module('toolnetApp')
   }
 
   function getPatients () {
-    var uri = 'http://localhost:3000/users/patients';
+    var uri = backUrl + '/users/patients';
     $http.get(uri).success(function(patients) {
       $scope.allGames = countArrayProperty(patients, 'games');
       $scope.patients = patients;

@@ -2,6 +2,9 @@ angular.module('loginApp', ['LocalStorageModule'])
 .controller('LoginController',
   function($scope, $http, $window, localStorageService) {
   
+  //var backUrl = '//localhost:3000';
+  var backUrl = '//54.69.62.14:3000';
+
   $scope.user = {};
 
   $scope.login = function(event) {
@@ -26,7 +29,7 @@ angular.module('loginApp', ['LocalStorageModule'])
       // si solo tengo la cookie pido el usuario completo
       $rootScope.user = localStorageService.get('user');
       if(!$rootScope.user || !$rootScope.user.fromLanding){
-        $http.get('//localhost:3000/api/user/').success(function(user) {
+        $http.get(backUrl + '/api/user/').success(function(user) {
           if(!user){
             console.log("no user when attempting the get request");
             redirectToLogin();
