@@ -30,11 +30,11 @@ exports.login = function(req, res, cookie){
   console.log(req.body);
   var j = request.jar();
   var cookie = getCookie(req.headers);
-  console.log("cookie");
-  console.log(cookie);
-  cookie = request.cookie(cookie);
-  j.setCookie(cookie, uri);
-  console.log("trying to get user with cookie " + cookie);
+  if (cookie) {
+    cookie = request.cookie(cookie);
+    j.setCookie(cookie, uri);
+    console.log("trying to get user with cookie " + cookie);
+  }
   request.get({url: uri, jar: j, form: req.body}, function (err, user){
     if (err) return handleError(res, err);
     res.status(200).json(JSON.parse(user.body));
