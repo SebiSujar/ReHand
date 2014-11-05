@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-/* JOB TYPES:  pacient, doctor */
+/* JOB TYPES:  patient, doctor */
 var UserSchema = new Schema({
   creation: { type: Number, default: Date.now },
   name: { type: String, required: true },

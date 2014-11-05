@@ -43,9 +43,8 @@
               </div>
             </div>
             <ul class="global">
-              <li><a href="/dashboard" class="selected">Dashboard</a></li>
-              <li><a id="global-documentation-link" href="https://stripe.com/docs">Documentation</a></li>
-              <li><a href="https://support.stripe.com">Help &amp; Support</a></li>
+              <li><a class="selected">Estadisticas</a></li>
+              <li><a>Ayuda</a></li>
             </ul>
           </div>
         </div>
@@ -67,7 +66,7 @@
           <div class="quicksearch-view">
             <form>
               <div class="mask">
-                <input type="text" name="search" autocomplete="off" spellcheck="false" tabindex="1" placeholder="Search..." style="left: 60px;">
+                <input type="text" name="search" autocomplete="off" spellcheck="false" tabindex="1" placeholder="Buscar..." style="left: 60px;">
               </div>
               <div class="clear" style="display: none;"></div>
             </form>
@@ -76,7 +75,7 @@
                 <div class="arrow"></div>
                 <div class="search-results-container"></div>
                 <div class="loading-indicator" style="display: none;">
-                  <span><img src="https://a.stripecdn.com/manage/assets/search/spinner-95648306860f6f8ac3bd21106c6da6db.gif" width="16" height="16"> Searching…</span>
+                  <span><img src="https://a.stripecdn.com/manage/assets/search/spinner-95648306860f6f8ac3bd21106c6da6db.gif" width="16" height="16"> Buscando...</span>
                 </div>
               </div>
             </div>
@@ -104,7 +103,7 @@
                   </li>
                   <li class="payments" ng-click="tabs.selected = 'registro'" ng-class="{selected: tabs.selected == 'registro'}">
                     <a>
-                      <span>Registrar Paciente</span> 
+                      <span>Registrar Patiente</span> 
                       <div class="unread" style="display: none;"></div>
                     </a>
                   </li>
@@ -124,18 +123,10 @@
                     </a>
                   </li>
                 </ul>
-                <div class="platform-nav" style="display: none;">
-                  <h4>Applications</h4>
-                  <ul class="navigation">
-                    <li class="applications-overview"><a href="/test/applications/overview"><span>Overview</span></a></li>
-                    <li class="applications-users"><a href="/test/applications/users"><span>Connected Users</span></a></li>
-                    <li class="applications-fees"><a href="/test/applications/fees"><span>Collected Fees</span></a></li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
-          <div id="main-content" ng-if="tabs.selected == 'pacientes'">
+          <div id="main-content" ng-if="tabs.selected == 'pacientes' && !activePatient">
             <div id="section">
               <div class="dashboard-view">
                 <div class="test-badge" style="display: block;"></div>
@@ -146,7 +137,7 @@
                         <div class="summary-block last-transfer">
                           <div class="value">
                             <span class="container">
-                            <strong data-text="$0.00 USD">{{patients.length}}</strong>
+                            <strong>{{patients.length}}</strong>
                             </span>
                           </div>
                           <div class="label">Pacientes Registrados</div>
@@ -154,7 +145,7 @@
                         <div class="summary-block next-transfer">
                           <div class="value">
                             <span class="container">
-                            <strong data-text="$0.00 USD">472</strong>
+                            <strong>472</strong>
                             </span>
                           </div>
                           <div class="label">Veces Jugadas</div>
@@ -179,7 +170,7 @@
                     </div>
                   </div>
                   <div class="dashboard-welcome">
-                    <div class="pacient-card" ng-repeat="patient in patients" ng-click="toPacient(pacient)">
+                    <div class="patient-card" ng-repeat="patient in patients" ng-click="toPatient(patient)">
                       <div class="left-column">
                         <p class="name">{{patient.name}}</p>
                         <p class="email">{{patient.email}}</p>
@@ -194,7 +185,7 @@
               </div>
             </div>
           </div>
-          <div id="main-content" ng-if="tabs.selected == 'estadisticas'">
+          <div id="main-content" ng-if="tabs.selected == 'pacientes' && activePatient">
             <div id="section">
               <div class="dashboard-view">
                 <div class="test-badge" style="display: block;"></div>
@@ -205,34 +196,34 @@
                         <div class="summary-block last-transfer">
                           <div class="value">
                             <span class="container">
-                            <strong data-text="$0.00 USD">{{user.twitter.followers}}</strong>
+                            <strong>{{activePatient.performanceTest.length}}</strong>
                             </span>
                           </div>
-                          <div class="label">Followers</div>
+                          <div class="label">Tests hechos</div>
                         </div>
                         <div class="summary-block next-transfer">
                           <div class="value">
                             <span class="container">
-                            <strong data-text="$0.00 USD">{{user.twitter.following}}</strong>
+                            <strong>{{activePatient.performanceTest.length}}</strong>
                             </span>
                           </div>
-                          <div class="label">Following</div>
+                          <div class="label">Tests hechos</div>
                         </div>
                         <div class="summary-block total-customers">
                           <div class="value">
                             <span class="container">
-                            <strong data-text="0">{{user.twitter.messages_earned}}</strong>
+                            <strong data-text="0">{{activePatient.games.length}}</strong>
                             </span>
                           </div>
-                          <div class="label">Messages Sent</div>
+                          <div class="label">Veces jugadas</div>
                         </div>
                         <div class="summary-block total-volume">
                           <div class="value">
                             <span class="container">
-                            <strong data-text="$0.00 USD">{{user.twitter.tweets_earned}}</strong>
+                            <strong>{{activePatient.daysUsed | number: 0}}</strong>
                             </span>
                           </div>
-                          <div class="label">Tweets Sent</div>
+                          <div class="label">Días desde inicio</div>
                         </div>
                       </div>
                     </div>
@@ -264,7 +255,7 @@
                       </div>
                     </div>
                     <div class="section-header">
-                      <h3><span>Overview</span></h3>
+                      <h3><span>{{activePatient.name}}</span></h3>
                       <div class="currency-selector">
                       </div>
                       <div class="date-range">
@@ -592,40 +583,40 @@
           </div>
           <div id="main-content" ng-if="tabs.selected == 'registro'">
             <div id="section">
-              <form class="register-view" name="pacient_form" novalidate ng-submit="registerPacient()">
-                <input type="text" name="name" spellcheck="false" tabindex="1" ng-model="newPacient.name" placeholder="Ingresar nombre" ng-minlength="5" ng-minlength="30" required>
-                <div class="error" ng-show="pacient_form.name.$dirty && pacient_form.name.$invalid" >
-                  <small class="error" ng-show="pacient_form.name.$required">
+              <form class="register-view" name="patient_form" novalidate ng-submit="registerPatient()">
+                <input type="text" name="name" spellcheck="false" tabindex="1" ng-model="newPatient.name" placeholder="Ingresar nombre" ng-minlength="5" ng-minlength="30" required>
+                <div class="error" ng-show="patient_form.name.$dirty && patient_form.name.$invalid" >
+                  <small class="error" ng-show="patient_form.name.$required">
                     Este campo es requerido
                   </small>
-                  <small class="error" ng-show="pacient_form.name.$minlength">
+                  <small class="error" ng-show="patient_form.name.$minlength">
                     Tu nombre debe tener al menos 5 letras
                   </small>
-                  <small class="error" ng-show="pacient_form.name.$maxlength">
+                  <small class="error" ng-show="patient_form.name.$maxlength">
                     Tu nombre no puede contener más de 30 letras
                   </small>
                 </div>
-                <input type="text" name="email" spellcheck="false" tabindex="2" ng-model="newPacient.email" placeholder="Ingresar e-mail" ng-minlength="5" ng-minlength="30" required>
-                <div class="error" ng-show="pacient_form.email.$dirty && pacient_form.email.$invalid" >
-                  <small class="error" ng-show="pacient_form.email.$required">
+                <input type="text" name="email" spellcheck="false" tabindex="2" ng-model="newPatient.email" placeholder="Ingresar e-mail" ng-minlength="5" ng-minlength="30" required>
+                <div class="error" ng-show="patient_form.email.$dirty && patient_form.email.$invalid" >
+                  <small class="error" ng-show="patient_form.email.$required">
                     Este campo es requerido
                   </small>
-                  <small class="error" ng-show="pacient_form.email.$minlength">
+                  <small class="error" ng-show="patient_form.email.$minlength">
                     Tu e-mail debe tener al menos 5 letras
                   </small>
-                  <small class="error" ng-show="pacient_form.email.$maxlength">
+                  <small class="error" ng-show="patient_form.email.$maxlength">
                     Tu e-mail no puede contener más de 30 letras
                   </small>
                 </div>
-                <input type="text" name="password" spellcheck="false" tabindex="3" ng-model="newPacient.password" placeholder="Ingresar contraseña" ng-minlength="5" ng-minlength="30" required>
-                <div class="error" ng-show="pacient_form.password.$dirty && pacient_form.password.$invalid" >
-                  <small class="error" ng-show="pacient_form.password.$required">
+                <input type="text" name="password" spellcheck="false" tabindex="3" ng-model="newPatient.password" placeholder="Ingresar contraseña" ng-minlength="5" ng-minlength="30" required>
+                <div class="error" ng-show="patient_form.password.$dirty && patient_form.password.$invalid" >
+                  <small class="error" ng-show="patient_form.password.$required">
                     Este campo es requerido
                   </small>
-                  <small class="error" ng-show="pacient_form.password.$minlength">
+                  <small class="error" ng-show="patient_form.password.$minlength">
                     Tu nombre debe tener al menos 5 letras
                   </small>
-                  <small class="error" ng-show="pacient_form.password.$maxlength">
+                  <small class="error" ng-show="patient_form.password.$maxlength">
                     Tu nombre no puede contener más de 30 letras
                   </small>
                 </div>
@@ -637,11 +628,11 @@
           </div>
         </div>
       </div>
+      <!--
       <div id="footer">
         <p>© ReHand</p>
         <ul>
           <li><a href="https://stripe.com/about">About</a></li>
-          <!--<li><a href="https:&#x2F;&#x2F;stripe.com&#x2F;gallery">Gallery</a></li>-->
           <li><a href="https://stripe.com/blog">Blog</a></li>
           <li><a href="https://stripe.com/jobs">Jobs</a></li>
         </ul>
@@ -654,5 +645,6 @@
           </li>
         </ul>
       </div>
+      -->
     </div>
   </div>

@@ -1105,7 +1105,7 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   display: inline;
 }
 
-.pacient-card {
+.patient-card {
   width: 40%;
   float: left;
   margin-right: 5%;
@@ -1120,26 +1120,26 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   box-sizing: border-box;
 }
 
-.pacient-card .left-column {
+.patient-card .left-column {
 
 }
 
-.pacient-card .name {
+.patient-card .name {
 
 }
 
-.pacient-card .email {
+.patient-card .email {
 
 }
 
-.pacient-card .rigth-column {
+.patient-card .rigth-column {
   
 }
 
-.pacient-card .tests {
+.patient-card .tests {
 
 }
 
-.pacient-card .games {
+.patient-card .games {
 
 }
