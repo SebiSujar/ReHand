@@ -59,6 +59,7 @@ angular.module('toolnetApp')
     $scope.newPatient.sessionToken = $scope.user.sessionToken;
     $http.post(uri, $scope.newPatient).success(function(patient) {
       if (patient._id) {
+        $scope.newPatient = {};
         $scope.patients.push(patient);
       }
     }).error(function() {
