@@ -14,7 +14,7 @@ angular.module('toolnetApp')
     */
   };
   
-  function manageLogin(){
+  function manageLogin(callback){
     if ($rootScope.user){
       $cookies.JSESSIONID = $scope.userCookie = $rootScope.user.sessionToken;
     }else{
@@ -37,6 +37,7 @@ angular.module('toolnetApp')
             console.log(user);
             $rootScope.user = user;
             localStorageService.set('user', $rootScope.user);
+            return callback();
           }
         }).error(function() {
           console.log("error on request");
@@ -44,6 +45,7 @@ angular.module('toolnetApp')
        });
       }else{
         localStorageService.set('user', $rootScope.user);
+        return callback();
       }
     }
   };
@@ -58,6 +60,15 @@ angular.module('toolnetApp')
     });
   };
 
+  function getPatients () {
+    var uri = 'http://localhost:9000/api/users/patients';
+    $http.get(uri, function (err, users){
+      if (err) { redirectToLogin(); }
+      
+      console.log(res.body);
+    });
+  }
+
   /*
   *
 	* Initialize Variables
@@ -69,12 +80,13 @@ angular.module('toolnetApp')
     selected: 'pacientes'
   };
 
-
   /*
   *
   * Begining functions
   *
   */
 
-  manageLogin();
+  manageLogin(function(){
+    getPatients();
+  });
 });

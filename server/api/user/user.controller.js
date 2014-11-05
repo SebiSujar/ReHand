@@ -115,27 +115,19 @@ exports.getUser = function(req, res) {
   console.log("USER CONTROLLER");
   console.log(req.body);
   Users.findOne({'email': req.body.email, 'password': req.body.password}, function(err, user){
-    if (err) { return callback(err); }
+    if (err) { return handleError(res, err); }
     if (!user) { return res.status(404).send('no_user'); }
     user.sessionToken = req.cookies.JSESSIONID;
     redis.set(user.sessionToken, user._id);
     res.status(200).send(user);
   });
-  /*
-  if(!req.cookies.JSESSIONID) { return handleError(res, 'No cookie founded.') }
-  matchCookieInRedis(req.cookies.JSESSIONID, function(err, userId){
+};
+
+exports.getPatients = function(req, res) {
+  Users.find({'job': 'patient'}, function(err, users){
     if (err) { return handleError(res, err); }
-    if (!userId) { return handleError(res, "No user Id"); }
-    // Find a user with the userId gotted with the cookie
-    findUserById(userId, function(err, user){
-      if (err) { return handleError(res, err); }
-      if (!user) {return handleError(res, 'No user with your cookie.'); }
-      user = JSON.parse(JSON.stringify(user));
-      console.log("user");
-      console.log(user);
-      return res.status(200).json(user);
-    });
-  });*/
+    res.status(200).send(users);
+  });
 };
 
 exports.showUser = function(req, res) {

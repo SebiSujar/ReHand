@@ -9,7 +9,7 @@ var UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },   
   password: { type: String, required: true },   
-  job: { type: String, default: 'pacient' },
+  job: { type: String, default: 'patient' },
   performanceTest: [{
     id: { type: Schema.ObjectId, default: mongoose.Types.ObjectId(), unique: true },
     rotationsLeft: { type: Number, default: 0 },

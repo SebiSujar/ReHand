@@ -22,6 +22,15 @@ module.exports = function(app) {
   // Register new user
   app.get('/register/:name/:email/:password/:secret', api.register);
 
+  /*
+  *
+  * PATIENTS
+  *
+  */
+
+  // Get patients
+  app.get('/api/users/patients', api.getPatients);
+
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

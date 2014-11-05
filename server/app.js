@@ -34,8 +34,8 @@ require('./api/twUser')(app);
 require('./routes')(app);
 
 // Start server
-server.listen(config.port, config.ip, function () {
-  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+server.listen(3000, config.ip, function () {
+  console.log('Express server listening on %d, in %s mode', 3000, app.get('env'));
 });
 
 // Expose app
