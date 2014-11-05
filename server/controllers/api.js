@@ -3,7 +3,6 @@
 var request           = require('request').defaults({jar: false}),
     qs                = require('querystring'),
     oauth             = {},
-    appConfig         = require('../appConfig'),
     params;
 
 
@@ -37,7 +36,11 @@ exports.login = function(req, res, cookie){
   }
   request.get({url: uri, jar: j, form: req.body}, function (err, user){
     if (err) return handleError(res, err);
-    res.status(200).json(JSON.parse(user.body));
+    try {
+      res.status(200).json(JSON.parse(user.body));
+    } catch (e) {
+      res.status(500).send(user.body);
+    }
   });
 };
 

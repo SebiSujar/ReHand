@@ -34,6 +34,7 @@ module.exports = function(app) {
   app.use(cookieParser('superEmprendimiento2014'));
 
   app.use(function(req, res, next){
+    console.log(req.cookies.JSESSIONID);
     if (!req.cookies.JSESSIONID) {
       var theUuid = uuid.v4();
       console.log("there is not, asigning cookie " + theUuid);
