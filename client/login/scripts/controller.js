@@ -3,7 +3,7 @@ angular.module('loginApp', ['LocalStorageModule'])
   function($scope, $http, $window, localStorageService) {
   
   //var backUrl = '//localhost:3000';
-  var backUrl = '//54.69.62.14:3000';
+  var backUrl = '//54.69.62.14';
 
   $scope.user = {};
 
@@ -28,7 +28,7 @@ angular.module('loginApp', ['LocalStorageModule'])
     }else{
       // si solo tengo la cookie pido el usuario completo
       $rootScope.user = localStorageService.get('user');
-      if(!$rootScope.user || !$rootScope.user.fromLanding){
+      if(!$rootScope.user){
         $http.get(backUrl + '/api/user/').success(function(user) {
           if(!user){
             console.log("no user when attempting the get request");
@@ -42,10 +42,7 @@ angular.module('loginApp', ['LocalStorageModule'])
           console.log("error on request");
           redirectToLogin();
        });
-      }else{
-        $rootScope.user.fromLanding = false;
-        $rootScope.user.fromLanding = true;
       }
     }
-  };
+  }
 });

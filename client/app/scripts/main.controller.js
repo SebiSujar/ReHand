@@ -2,7 +2,7 @@ angular.module('toolnetApp')
 .controller('MainCtrl', function ($scope, $rootScope, $resource, $cookies, $routeParams, $http, $window, localStorageService) {
   
   //var backUrl = '//localhost:3000';
-  var backUrl = '//54.69.62.14:3000';
+  var backUrl = '//54.69.62.14';
 
 	var redirectToLogin = function(){
     console.log("redirectToLogin");
