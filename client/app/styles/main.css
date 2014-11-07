@@ -868,6 +868,7 @@ div.dashboard-view div.block, div.dashboard-view div.chart-view, div.platform-ov
 }
 
 .chart-view {
+  overflow: hidden;
   position: relative;
 }
 
@@ -957,7 +958,7 @@ div.form-field-view input, div.form-field-view textarea, p.text input, p.text te
 
 input.hasDatepicker {
   text-indent: 19px;
-  background-image: url("form/calendar-84a123f540f1cd8e695bd1c24753c69d.png");
+  background-image: url("../assets/form/calendar-84a123f540f1cd8e695bd1c24753c69d.png");
   background-size: 11px 12px;
   background-position: 8px 50%;
   background-repeat: no-repeat;
