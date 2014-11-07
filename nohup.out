@@ -156,3 +156,8 @@
 [3724] 07 Nov 03:46:40.627 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
 [3724] 07 Nov 03:46:40.627 * DB loaded from disk: 0.000 seconds
 [3724] 07 Nov 03:46:40.627 * The server is now ready to accept connections on port 6379
+[3724] 07 Nov 10:01:15.550 * 1 changes in 3600 seconds. Saving...
+[3724] 07 Nov 10:01:15.552 * Background saving started by pid 4778
+[4778] 07 Nov 10:01:15.620 * DB saved on disk
+[4778] 07 Nov 10:01:15.621 * RDB: 6 MB of memory used by copy-on-write
+[3724] 07 Nov 10:01:15.652 * Background saving terminated with success
