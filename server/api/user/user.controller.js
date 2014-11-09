@@ -90,10 +90,7 @@ exports.register = function(req, res) {
         return res.status(200).send(dbUser);
       });
     } else {
-      console.log("User found");
-      findedUser.sessionToken = user.sessionToken;
-      redis.set(user.sessionToken, findedUser._id);
-      return res.status(200).send(findedUser);
+      return res.status(500).send('email_used');
     }
   });
 };

@@ -9,8 +9,8 @@ var UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },   
   password: { type: String, required: true },   
-  blockBreack: { type: Boolean, default: true },
-  initialLevel: { type: Number, default: 3 },
+  blockBreak: { type: Boolean, default: false },
+  initialLevel: { type: Number, default: 1 },
   job: { type: String, default: 'patient' },
   performanceTest: [{
     timestamp: { type: Number, default: new Date().getTime() },

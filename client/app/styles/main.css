@@ -1169,7 +1169,7 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
 
 }
 
-.summary-block.go-back {
+.pointer {
   cursor: pointer;
 }
 
@@ -1188,4 +1188,174 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
 .submit .button {
   padding: 10px 15px;
   width: 100%;
+}
+
+#register-pacient #section {
+  padding-top: 40px;
+}
+#register-pacient div#main-body {
+background: #f2f6f9;
+background: -webkit-linear-gradient(#fff,#f2f6f9);
+background: -moz-linear-gradient(#fff,#f2f6f9);
+background: -ms-linear-gradient(#fff,#f2f6f9);
+background: -o-linear-gradient(#fff,#f2f6f9);
+background: linear-gradient(#fff,#f2f6f9);
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+-ms-border-radius: 6px;
+-o-border-radius: 6px;
+border-radius: 6px;
+-webkit-box-shadow: 0 0 0 1px rgba(14,41,57,0.12),0 2px 5px rgba(14,41,57,0.44),inset 0 -1px 2px rgba(14,41,57,0.15);
+-moz-box-shadow: 0 0 0 1px rgba(14,41,57,0.12),0 2px 5px rgba(14,41,57,0.44),inset 0 -1px 2px rgba(14,41,57,0.15);
+-ms-box-shadow: 0 0 0 1px rgba(14,41,57,0.12),0 2px 5px rgba(14,41,57,0.44),inset 0 -1px 2px rgba(14,41,57,0.15);
+-o-box-shadow: 0 0 0 1px rgba(14,41,57,0.12),0 2px 5px rgba(14,41,57,0.44),inset 0 -1px 2px rgba(14,41,57,0.15);
+box-shadow: 0 0 0 1px rgba(14,41,57,0.12),0 2px 5px rgba(14,41,57,0.44),inset 0 -1px 2px rgba(14,41,57,0.15);
+background-color: none;
+width: 330px;
+margin-left: auto;
+margin-right: auto;
+position: relative;
+outline: 0;
+padding: 0;
+}
+
+#register-pacient div#main-body div.title {
+height: auto;
+min-height: 55px;
+overflow: hidden;
+}
+
+#register-pacient div#main-body div.title h2 {
+padding: 17px 24px;
+font-family: 'gotham a','gotham b','helvetica neue',helvetica,arial,sans-serif;
+background: url("../../assets/login/divider-4185071dd0daaebf859bc5ee44d46224.png") 50% 100% no-repeat;
+color: #1e2b32;
+font-size: 14px;
+font-weight: 500;
+line-height: 21px;
+text-align: center;
+}
+
+#register-pacient div#main-body form {
+padding: 14px;
+}
+
+#register-pacient div#main-body form p {
+margin-bottom: 14px;
+}
+
+#register-pacient div#main-body form p.text span {
+display: block;
+}
+
+html.placeholder #register-pacient label {
+display: none !important;
+}
+
+#register-pacient div#main-body form p.text label {
+display: block;
+margin: 0 0 3px 1px;
+font-size: 13px;
+}
+
+#register-pacient div#main-body form p.text input {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+-o-box-sizing: border-box;
+box-sizing: border-box;
+padding: 10px 12px;
+width: 100%;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
+-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
+-ms-box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
+-o-box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
+-webkit-font-smoothing: antialiased;
+border: 1px solid #bbb;
+border-top-color: #999;
+font-size: 18px;
+background-color: #fff;
+color: #000;
+}
+
+#register-pacient div#main-body form p button.button {
+height: 44px;
+width: 302px;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+-ms-border-radius: 6px;
+-o-border-radius: 6px;
+border-radius: 6px;
+-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.16);
+-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.16);
+-ms-box-shadow: 0 1px 1px rgba(0,0,0,0.16);
+-o-box-shadow: 0 1px 1px rgba(0,0,0,0.16);
+box-shadow: 0 1px 1px rgba(0,0,0,0.16);
+background: -webkit-linear-gradient(#28a0e5,#015e94);
+background: -moz-linear-gradient(#28a0e5,#015e94);
+background: -ms-linear-gradient(#28a0e5,#015e94);
+background: -o-linear-gradient(#28a0e5,#015e94);
+background: linear-gradient(#28a0e5,#015e94);
+-webkit-font-smoothing: antialiased;
+border: 0;
+padding: 1px;
+display: inline-block;
+text-decoration: none;
+cursor: pointer;
+background-image: linear-gradient(rgb(40, 160, 229), rgb(1, 94, 148));
+}
+
+#register-pacient div#main-body form p button.button span {
+height: 29px;
+padding: 13px 0 0;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+font-size: 14px;
+line-height: 14px;
+text-shadow: 0 1px 1px rgba(0,0,0,0.53);
+display: block;
+color: #fff;
+font-weight: bold;
+}
+
+.darkSplash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: .5;
+  z-index: 1000;
+}
+
+.modal-container {
+  z-index: 1001;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -o-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.modal-container .close-modal {
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  top: -18px;
+  right: -15px;
+  font-weight: bold;
+  font-size: 17px;
 }

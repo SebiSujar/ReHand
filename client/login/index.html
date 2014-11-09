@@ -28,21 +28,21 @@
 
         <div class="title first-step">
           <h2 ng-hide="loginError">Bienvenido!</h2>
-          <h2 class="error" ng-show="loginError">Wrong email or password.</h2>
+          <h2 class="error" ng-show="loginError">E-mail o contraseña incorrectos.</h2>
         </div>
 
           <form class="fancy-label" ng-submit="login()">
             <div class="step first-step">
                   <p class="text">
                       <span>
-                          <label for="email">Email</label>
-                          <input type="email" value="" name="email" id="email" placeholder="Email" ng-model="user.email" />
+                          <label for="email">E-mail</label>
+                          <input type="email" value="" name="email" id="email" placeholder="E-mail" ng-model="user.email" />
                       </span>
                   </p>
                   <p class="text">
                       <span>
-                          <label for="password">Password</label>
-                          <input type="password" value="" name="password" id="password" placeholder="Password" ng-model="user.password"/>
+                          <label for="password">Contraseña</label>
+                          <input type="password" value="" name="password" id="password" placeholder="Contraseña" ng-model="user.password"/>
                       </span>
                   </p>
             </div>

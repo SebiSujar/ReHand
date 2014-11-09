@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="../styles/fonts.css">
 <body id="merch">
+  <div class="darkSplash" ng-show="darkActive"></div>
+  <div id="register-pacient" ng-include="'app/views/register_pacient.html'" ng-show="modals.registerPatient"></div>
   <div class="main-view">
     <div id="application">
       <div id="header">
@@ -11,41 +13,8 @@
                 <a class="account">
                 <span class="account-name">{{user.name}}</span>
                 </a>
-                <div class="submenu">
-                  <ul>
-                    <li class="settings">
-                      <a name="settings">Account Settings</a>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li class="save" style="display: none;">
-                      <a>Save Account…</a>
-                    </li>
-                    <li class="account-app" style="display: list-item;">
-                      <a href="/account/details" class="first">Activate Account…</a>
-                    </li>
-                    <li>
-                      <a class="open-feedback">Send Feedback…</a>
-                    </li>
-                    <li class="invites">
-                      <a class="send-invites-nav">Send Invites…</a>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li><a class="add-account">Create New Account…</a></li>
-                  </ul>
-                  <ul>
-                    <li>
-                      <a class="logout">Sign Out</a>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
-            <ul class="global">
-              <li><a class="selected">Estadisticas</a></li>
-              <li><a>Ayuda</a></li>
-            </ul>
           </div>
         </div>
       </div>
@@ -104,13 +73,6 @@
                     </a>
                   </li>
                   -->
-                  <li class="payments" ng-click="tabs.selected = 'registro'" ng-class="{selected: tabs.selected == 'registro'}">
-                    <a>
-                      <i class="rehand ricon-new-user"></i>
-                      <span>Registrar Paciente</span> 
-                      <div class="unread" style="display: none;"></div>
-                    </a>
-                  </li>
                 </ul>
                 <h4>Perfil</h4>
                 <ul class="navigation">
@@ -164,13 +126,13 @@
                           </div>
                           <div class="label">Otro Dato</div>
                         </div>
-                        <div class="summary-block total-volume">
+                        <div class="summary-block total-volume pointer" ng-click="toRegisterPatient()">
                           <div class="value">
                             <span class="container">
-                            <strong>0</strong>
+                            <strong>+</strong>
                             </span>
                           </div>
-                          <div class="label">Otro Dato</div>
+                          <div class="label">Nuevo Paciente</div>
                         </div>
                       </div>
                     </div>
@@ -207,7 +169,7 @@
                   <div class="summary clearfix">
                     <div class="summary-view">
                       <div class="summary-contents">
-                        <div class="summary-block go-back" ng-click="closeShowPatient()">
+                        <div class="summary-block pointer" ng-click="closeShowPatient()">
                           <div class="value">
                             <span class="container">
                             <strong><i class="rehand ricon-back"></i></strong>
@@ -429,51 +391,6 @@
                   <div class="dashboard-welcome">
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div id="main-content" ng-if="tabs.selected == 'registro'">
-            <div id="section">
-              <form class="register-view" name="patient_form" novalidate ng-submit="registerPatient()">
-                <input type="text" name="name" spellcheck="false" tabindex="1" ng-model="newPatient.name" placeholder="Ingresar nombre" ng-minlength="5" ng-minlength="30" required>
-                <div class="error" ng-show="patient_form.name.$dirty && patient_form.name.$invalid" >
-                  <small class="error" ng-show="patient_form.name.$required">
-                    Este campo es requerido
-                  </small>
-                  <small class="error" ng-show="patient_form.name.$minlength">
-                    Tu nombre debe tener al menos 5 letras
-                  </small>
-                  <small class="error" ng-show="patient_form.name.$maxlength">
-                    Tu nombre no puede contener más de 30 letras
-                  </small>
-                </div>
-                <input type="text" name="email" spellcheck="false" tabindex="2" ng-model="newPatient.email" placeholder="Ingresar e-mail" ng-minlength="5" ng-minlength="30" required>
-                <div class="error" ng-show="patient_form.email.$dirty && patient_form.email.$invalid" >
-                  <small class="error" ng-show="patient_form.email.$required">
-                    Este campo es requerido
-                  </small>
-                  <small class="error" ng-show="patient_form.email.$minlength">
-                    Tu e-mail debe tener al menos 5 letras
-                  </small>
-                  <small class="error" ng-show="patient_form.email.$maxlength">
-                    Tu e-mail no puede contener más de 30 letras
-                  </small>
-                </div>
-                <input type="password" name="password" spellcheck="false" tabindex="3" ng-model="newPatient.password" placeholder="Ingresar contraseña" ng-minlength="5" ng-minlength="30" required>
-                <div class="error" ng-show="patient_form.password.$dirty && patient_form.password.$invalid" >
-                  <small class="error" ng-show="patient_form.password.$required">
-                    Este campo es requerido
-                  </small>
-                  <small class="error" ng-show="patient_form.password.$minlength">
-                    Tu nombre debe tener al menos 5 letras
-                  </small>
-                  <small class="error" ng-show="patient_form.password.$maxlength">
-                    Tu nombre no puede contener más de 30 letras
-                  </small>
-                </div>
-                <p class="submit">
-                  <button class="button blue" type="submit"><span>Crear Usuario</span></button>
-                </p>
               </div>
             </div>
           </div>

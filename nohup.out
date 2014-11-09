@@ -202,3 +202,13 @@
 [6750] 09 Nov 15:06:11.677 * DB saved on disk
 [6750] 09 Nov 15:06:11.677 * RDB: 6 MB of memory used by copy-on-write
 [2759] 09 Nov 15:06:11.721 * Background saving terminated with success
+[2759] 09 Nov 16:06:12.027 * 1 changes in 3600 seconds. Saving...
+[2759] 09 Nov 16:06:12.028 * Background saving started by pid 8344
+[8344] 09 Nov 16:06:12.074 * DB saved on disk
+[8344] 09 Nov 16:06:12.075 * RDB: 2 MB of memory used by copy-on-write
+[2759] 09 Nov 16:06:12.128 * Background saving terminated with success
+[2759] 09 Nov 17:06:13.050 * 1 changes in 3600 seconds. Saving...
+[2759] 09 Nov 17:06:13.051 * Background saving started by pid 9510
+[9510] 09 Nov 17:06:13.099 * DB saved on disk
+[9510] 09 Nov 17:06:13.100 * RDB: 2 MB of memory used by copy-on-write
+[2759] 09 Nov 17:06:13.151 * Background saving terminated with success

@@ -47,9 +47,13 @@ exports.login = function(req, res, cookie){
 var saveUser = function(user, cookie, callback){
   var uri = 'http://localhost:3000/user';
   user.sessionToken = cookie;
-  request.post(uri, {form: user}, function (err, res){
+  request.post(uri, {form: user}, function (err, httpResponse, body){
     if (err) return callback(err);
-    callback(err, res.body);
+    try {
+      callback(err, JSON.parse(body));
+    } catch (e) {
+      callback(body);
+    }
   });
 };
 
@@ -62,23 +66,25 @@ exports.register = function(req, res) {
   if (!req.body.name || !req.body.email || !req.body.password) {
     return res.status(500).send('user_incomplete')
   }
+  if (req.body.password != req.body.confirm_password) {
+    return res.status(500).send('confirm_password')
+  }
   var user = {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
     job: 'doctor'
   };
-  console.log(user);
-  console.log("COOKIES");
-  console.log(req.cookies);
   saveUser(user, req.cookies.JSESSIONID, function(err, user){
     if (err) return handleError(res, err);
     console.log("Setting cookie " + req.cookies.JSESSIONID);
     res.cookie('JSESSIONID', req.cookies.JSESSIONID, {maxAge: 604800000});
-    res.redirect('/App');
+    res.status(200).send(user);
   });
 };
 
 function handleError(res, err) {
-  return res.send(500, err);
+  console.log("error");
+  console.log(err);
+  return res.status(500).send(err);
 }

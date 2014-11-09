@@ -49,6 +49,16 @@ angular.module('toolnetApp')
     }
   };
 
+  $scope.toRegisterPatient = function() {
+    $scope.darkActive = true;
+    $scope.modals.registerPatient = true;
+  };
+
+  $scope.closeRegisterPatient = function() {
+    $scope.darkActive = false;
+    $scope.modals.registerPatient = false;
+  };
+
   $scope.registerPatient = function() {
     var uri = backUrl + '/user';
     console.log("saving user");
@@ -232,6 +242,7 @@ angular.module('toolnetApp')
   */
 
   $scope.newPatient = {};
+  $scope.modals = {};
   $scope.tabs = {
     selected: 'pacientes'
   };

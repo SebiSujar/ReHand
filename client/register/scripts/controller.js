@@ -10,14 +10,21 @@ angular.module('registerApp', ['LocalStorageModule'])
 
   $scope.register = function(event) {
     $scope.registerError = false;
-    if ($scope.user.password != $scope.user.confirm_password) return $scope.errors.confirm_password = true;
+    $scope.errors = {};
+    if (!$scope.user.name || !$scope.user.email || !$scope.user.password || !$scope.user.confirm_password || !$scope.user.secret) {
+      $scope.registerError = true;
+      return $scope.errors.user_incomplete = true;
+    }
+    if ($scope.user.password != $scope.user.confirm_password) {
+      $scope.registerError = true;
+      return $scope.errors.confirm_password = true;
+    }
     $http.post('/api/register', $scope.user).success(function (user) {
       localStorageService.set('user', user);
       $window.location.href = '/App';
-    }).error(function(error) {
-      console.log("error");
-      console.log(error);
+    }).error(function(err) {
       $scope.registerError = true;
+      return $scope.errors[err] = true;
     });
   };
 });
