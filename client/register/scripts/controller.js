@@ -2,8 +2,8 @@ angular.module('registerApp', ['LocalStorageModule'])
 .controller('RegisterController',
   function($scope, $http, $window, localStorageService) {
   
-  var backUrl = '//localhost:3000';
-  //var backUrl = '//romansuarez.com.ar';
+  //var backUrl = '//localhost:3000';
+  var backUrl = '//romansuarez.com.ar';
 
   $scope.user = {};
   $scope.errors = {};
