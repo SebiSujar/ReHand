@@ -14,8 +14,9 @@ angular.module('registerApp', ['LocalStorageModule'])
     $http.post('/api/register', $scope.user).success(function (user) {
       localStorageService.set('user', user);
       $window.location.href = '/App';
-    }).error(function() {
-      console.log("error on request");
+    }).error(function(error) {
+      console.log("error");
+      console.log(error);
       $scope.registerError = true;
     });
   };

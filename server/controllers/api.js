@@ -59,7 +59,7 @@ exports.register = function(req, res) {
   if (req.body.secret != 'ineba@123') {
     return res.status(500).send('no_root')
   }
-  if (!req.params.name || !req.params.email || !req.params.password) {
+  if (!req.body.name || !req.body.email || !req.body.password) {
     return res.status(500).send('user_incomplete')
   }
   var user = {
