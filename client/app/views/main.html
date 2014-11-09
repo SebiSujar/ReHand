@@ -122,7 +122,7 @@
                     </a>
                   </li>
                   <li class="transfers">
-                    <a href="/configuration">
+                    <a ng-click="logout()">
                       <i class="rehand ricon-exit"></i>
                       <span>Cerrar Sesión</span> 
                       <div class="unread" style="display: none;"></div>
@@ -177,13 +177,21 @@
                   </div>
                   <div class="dashboard-welcome">
                     <div class="patient-card" ng-repeat="patient in patients" ng-click="toPatient(patient)">
-                      <div class="left-column">
-                        <p class="name">{{patient.name}}</p>
-                        <p class="email">{{patient.email}}</p>
+                      <div class="header">
+                        <p>{{patient.name}}</p>
                       </div>
-                      <div class="rigth-column">
-                        <p class="tests">{{patient.performanceTest.length}} tests hechos</p>
-                        <p class="games">{{patient.games.length}} partidas jugadas</p>
+                      <div class="data-container">
+                        <div class="games-tests-container">
+                          <div class="data-card">
+                            <p class="number">{{patient.performanceTest.length}}</p>
+                            <p class="info">Tests</p>
+                          </div>
+                          <div class="data-card">
+                            <p class="number">{{patient.performanceTest.length}}</p>
+                            <p class="info">Tests</p>
+                          </div>
+                        </div>
+                        <p class="email">{{patient.email}}</p>
                       </div>
                     </div>
                   </div>

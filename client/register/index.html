@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)/register -->
+<html class=" js  placeholder"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <head>
+    <title>ReHand: Register</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+    <script src="//s3-us-west-2.amazonaws.com/cdn.tiempy.com/vendors/angular-local-storage.min.js"></script>
+    <script type="text/javascript" src="scripts/controller.js"></script>
+    <link rel="stylesheet" href="styles/login.css">
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="https://a.stripecdn.com/manage/assets/application.manage_split2-b86e45e054fe4929dcfc79540eae3951.css">
+    <![endif]-->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../fonts/gotham.css">
+  </head>
+  <body id="login" class="register-page">
+
+    <div id="login-background"><div class="inner"></div></div>
+
+
+
+     <div id="wrap" style="padding-top: 0px;">
+
+     <!-- Header -->
+     <div id="header">
+         <h1><a href="/">ReHand</a></h1>
+     </div>
+
+      <div id="main-body" class="box css"><div class="inner">
+
+        <div class="title extra">
+          <h2>Crea tu cuenta de doctor.</h2>
+          {{errors}}
+          <h2 class="error" ng-show="errors.confirm_password">Las contraseñas no coinciden.</h2>
+        </div>
+
+          <form ng-submit="register()">
+              <p class="text">
+                  <span>
+                      <label for="name">Nombre</label>
+                      <input type="text" value="" name="name" ng-model="user.name" id="name" placeholder="Nombre">
+                  </span>
+              </p>
+              <p class="text">
+                  <span>
+                      <label for="email">Email</label>
+                      <input type="email" value="" name="email" ng-model="user.email" id="email" placeholder="Email">
+                  </span>
+              </p>
+              <p class="text">
+                  <span class="password-strength" data-password-strength="-1">
+                      <label for="password">Contraseña</label>
+                      <input type="password" value="" name="password" ng-model="user.password" id="password" placeholder="Password" class="password-strength-input">
+                  <span class="password-strength-indicator"><span></span><span></span><span></span><span></span></span><span class="password-strength-popover"><span class="password-strength-popover-status"></span><span class="password-strength-popover-explanation">Good passwords are hard to guess. Try using a multi-word phrase, uncommon words, numbers or symbols.</span></span></span>
+              </p>
+              <p class="text">
+                  <span>
+                      <label for="confirm_password">Repetir Contraseña</label>
+                      <input type="password" value="" name="confirm_password" ng-model="user.confirm_password" id="confirm_password" placeholder="Repetir Contraseña">
+                  </span>
+              </p>
+              <p class="text">
+                  <span>
+                      <label for="admin_password">Contraseña Administrativa</label>
+                      <input type="password" value="" name="admin_password" ng-model="user.admin_password" id="admin_password" placeholder="Contraseña Administrativa">
+                  </span>
+              </p>
+
+
+              <input type="hidden" name="redirect" value="">
+              <input type="hidden" name="invite_code" value="">
+              <input type="hidden" name="invite" value="">
+              <input type="hidden" name="country" value="">
+              <input type="hidden" name="csrf_token" value="a6b3VmP-fwCqZL-qk11mA2k7ZQ9VxG4r6vkB8ujX3Rj00nLIfv6UTUf20u-EFo9LMiZpoG2mbiWTU40bXqu7oA==">
+
+              <div>
+                  <p class="submit">
+                      <button type="submit" class="button blue medium"><span>Crea tu cuenta</span></button>
+                  </p>
+              </div>
+          </form>
+
+      </div></div> <!-- END CONTENT -->
+
+      <div class="below-box">
+        <p>
+          ¿Ya tenes una cuenta?
+          <a href="/login">Inicia Sesión</a>.
+      </p>
+      </div>
+
+      <div id="footer_spacer"></div>
+        <div id="bottom">
+          <ul>
+              <li><a href="https://stripe.com/privacy">Políticas de Privacidad</a></li>
+              <li><a href="https://stripe.com/help/contact">Contacto</a></li>
+              <li class="last"><a href="/">© ReHand</a></li>
+          </ul>
+      </div>
+    </div><span style="position: absolute; top: -1000px;"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="1" height="1" id="stmgwb2" align="right"><param name="allowScriptAccess" value="always"><param name="movie" value="https://mpsnare.iesnare.com/stmgwb2.swf"><param name="swLiveConnect" value="true"><embed src="https://mpsnare.iesnare.com/stmgwb2.swf" width="1" height="1" name="stmgwb2" swliveconnect="true" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object></span>

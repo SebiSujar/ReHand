@@ -1,20 +1,17 @@
 angular.module('toolnetApp')
 .controller('MainCtrl', function ($scope, $rootScope, $resource, $cookies, $routeParams, $http, $window, localStorageService) {
   
-  //var backUrl = '//localhost:3000';
-  var backUrl = '//romansuarez.com.ar';
+  var backUrl = '//localhost:3000';
+  //var backUrl = '//romansuarez.com.ar';
 
-	var redirectToLogin = function(){
-    console.log("redirectToLogin");
-    /*
+	$scope.logout = function(){
     if($routeParams.path){ 
       $cookies.routePath = $routeParams.path;
     }
 
     localStorageService.remove('user');
     $cookies.JSESSIONID = '';
-    return $window.location.href = '/';
-    */
+    return $window.location = '/';
   };
   
   function manageLogin(callback){
@@ -26,7 +23,7 @@ angular.module('toolnetApp')
 
     if (!$scope.userCookie){
       console.log("User have not cookie");
-      redirectToLogin();
+      $scope.logout();
     }else{
       // si solo tengo la cookie pido el usuario completo
       $scope.user = localStorageService.get('user');
@@ -34,7 +31,7 @@ angular.module('toolnetApp')
         $http.get(backUrl + '/api/user/').success(function(user) {
           if(!user){
             console.log("no user when attempting the get request");
-            redirectToLogin();
+            $scope.logout();
           }else{
             console.log(user);
             $scope.user = user;
@@ -43,7 +40,7 @@ angular.module('toolnetApp')
           }
         }).error(function() {
           console.log("error on request");
-          redirectToLogin();
+          $scope.logout();
         });
       }else{
         localStorageService.set('user', $scope.user);
@@ -64,7 +61,7 @@ angular.module('toolnetApp')
       }
     }).error(function() {
       console.log("error on request");
-      redirectToLogin();
+      $scope.logout();
     });
   };
 
@@ -224,7 +221,7 @@ angular.module('toolnetApp')
       $scope.patients = parsePatients(patients);
       console.log(patients);
     }).error(function() {
-        return redirectToLogin();
+        return $scope.logout();
     });
   }
 

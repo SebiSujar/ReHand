@@ -2,16 +2,20 @@ angular.module('loginApp', ['LocalStorageModule'])
 .controller('LoginController',
   function($scope, $http, $window, localStorageService) {
   
-  //var backUrl = '//localhost:3000';
-  var backUrl = '//romansuarez.com.ar';
+  var backUrl = '//localhost:3000';
+  //var backUrl = '//romansuarez.com.ar';
 
   $scope.user = {};
 
   $scope.login = function(event) {
   	console.log($scope.user);
-  	$http.post('/api/user', $scope.user).success(function (user) {
+    $scope.loginError = false;
+    $http.post('/api/user', $scope.user).success(function (user) {
       localStorageService.set('user', user);
       $window.location.href = '/App';
+    }).error(function() {
+      console.log("error on request");
+      $scope.loginError = true;
     });
   };
 

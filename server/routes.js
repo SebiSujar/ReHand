@@ -35,6 +35,12 @@ module.exports = function(app) {
   });
 
   // Go to the main page when entering to /App
+  app.route('/register')
+    .get(function(req, res) {
+      res.sendfile(app.get('appPath') + '/register/index.html');
+  });
+
+  // Go to the main page when entering to /App
   app.route('/App')
     .get(function(req, res) {
       res.sendfile(app.get('appPath') + '/app/index.html');

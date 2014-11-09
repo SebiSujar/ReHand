@@ -1120,10 +1120,33 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   margin-bottom: 10px;
   cursor: pointer;
   box-sizing: border-box;
+  text-align: center;
+}
+
+.patient-card .header {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+.patient-card .data-container {
+
+}
+
+.patient-card .games-tests-container {
+  width: 100%;  
+}
+
+.patient-card .data-card {
+  width: 50%;
+  float: left;
 }
 
 .patient-card .left-column {
 
+}
+
+.patient-card p {
+  line-height: 25px;
 }
 
 .patient-card .name {
@@ -1131,7 +1154,7 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
 }
 
 .patient-card .email {
-
+  font-size: 14px;
 }
 
 .patient-card .rigth-column {

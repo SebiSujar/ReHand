@@ -27,7 +27,8 @@
       <div id="main-body" class="box css"><div class="inner">
 
         <div class="title first-step">
-          <h2>Bienvenido!</h2>
+          <h2 ng-hide="loginError">Bienvenido!</h2>
+          <h2 class="error" ng-show="loginError">Wrong email or password.</h2>
         </div>
 
           <form class="fancy-label" ng-submit="login()">
@@ -51,27 +52,18 @@
             <input type="hidden" name="account_invite" value="" />
             <input type="hidden" name="invite" value="" />
 
-            <p class='forgot first-step'>
-              <a href="/reset">Forgot your password?</a>
-            </p>
-
-            <p class="remember">
-                <label><input type="checkbox" name="remember" value="true" checked="checked" /> Remember me</label>
-            </p>
-
             <p class="submit">
-              <button class="button blue" type="submit"><span>Sign in to your account</span></button>
+              <button class="button blue" type="submit"><span>Entrar a tu cuenta</span></button>
             </p>
 
           </form>
 
       </div></div>
       <div id="footer_spacer"></div>
-
         <div id="bottom">
           <ul>
-              <li class="first"><a href="https://stripe.com/privacy">Privacy Policy</a></li>
-              <li><a href="https://stripe.com/help/contact">Contact</a></li>
+              <li class="first"><a href="https://stripe.com/privacy">Políticas de Privacidad</a></li>
+              <li><a href="https://stripe.com/help/contact">Contacto</a></li>
               <li class="last"><a href="/">&copy; ReHand</a></li>
           </ul>
       </div>
@@ -82,8 +74,8 @@
                         <div class="position">
                                 <div class="icon"></div>
                                 <div class="well">
-                                        <h1>No love for Javascript?</h1>
-                                        <p>ReHand requires your browser to have Javascript enabled. <a href="http://enable-javascript.com" target="_blank" class="arrow">Learn more</a></p>
+                                        <h1>No hay amor por Javascript?</h1>
+                                        <p>ReHand requiere que tu navegador tenga JavaScript habilitado. <a href="http://enable-javascript.com" target="_blank" class="arrow">Aprender más</a></p>
                                 </div>
                                 <div class="footer">
                                         <p>&copy; ReHand</p>
