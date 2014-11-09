@@ -1,5 +1,5 @@
-angular.module('loginApp', ['LocalStorageModule'])
-.controller('LoginController',
+angular.module('registerApp', ['LocalStorageModule'])
+.controller('RegisterController',
   function($scope, $http, $window, localStorageService) {
   
   var backUrl = '//localhost:3000';
@@ -9,10 +9,9 @@ angular.module('loginApp', ['LocalStorageModule'])
   $scope.errors = {};
 
   $scope.register = function(event) {
-    console.log("register");
     $scope.registerError = false;
-    if ($scope.user.password != $scope.user.confirm_password) return $scope.errors.confirm_password = true; 
-    $http.post('/api/user', $scope.user).success(function (user) {
+    if ($scope.user.password != $scope.user.confirm_password) return $scope.errors.confirm_password = true;
+    $http.post('/api/register', $scope.user).success(function (user) {
       localStorageService.set('user', user);
       $window.location.href = '/App';
     }).error(function() {

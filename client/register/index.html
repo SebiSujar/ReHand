@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0037)/register -->
-<html class=" js  placeholder"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html class=" js  placeholder" ng-app="registerApp" ng-controller="RegisterController">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>ReHand: Register</title>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
     <script src="//s3-us-west-2.amazonaws.com/cdn.tiempy.com/vendors/angular-local-storage.min.js"></script>
@@ -30,7 +30,6 @@
 
         <div class="title extra">
           <h2>Crea tu cuenta de doctor.</h2>
-          {{errors}}
           <h2 class="error" ng-show="errors.confirm_password">Las contraseñas no coinciden.</h2>
         </div>
 
@@ -62,7 +61,7 @@
               <p class="text">
                   <span>
                       <label for="admin_password">Contraseña Administrativa</label>
-                      <input type="password" value="" name="admin_password" ng-model="user.admin_password" id="admin_password" placeholder="Contraseña Administrativa">
+                      <input type="password" value="" name="admin_password" ng-model="user.secret" id="admin_password" placeholder="Contraseña Administrativa">
                   </span>
               </p>
 

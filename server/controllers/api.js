@@ -55,15 +55,17 @@ var saveUser = function(user, cookie, callback){
 
 exports.register = function(req, res) {
   oauth.verifier = req.query.oauth_verifier;
-  console.log(req.params);
-  if (req.params.secret != 'ineba@123' || !req.params.name || !req.params.email || !req.params.password) {
-    return res.redirect('/error');
+  console.log(req.body);
+  if (req.body.secret != 'ineba@123') {
+    return res.status(500).send('no_root')
   }
-  var name = req.params.name.replace('+', ' '); 
+  if (!req.params.name || !req.params.email || !req.params.password) {
+    return res.status(500).send('user_incomplete')
+  }
   var user = {
-    name: name,
-    email: req.params.email,
-    password: req.params.password,
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
     job: 'doctor'
   };
   console.log(user);

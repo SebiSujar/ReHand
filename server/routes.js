@@ -21,7 +21,7 @@ module.exports = function(app) {
   app.post('/api/user', api.login);
 
   // Register new user
-  app.get('/register/:name/:email/:password/:secret', api.register);
+  app.post('/api/register', api.register);
 
 
   // All undefined asset or api routes should return a 404
