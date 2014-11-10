@@ -1,8 +1,8 @@
 angular.module('ReHand')
 .controller('MainCtrl', function ($scope, $rootScope, $resource, $cookies, $routeParams, $http, $window, localStorageService) {
   
-  //var backUrl = '//localhost:3000';
-  var backUrl = '//romansuarez.com.ar';
+  var backUrl = '//localhost:3000';
+  //var backUrl = '//romansuarez.com.ar';
 
 	$scope.logout = function() {
     if ($routeParams.path) { 
@@ -32,8 +32,9 @@ angular.module('ReHand')
             console.log("no user when attempting the get request");
             $scope.logout();
           }else{
-            console.log(user);
-            $scope.user = user;
+            var parsedPatient = parsePatients([user])[0];
+            $scope.user = parsedPatient;
+            consle.log(parsedPatient);
             localStorageService.set('user', $scope.user);
             return callback();
           }
@@ -42,6 +43,9 @@ angular.module('ReHand')
           $scope.logout();
         });
       } else {
+        if (!$scope.user.data) {
+          $scope.user = parsePatients([$scope.user])[0];
+        }
         localStorageService.set('user', $scope.user);
         return callback();
       }
@@ -145,6 +149,22 @@ angular.module('ReHand')
       return $scope.newPatient.errors[err] = true;
     });
   };
+
+  $scope.toDownloadGame = function() {
+    $scope.tabs.selected = 'downloadGame'
+  }
+
+  $scope.toMyProfile = function() {
+    $scope.tabs.selected = 'profile';
+    $scope.toPatient($scope.user);    
+  }
+
+  $scope.toPatientsList = function(){
+    if ($scope.tabs.selected == 'profile') {
+      $scope.closeShowPatient();
+    }
+    $scope.tabs.selected = 'pacientes';
+  }
 
   $scope.toPatient = function(patient) {
     var uri = backUrl + '/users/patients';
@@ -402,6 +422,11 @@ angular.module('ReHand')
   */
 
   manageLogin(function() {
-    getPatients();
+    if ($scope.user.job == 'doctor') {
+      getPatients();
+    } else {
+      $scope.tabs = { selected: 'profile' };
+      $scope.toPatient($scope.user);
+    }
   });
 });

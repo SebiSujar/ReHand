@@ -15,6 +15,8 @@
 	var icons = {
 		'ricon-doctor': '&#xe600;',
 		'ricon-pencil': '&#xe606;',
+		'ricon-dice': '&#xe60a;',
+		'ricon-user': '&#xe609;',
 		'ricon-users': '&#xe601;',
 		'ricon-expand': '&#xe607;',
 		'ricon-cog': '&#xe602;',

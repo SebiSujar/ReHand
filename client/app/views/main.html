@@ -63,9 +63,9 @@
               <div class="sidebar-view-gradient"></div>
               <div class="sidebar-view-content">
                 <div class="gradient"></div>
-                <h4>Doctor</h4>
-                <ul class="navigation">
-                  <li class="dashboard" ng-click="tabs.selected = 'pacientes'" ng-class="{selected: tabs.selected == 'pacientes'}">
+                <h4 ng-show="user.job == 'doctor'">Doctor</h4>
+                <ul class="navigation" ng-if="user.job == 'doctor'">
+                  <li class="dashboard" ng-click="toPatientsList();" ng-class="{selected: tabs.selected == 'pacientes'}">
                     <a>
                       <i class="rehand ricon-users"></i>
                       <span>Pacientes</span>
@@ -80,8 +80,24 @@
                   </li>
                   -->
                 </ul>
+                <h4>Juego</h4>
+                <ul class="navigation">
+                  <li class="dashboard" ng-click="toDownloadGame();" ng-class="{selected: tabs.selected == 'downloadGame'}">
+                    <a>
+                      <i class="rehand ricon-dice"></i>
+                      <span>Descargar Juego</span>
+                    </a>
+                  </li>
+                </ul>
                 <h4>Perfil</h4>
                 <ul class="navigation">
+                  <li class="transfers" ng-class="{selected: tabs.selected == 'profile'}">
+                    <a ng-click="toMyProfile()">
+                      <i class="rehand ricon-user"></i>
+                      <span>Mi Perfil</span> 
+                      <div class="unread" style="display: none;"></div>
+                    </a>
+                  </li>
                   <li class="transfers">
                     <a ng-click="logout()">
                       <i class="rehand ricon-exit"></i>
@@ -93,7 +109,7 @@
               </div>
             </div>
           </div>
-          <div id="main-content" ng-if="tabs.selected == 'pacientes' && !activePatient">
+          <div id="main-content" ng-if="tabs.selected == 'pacientes' && !activePatient && user.job == 'doctor'">
             <div id="section">
               <div class="dashboard-view">
                 <div class="test-badge" style="display: block;"></div>
@@ -152,7 +168,17 @@
               </div>
             </div>
           </div>
-          <div id="main-content" ng-if="tabs.selected == 'pacientes' && activePatient">
+          <div id="main-content" ng-if="tabs.selected == 'downloadGame'">
+            <div id="section">
+              <div class="dashboard-view">
+                <div class="test-badge" style="display: block;"></div>
+                <div class="dashboard-content">
+                  Pantalla de Descargar Juego!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="main-content" ng-if="tabs.selected == 'pacientes' && activePatient || tabs.selected == 'profile'">
             <div id="section">
               <div class="dashboard-view">
                 <div class="test-badge" style="display: block;"></div>
@@ -160,13 +186,20 @@
                   <div class="summary clearfix">
                     <div class="summary-view">
                       <div class="summary-contents">
-                        <div class="summary-block pointer" ng-click="closeShowPatient()">
+                        <div class="summary-block pointer" ng-click="closeShowPatient()" ng-hide="tabs.selected == 'profile'">
                           <div class="value">
                             <span class="container">
                             <strong><i class="rehand ricon-back"></i></strong>
                             </span>
                           </div>
                           <div class="label">Volver</div>
+                        </div>
+                        <div class="summary-block pointer" ng-click="closeShowPatient()" ng-show="tabs.selected == 'profile'">
+                          <div class="value">
+                            <span class="container">
+                            <strong>{{activePatient.name.split(' ')[0]}}</strong>
+                            </span>
+                          </div>
                         </div>
                         <div class="summary-block next-transfer">
                           <div class="value">
@@ -200,7 +233,7 @@
                       <h3><span>{{activePatient.name}}</span></h3>
                       <div class="currency-selector">
                       </div>
-                      <div class="date-range">
+                      <div class="date-range" ng-hide="tabs.selected == 'profile'">
                         <div class="date-range-form-view">
                           <div class="to-date-container pointer" ng-click="openEditPatient()">
                             <i class="ricon-pencil"></i>
