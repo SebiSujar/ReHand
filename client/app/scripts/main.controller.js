@@ -1,8 +1,8 @@
 angular.module('ReHand')
 .controller('MainCtrl', function ($scope, $rootScope, $resource, $cookies, $routeParams, $http, $window, localStorageService) {
   
-  var backUrl = '//localhost:3000';
-  //var backUrl = '//romansuarez.com.ar';
+  //var backUrl = '//localhost:3000';
+  var backUrl = '//romansuarez.com.ar';
 
 	$scope.logout = function() {
     if ($routeParams.path) { 
