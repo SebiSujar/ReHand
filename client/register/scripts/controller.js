@@ -1,4 +1,4 @@
-angular.module('registerApp', ['LocalStorageModule'])
+angular.module('ReHand', ['LocalStorageModule'])
 .controller('RegisterController',
   function($scope, $http, $window, localStorageService) {
   
@@ -7,11 +7,13 @@ angular.module('registerApp', ['LocalStorageModule'])
 
   $scope.user = {};
   $scope.errors = {};
+  $scope.suportedOrganizations = ["Ineba"];
 
   $scope.register = function(event) {
     $scope.registerError = false;
     $scope.errors = {};
-    if (!$scope.user.name || !$scope.user.email || !$scope.user.password || !$scope.user.confirm_password || !$scope.user.secret) {
+    console.log($scope.user.organization);
+    if (!$scope.user.name || !$scope.user.email || !$scope.user.password || !$scope.user.confirm_password || !$scope.user.organization || $scope.user.organization == "Organización" || !$scope.user.secret) {
       $scope.registerError = true;
       return $scope.errors.user_incomplete = true;
     }

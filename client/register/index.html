@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html class=" js  placeholder" ng-app="registerApp" ng-controller="RegisterController">
+<html class=" js  placeholder" ng-app="ReHand" ng-controller="RegisterController">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>ReHand: Register</title>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
-    <script src="//s3-us-west-2.amazonaws.com/cdn.tiempy.com/vendors/angular-local-storage.min.js"></script>
-    <script type="text/javascript" src="scripts/controller.js"></script>
-    <link rel="stylesheet" href="styles/login.css">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="scripts/controller.js"></script>
+    <script src="../assets/directives/dropdown.js"></script>
+    <link rel="stylesheet" href="../assets/directives/dropdown.css">
+    <link rel="stylesheet" href="styles/main.css">
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="https://a.stripecdn.com/manage/assets/application.manage_split2-b86e45e054fe4929dcfc79540eae3951.css">
     <![endif]-->
@@ -32,6 +35,7 @@
           <h2 ng-hide="registerError">Crea tu cuenta de doctor.</h2>
           <h2 class="error" ng-show="errors.email_used">El e-mail ingresado ya esta en uso.</h2>
           <h2 class="error" ng-show="errors.confirm_password">Las contraseñas no coinciden.</h2>
+          <h2 class="error" ng-show="errors.bad_organization">Por ahora no soportamos esa organización.</h2>
           <h2 class="error" ng-show="errors.user_incomplete">Por favor completa todos los campos.</h2>
           <h2 class="error" ng-show="errors.no_root">Parece que no eres administrador.</h2>
         </div>
@@ -40,31 +44,38 @@
               <p class="text">
                   <span>
                       <label for="name">Nombre</label>
-                      <input type="text" value="" name="name" ng-model="user.name" id="name" placeholder="Nombre">
+                      <input type="text" value="" ng-model="user.name" placeholder="Nombre">
                   </span>
               </p>
               <p class="text">
                   <span>
                       <label for="email">E-mail</label>
-                      <input type="email" value="" name="email" ng-model="user.email" id="email" placeholder="E-mail">
+                      <input type="email" value="" ng-model="user.email" placeholder="E-mail">
                   </span>
               </p>
+              <div rh-dropdown
+                class="dropdown default"
+                hide-selected=true
+                options="suportedOrganizations"
+                place-holder="Organización" 
+                clicked-option="user.organization">
+              </div>
               <p class="text">
                   <span class="password-strength" data-password-strength="-1">
                       <label for="password">Contraseña</label>
-                      <input type="password" value="" name="password" ng-model="user.password" id="password" placeholder="Password" class="password-strength-input">
+                      <input type="password" value="" ng-model="user.password" placeholder="Password" class="password-strength-input">
                   <span class="password-strength-indicator"><span></span><span></span><span></span><span></span></span><span class="password-strength-popover"><span class="password-strength-popover-status"></span><span class="password-strength-popover-explanation">Buenas contraseñas son dificiles de adivinar. Intenta usar palabras no comunes, numeros o simbolos.</span></span></span>
               </p>
               <p class="text">
                   <span>
                       <label for="confirm_password">Repetir Contraseña</label>
-                      <input type="password" value="" name="confirm_password" ng-model="user.confirm_password" id="confirm_password" placeholder="Repetir Contraseña">
+                      <input type="password" value="" ng-model="user.confirm_password" placeholder="Repetir Contraseña">
                   </span>
               </p>
               <p class="text">
                   <span>
                       <label for="admin_password">Contraseña Administrativa</label>
-                      <input type="password" value="" name="admin_password" ng-model="user.secret" id="admin_password" placeholder="Contraseña Administrativa">
+                      <input type="password" value="" ng-model="user.secret" id="admin_password" placeholder="Contraseña Administrativa">
                   </span>
               </p>
 

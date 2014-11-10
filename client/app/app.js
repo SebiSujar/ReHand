@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('toolnetApp', [
+angular.module('ReHand', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -9,9 +9,9 @@ angular.module('toolnetApp', [
   'ui.bootstrap',
   'LocalStorageModule'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-    $urlRouterProvider
-      .otherwise('/');
+.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  $urlRouterProvider
+    .otherwise('/');
 
-    $locationProvider.html5Mode(true);
-  });
+  $locationProvider.html5Mode(true);
+});

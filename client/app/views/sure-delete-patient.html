@@ -1,0 +1,17 @@
+<div class="modal-content sureModal deletePatient modal">
+<div class="close-modal" ng-click="closeDeletePatient()">x</div>
+	<div class="modal-header">
+	  <p>¿Te encuentras segurísimo de esto?</p>
+	</div>
+	<div class="modal-body">
+		<p>Estas por borrar la cuenta de un paciente, esta acción no puede deshacerse</p>
+		<div class="buttons-container clearfix">
+			<div class="button btn btn-submit" ng-click="closeDeletePatient()">
+				<p>Cancelar</p>
+			</div>
+			<div class="button btn btn-default" ng-click="deletePatient(true)">
+			  <p>Borrar cuenta</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -14,9 +14,12 @@
 	}
 	var icons = {
 		'ricon-doctor': '&#xe600;',
+		'ricon-pencil': '&#xe606;',
 		'ricon-users': '&#xe601;',
+		'ricon-expand': '&#xe607;',
 		'ricon-cog': '&#xe602;',
 		'ricon-exit': '&#xe603;',
+		'ricon-trash': '&#xe608;',
 		'ricon-back': '&#xe604;',
 		'ricon-new-user': '&#xe605;',
 		'0': 0

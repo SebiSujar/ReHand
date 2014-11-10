@@ -20,17 +20,13 @@ client.on("error", function (err) {
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
-// Populate DB with sample data
-if(config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
 
 require('./config/express')(app);
-require('./api/thing')(app);
 require('./api/user')(app);
-require('./api/twUser')(app);
 require('./routes')(app);
 
 // Start server

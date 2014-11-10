@@ -1,0 +1,64 @@
+<div class="modal-container modal">
+	<div class="close-modal" ng-click="closeRegisterPatient()">x</div>
+	<div id="main-body" class="box css">
+		<div class="inner">
+
+	        <div class="title extra">
+	          <h2 ng-hide="newPatient.error" class="">Creale una cuenta a tu paciente.</h2>
+	          <h2 class="error ng-hide" ng-show="newPatient.errors.email_used">El e-mail ingresado ya esta en uso.</h2>
+	          <h2 class="error ng-hide" ng-show="newPatient.errors.confirm_password">Las contraseñas no coinciden.</h2>
+	          <h2 class="error ng-hide" ng-show="newPatient.errors.user_incomplete">Por favor completa todos los campos.</h2>
+	          <h2 class="error ng-hide" ng-show="newPatient.errors.no_root">Parece que no eres administrador.</h2>
+	        </div>
+
+	          <form ng-submit="registerPatient()" class="ng-valid ng-dirty">
+
+	              <p class="text">
+	                  <span>
+	                      <input type="text" value="" ng-model="newPatient.name" placeholder="Nombre">
+	                  </span>
+	              </p>
+
+	              <p class="text">
+	                  <span>
+	                      <input type="email" value="" ng-model="newPatient.email" placeholder="E-mail">
+	                  </span>
+	              </p>
+
+	              <p class="text">
+	                  <span class="password-strength" data-password-strength="-1">
+	                      <input type="password" value="" ng-model="newPatient.password" placeholder="Password">
+	                  </span>
+	              </p>
+
+	              <p class="text">
+	                  <span>
+	                      <input type="password" value="" ng-model="newPatient.confirm_password" placeholder="Repetir Contraseña">
+	                  </span>
+	              </p>
+
+	              <div class="two-columns">
+		              <div rh-dropdown style="width: 47%;float: left;"
+		                hide-selected=true
+		                options="gameLevels"
+		                place-holder="Nivel Inicial" 
+		                clicked-option="newPatient.initialLevel">
+		              </div>
+
+		              <div rh-dropdown style="width: 47%;float: right;"
+		                hide-selected=true
+		                options="genders"
+		                place-holder="Sexo" 
+		                clicked-option="newPatient.gender">
+		              </div>
+	              </div>
+
+	              <div>
+	                  <p class="submit">
+	                      <button type="submit" class="button blue medium"><span>Crear cuenta</span></button>
+	                  </p>
+	              </div>
+	          </form>
+		</div>
+	</div>
+</div>

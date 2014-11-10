@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('toolnetApp')
+angular.module('ReHand')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main', {

@@ -1,7 +1,13 @@
 <link rel="stylesheet" href="../styles/fonts.css">
 <body id="merch">
   <div class="darkSplash" ng-show="darkActive"></div>
-  <div id="register-pacient" ng-include="'app/views/register_pacient.html'" ng-show="modals.registerPatient"></div>
+  <div id="register-patient" class="patient-form" ng-include="'app/views/register_patient.html'" ng-show="modals.registerPatient"></div>
+  <div id="sure-delete-patient" ng-include="'app/views/sure-delete-patient.html'" ng-show="modals.sureDeletePatient"></div>
+  <div class="chart modal" style="height: 85%; width: 90%;" ng-if="modals.bigChart">
+    <div class="close-modal" ng-click="closeBigChart()">x</div>
+    <div id="big-chart-container" style="height: 100%; width: 100%;"></div>
+  </div>
+  <div id="edit-patient" class="patient-form" ng-include="'app/views/edit_patient.html'" ng-if="modals.editPatient"></div>
   <div class="main-view">
     <div id="application">
       <div id="header">
@@ -31,11 +37,11 @@
             </div>
           </div>
         </div>
-        <div id="quicksearch-view">
+        <div id="quicksearch-view" ng-show="tabs.selected == 'pacientes' && !activePatient">
           <div class="quicksearch-view">
             <form>
               <div class="mask">
-                <input type="text" name="search" autocomplete="off" spellcheck="false" tabindex="1" placeholder="Buscar..." style="left: 60px;">
+                <input type="text" ng-init="search = {}" ng-model="search.name" autocomplete="off" spellcheck="false" tabindex="1" placeholder="Buscar..." style="left: 60px;">
               </div>
               <div class="clear" style="display: none;"></div>
             </form>
@@ -76,13 +82,6 @@
                 </ul>
                 <h4>Perfil</h4>
                 <ul class="navigation">
-                  <li class="payments">
-                    <a href="/accounts">
-                      <i class="rehand ricon-cog"></i>
-                      <span>Configuración</span> 
-                      <div class="unread" style="display: none;"></div>
-                    </a>
-                  </li>
                   <li class="transfers">
                     <a ng-click="logout()">
                       <i class="rehand ricon-exit"></i>
@@ -108,7 +107,7 @@
                             <strong>{{patients.length}}</strong>
                             </span>
                           </div>
-                          <div class="label">Pacientes Registrados</div>
+                          <div class="label">Pacientes</div>
                         </div>
                         <div class="summary-block next-transfer">
                           <div class="value">
@@ -118,15 +117,7 @@
                           </div>
                           <div class="label">Veces Jugadas</div>
                         </div>
-                        <div class="summary-block total-customers">
-                          <div class="value">
-                            <span class="container">
-                            <strong>0</strong>
-                            </span>
-                          </div>
-                          <div class="label">Otro Dato</div>
-                        </div>
-                        <div class="summary-block total-volume pointer" ng-click="toRegisterPatient()">
+                        <div class="summary-block total-volume pointer right" ng-click="toRegisterPatient()">
                           <div class="value">
                             <span class="container">
                             <strong>+</strong>
@@ -137,20 +128,20 @@
                       </div>
                     </div>
                   </div>
-                  <div class="dashboard-welcome">
-                    <div class="patient-card" ng-repeat="patient in patients" ng-click="toPatient(patient)">
+                  <div class="dashboard-welcome clearfix" id="patients-list">
+                    <div class="patient-card" ng-repeat="patient in patients | filter: search" ng-click="toPatient(patient)">
                       <div class="header">
                         <p>{{patient.name}}</p>
                       </div>
                       <div class="data-container">
-                        <div class="games-tests-container">
+                        <div class="games-tests-container clearfix">
                           <div class="data-card">
                             <p class="number">{{patient.performanceTest.length}}</p>
                             <p class="info">Tests</p>
                           </div>
                           <div class="data-card">
-                            <p class="number">{{patient.performanceTest.length}}</p>
-                            <p class="info">Tests</p>
+                            <p class="number">{{patient.games.length}}</p>
+                            <p class="info">Juegos</p>
                           </div>
                         </div>
                         <p class="email">{{patient.email}}</p>
@@ -205,53 +196,20 @@
                     </div>
                   </div>
                   <div class="charts">
-                    <div class="go-live-wrapper">
-                      <div class="section-header">
-                        <h3><span>Go Live Checklist</span></h3>
-                        <hr>
-                      </div>
-                      <div class="chart-view">
-                        <div class="go-live">
-                          <p>Before you go live, you might want to double check that you've done these things.</p>
-                          <ol>
-                            <li>
-                              <h3>Use your <strong>Live Secret Key</strong></h3>
-                              <p>In order to make live charges, instead of test charges, you have to use your <a href="/account/apikeys">Live Secret Key</a> when making API calls to Stripe. Make sure to configure this key properly on your production servers.</p>
-                            </li>
-                            <li>
-                              <h3>Use your <strong>Live Publishable Key</strong> with Stripe.js</h3>
-                              <p>If you're using Checkout or Stripe.js, you'll need to also make sure to use your <a href="/account/apikeys">Live Publishable Key</a> on your payment pages. Both your publishable and secret keys need to be live in order to work together.</p>
-                            </li>
-                            <li>
-                              <h3>Enable SSL on your site</h3>
-                              <p>SSL is required when you use Checkout or Stripe.js to make live charges. If you aren't using Checkout or Stripe.js, you'll also need to ensure your server is fully <strong>PCI compliant</strong>.</p>
-                            </li>
-                          </ol>
-                        </div>
-                      </div>
-                    </div>
                     <div class="section-header">
                       <h3><span>{{activePatient.name}}</span></h3>
                       <div class="currency-selector">
                       </div>
                       <div class="date-range">
                         <div class="date-range-form-view">
-                          <div class="from-date-container">
-                            <div class="placeholder field_input" name="from-date">
-                              <div class="date-widget-view from-date">
-                                <input id="s1wfkm82j32qpvi" class="field hasDatepicker" type="text" name="from-date">
-                              </div>
-                            </div>
-                            <span id="from-date_error" class="field_error "></span>
+                          <div class="to-date-container pointer" ng-click="openEditPatient()">
+                            <i class="ricon-pencil"></i>
+                            <span>Editar</span>
                           </div>
-                          <span class="separator">hasta</span>
-                          <div class="to-date-container">
-                            <div class="placeholder field_input" name="to-date">
-                              <div class="date-widget-view to-date">
-                                <input id="0y3vrmh61zfflxr" class="field hasDatepicker" type="text" name="to-date">
-                              </div>
-                            </div>
-                            <span id="to-date_error" class="field_error "></span>
+                          <span class="separator">|</span>
+                          <div class="from-date-container pointer" ng-click="deletePatient()">
+                            <i class="ricon-trash"></i>
+                            <span>Borrar</span>
                           </div>
                         </div>
                       </div>
@@ -261,7 +219,8 @@
                       <div class="chart-view">
                         <div class="head">
                           <span class="title">Progreso en el juego</span>
-                          <span class="total">0 total</span>
+                          <span class="ricon-expand total pointer" 
+                          ng-click="expandChart('big-chart-container', activePatient.data.games)"></span>
                         </div>
                         <div class="spinner_container" style="height: 120px; display: none;">
                           <div class="spinner">
@@ -279,7 +238,7 @@
                         <div class="chart-view">
                           <div class="head">
                             <span class="title">Progreso pre test</span>
-                            <span class="total">0 total</span>
+                            <span class="ricon-expand total pointer"></span>
                           </div>
                           <div class="spinner_container" style="height: 100px; display: none;">
                             <div class="spinner">

@@ -8,10 +8,13 @@ var UserSchema = new Schema({
   creation: { type: Number, default: Date.now },
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },   
+  organization: { type: String, required: true },
   password: { type: String, required: true },   
   blockBreak: { type: Boolean, default: false },
   initialLevel: { type: Number, default: 1 },
   job: { type: String, default: 'patient' },
+  doctors: [ String ],
+  gender: String,
   performanceTest: [{
     timestamp: { type: Number, default: new Date().getTime() },
     rotationsLeft: { type: Number, default: 0 },

@@ -1,0 +1,65 @@
+<div class="modal-container modal">
+	<div class="close-modal" ng-click="closeEditPatient()">x</div>
+	<div id="main-body" class="box css">
+		<div class="inner">
+	        <div class="title extra">
+	          <h2 ng-hide="activePatient.error" class="">Editar paciente.</h2>
+	          <h2 class="error ng-hide" ng-show="activePatient.errors.confirm_password">Las contraseñas no coinciden.</h2>
+	          <h2 class="error ng-hide" ng-show="activePatient.errors.user_incomplete">Por favor completa todos los campos.</h2>
+	          <h2 class="error ng-hide" ng-show="activePatient.errors.no_user">No podemos encontrar este usuario.</h2>
+	          <h2 class="error ng-hide" ng-show="activePatient.errors.doctor_account">Esta parece ser una cuenta de un doctor.</h2>
+	        </div>
+
+	          <form ng-submit="editPatient()">
+
+	              <p class="text">
+	                  <span>
+	                      <input type="text" ng-model="activePatient.name" placeholder="Nombre">
+	                  </span>
+	              </p>
+
+	              <p class="text">
+	                  <span>
+	                      <input type="email" ng-model="activePatient.email" placeholder="E-mail" disabled>
+	                  </span>
+	              </p>
+
+	              <p class="text">
+	                  <span class="password-strength" data-password-strength="-1">
+	                      <input type="password" ng-model="activePatient.password" placeholder="Password">
+	                  </span>
+	              </p>
+
+	              <p class="text">
+	                  <span>
+	                      <input type="password" ng-model="activePatient.confirm_password" placeholder="Repetir Contraseña">
+	                  </span>
+	              </p>
+
+	              <div class="two-columns">
+		              <div rh-dropdown style="width: 47%;float: left;"
+		                hide-selected=true
+		                options="gameLevels"
+		                place-holder="Nivel Inicial" 
+		                default-option="activePatient.initialLevel" 
+		                clicked-option="activePatient.initialLevel">
+		              </div>
+
+		              <div rh-dropdown style="width: 47%;float: right;"
+		                hide-selected=true
+		                options="genders"
+		                place-holder="Sexo" 
+		                default-option="activePatient.gender" 
+		                clicked-option="activePatient.gender">
+		              </div>
+	              </div>
+
+	              <div>
+	                  <p class="submit">
+	                      <button type="submit" class="button blue medium"><span>Editar cuenta</span></button>
+	                  </p>
+	              </div>
+	          </form>
+		</div>
+	</div>
+</div>

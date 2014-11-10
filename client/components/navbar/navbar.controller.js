@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('toolnetApp')
+angular.module('ReHand')
   .controller('NavbarCtrl', function ($scope, $location) {
     $scope.menu = [{
       'title': 'Home',

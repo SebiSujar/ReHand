@@ -60,19 +60,25 @@ var saveUser = function(user, cookie, callback){
 exports.register = function(req, res) {
   oauth.verifier = req.query.oauth_verifier;
   console.log(req.body);
-  if (req.body.secret != 'ineba@123') {
-    return res.status(500).send('no_root')
-  }
-  if (!req.body.name || !req.body.email || !req.body.password) {
+  if (!req.body.name || !req.body.email || !req.body.password || !req.body.organization ) {
     return res.status(500).send('user_incomplete')
   }
   if (req.body.password != req.body.confirm_password) {
-    return res.status(500).send('confirm_password')
+    return res.status(500).send('confirm_password');
+  }
+  switch (req.body.organization.toLowerCase()) {
+    case 'ineba':
+      if (req.body.secret != 'ineba@123') return res.status(500).send('no_root');
+      break;
+    default: 
+      return res.status(500).send('bad_organization');
+      break;
   }
   var user = {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    organization: req.body.organization.toLowerCase(),
     job: 'doctor'
   };
   saveUser(user, req.cookies.JSESSIONID, function(err, user){

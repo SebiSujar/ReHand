@@ -764,6 +764,10 @@ div.dashboard-view div.summary div.summary-block, div.platform-overview-dashboar
   text-align: center;
 }
 
+div.dashboard-view div.summary div.summary-block.right {
+  float: right;
+}
+
 div.dashboard-view div.summary div.value, div.platform-overview-dashboard-view div.summary div.value {
   color: #fff;
   font-size: 24px;
@@ -1116,7 +1120,7 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   border: 1px solid #dadada;
   border-top: 1px solid #bbb;
   background: #fff;
-  padding: 20px 20px;
+  padding: 0;
   margin-bottom: 10px;
   cursor: pointer;
   box-sizing: border-box;
@@ -1126,19 +1130,44 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
 .patient-card .header {
   font-weight: bold;
   border-bottom: 1px solid #ccc;
+  padding: 10px 0;
 }
 
 .patient-card .data-container {
+  padding: 10px 0;
+}
 
+.patient-card .vertical-separator {
+  height: 100%;
+  width: 1px;
+  background: #ccc;
 }
 
 .patient-card .games-tests-container {
   width: 100%;  
+  margin-bottom: 10px;
+}
+.patient-card .games-tests-container .number {
+  position: relative;
+  left: -23px;
+  font-size: 22px;
+  top: 7px;
+}
+.patient-card .games-tests-container .info {
+  position: relative;
+  left: 10px;
 }
 
 .patient-card .data-card {
   width: 50%;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
   float: left;
+}
+
+.patient-card .data-card:first-child {
+  border-right: 1px solid #ccc;
 }
 
 .patient-card .left-column {
@@ -1190,10 +1219,10 @@ div.dashboard-view div.charts div.small-charts div.chart-block, div.platform-ove
   width: 100%;
 }
 
-#register-pacient #section {
+.patient-form #section {
   padding-top: 40px;
 }
-#register-pacient div#main-body {
+.patient-form div#main-body {
 background: #f2f6f9;
 background: -webkit-linear-gradient(#fff,#f2f6f9);
 background: -moz-linear-gradient(#fff,#f2f6f9);
@@ -1219,13 +1248,13 @@ outline: 0;
 padding: 0;
 }
 
-#register-pacient div#main-body div.title {
+.patient-form div#main-body div.title {
 height: auto;
 min-height: 55px;
 overflow: hidden;
 }
 
-#register-pacient div#main-body div.title h2 {
+.patient-form div#main-body div.title h2 {
 padding: 17px 24px;
 font-family: 'gotham a','gotham b','helvetica neue',helvetica,arial,sans-serif;
 background: url("../../assets/login/divider-4185071dd0daaebf859bc5ee44d46224.png") 50% 100% no-repeat;
@@ -1236,29 +1265,34 @@ line-height: 21px;
 text-align: center;
 }
 
-#register-pacient div#main-body form {
+.patient-form div#main-body div.title h2.error {
+color: #cb1a1a;
+font-size: 13px;
+}
+
+.patient-form div#main-body form {
 padding: 14px;
 }
 
-#register-pacient div#main-body form p {
+.patient-form div#main-body form p {
 margin-bottom: 14px;
 }
 
-#register-pacient div#main-body form p.text span {
+.patient-form div#main-body form p.text span {
 display: block;
 }
 
-html.placeholder #register-pacient label {
+html.placeholder .patient-form label {
 display: none !important;
 }
 
-#register-pacient div#main-body form p.text label {
+.patient-form div#main-body form p.text label {
 display: block;
 margin: 0 0 3px 1px;
 font-size: 13px;
 }
 
-#register-pacient div#main-body form p.text input {
+.patient-form div#main-body form p.text input {
 -webkit-box-sizing: border-box;
 -moz-box-sizing: border-box;
 -ms-box-sizing: border-box;
@@ -1284,7 +1318,7 @@ background-color: #fff;
 color: #000;
 }
 
-#register-pacient div#main-body form p button.button {
+.patient-form div#main-body form p button.button {
 height: 44px;
 width: 302px;
 -webkit-border-radius: 6px;
@@ -1311,7 +1345,7 @@ cursor: pointer;
 background-image: linear-gradient(rgb(40, 160, 229), rgb(1, 94, 148));
 }
 
-#register-pacient div#main-body form p button.button span {
+.patient-form div#main-body form p button.button span {
 height: 29px;
 padding: 13px 0 0;
 -webkit-border-radius: 5px;
@@ -1338,7 +1372,7 @@ font-weight: bold;
   z-index: 1000;
 }
 
-.modal-container {
+.modal {
   z-index: 1001;
   position: absolute;
   top: 50%;
@@ -1350,7 +1384,7 @@ font-weight: bold;
   transform: translateY(-50%) translateX(-50%);
 }
 
-.modal-container .close-modal {
+.modal .close-modal {
   cursor: pointer;
   color: white;
   position: absolute;
@@ -1358,4 +1392,103 @@ font-weight: bold;
   right: -15px;
   font-weight: bold;
   font-size: 17px;
+}
+
+.sureModal.modal-content {
+width: 500px;
+padding: 0;
+max-width: 90%;
+text-align: center;
+line-height: 1.42857143;
+background: #fff;
+border-radius: 4px;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+-webkit-box-shadow: 0 0 20px 5px rgba(0,0,0,.1);
+box-shadow: 0 0 20px 5px rgba(0,0,0,.1);
+color: #8b959e;
+display: block;
+min-height: 0;
+max-height: none;
+}
+
+.sureModal.modal-content .modal-header {
+font-weight: bold;
+text-transform: uppercase;
+padding: 15px;
+border-bottom: 1px solid #e5e5e5;
+}
+
+.sureModal.modal-content p {
+margin: 1em 0;
+line-height: 1.6;
+}
+
+.sureModal.modal-content .modal-header p {
+display: inline-block;
+padding: 0;
+}
+
+.sureModal.modal-content.limit .modal-body {
+margin-bottom: 15px;
+}
+
+.sureModal.modal-content .modal-body {
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+padding: 0;
+margin: 0;
+position: relative;
+overflow-y: hidden;
+padding-bottom: 20px;
+}
+
+.sureModal.modal-content .btn-default {
+  height: 38px;
+  font-size: 14px;
+  border-radius: 4px;
+  outline: 0;
+  float: left;
+  width: 170px;
+  margin-right: 7.5%;
+  border: 1px solid #d8d8d8;
+  color: rgba(0,0,0,.5) !important;
+}
+.sureModal.modal-content .btn {
+  cursor: pointer;
+}
+.sureModal.modal-content .btn p {
+  margin: 0;
+  line-height: 40px;
+}
+
+#sure-delete-patient .sureModal.modal-content .btn-default {
+  float: right;
+}
+.modal-content .btn-default:hover {
+  background-color: rgba(221,221,221,0.5);
+}
+
+.sureModal.modal-content .btn-submit {
+  margin-left: 7.5% !important;
+  min-width: 170px;
+  height: 38px;
+  display: inline-block;
+  font-size: 14px;
+  border: 1px solid #d8d8d8;
+  color: #fff !important;
+  border-radius: 4px;
+  background: rgba(105,189,209,0.9);
+  float: right;
+  bottom: 1px;
+  position: relative;
+}
+#sure-delete-patient .sureModal.modal-content .btn-submit {
+  float: left;
+}
+.modal-content .btn-submit:hover {
+  background: rgba(105,189,209,0.9);
+}
+.modal-content .btn:active {
+  box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
 }
