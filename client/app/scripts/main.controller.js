@@ -222,6 +222,8 @@ angular.module('ReHand')
               text: ''
           },
           xAxis: {
+              allowDecimals: false,
+              floor: 0,
               labels: {
                   formatter: function() {
                       return this.value + ' veces';
@@ -229,6 +231,8 @@ angular.module('ReHand')
               }
           },
           yAxis: {
+              allowDecimals: false,
+              floor: 0,
               title: {
                   text: 'Repeticiones'
               },
