@@ -1492,6 +1492,7 @@ padding-bottom: 20px;
 .modal-content .btn:active {
   box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
 }
+input[type="email"]:disabled,
 input[type="text"]:disabled {
   opacity: .7;
   background: #eee;
