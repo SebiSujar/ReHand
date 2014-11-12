@@ -3,7 +3,7 @@ angular.module('ReHand', ['LocalStorageModule'])
   function($scope, $http, $window, localStorageService) {
   
   //var backUrl = '//localhost:3000';
-  var backUrl = '//romansuarez.com.ar';
+  var backUrl = '//rehand.org';
 
   $scope.user = {};
   $scope.errors = {};
