@@ -160,9 +160,7 @@ angular.module('ReHand')
   }
 
   $scope.toPatientsList = function(){
-    if ($scope.tabs.selected == 'profile') {
-      $scope.closeShowPatient();
-    }
+    $scope.closeShowPatient();
     $scope.tabs.selected = 'pacientes';
   }
 
